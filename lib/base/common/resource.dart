@@ -23,6 +23,12 @@ class Sp {
   static const double font_middle = 13.0;
 
   static const double font_middle2 = 14.0;
+
+  static const double font_big = 16.0;
+
+  static const double font_bigger = 20.0;
+
+  static const double font_large = 24.0;
 }
 
 /// 图标大写 & 宽度 & 高度
@@ -39,7 +45,8 @@ class Size2 {
 }
 
 class String2 {
-  static const String empty = 'Empty';
+  static const String success = "success";
+  static const String error = "error";
 }
 
 class ImageString {

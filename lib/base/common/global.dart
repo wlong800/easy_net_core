@@ -1,5 +1,5 @@
 
-import 'package:all_future_flutter_module/base/hold/hold_manager.dart';
+import 'package:app/base/hold/hold_manager.dart';
 import 'package:flutter/material.dart';
 
 enum Environment {

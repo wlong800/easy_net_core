@@ -1,4 +1,4 @@
-import 'package:all_future_flutter_module/base/common/lang.dart';
+import 'package:app/base/common/lang.dart';
 import 'package:flutter/material.dart';
 
 GlobalKey<NavigatorState> navigatorState = new GlobalKey();

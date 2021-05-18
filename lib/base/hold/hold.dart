@@ -1,5 +1,5 @@
 
-import 'package:all_future_flutter_module/base/common/lang.dart';
+import 'package:app/base/common/lang.dart';
 
 import 'hold_manager.dart';
 
