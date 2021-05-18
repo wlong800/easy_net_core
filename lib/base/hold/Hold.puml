@@ -1,0 +1,57 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Hold {
+{static} put(String key, dynamic value)
+{static} get(String key)
+{static} getString(String key)
+{static} getInt(String key)
+{static} getBool(String key)
+{static} delete(String key)
+{static} deleteAll()
+{static} contains(String key)
+}
+note left: 门面
+
+interface HoldFacade {
+  {abstract} Future<bool> put(String key, dynamic value)
+
+  {abstract} dynamic get(String key)
+
+  {abstract} Future<bool> deleteAll()
+
+  {abstract} Future<bool> delete(String key)
+
+  {abstract} bool isContains(String key)
+}
+note bottom: 需要被实现,基于该接口，可以自定义轻量级数据本地保存
+
+class HoldFacadeImpl {
+
+}
+
+class HoldManager {
+  -HoldFacade _holdFacade
+
+  {static} HoldManager instance()
+
+  {static} Future<Null> init()
+}
+note left: 管理类
+
+class HoldGet {
+{static} Future<bool> showGuidePage()
+{static} GlobalModel getGlobalInfo()
+}
+note top: 抽取一个utils，方便调用
+
+'<|.. 实现
+'<|-- 继承
+'o--  聚合
+'..  ???
+HoldFacade <|.. HoldFacadeImpl
+
+HoldManager o-- HoldFacade
+Hold .. HoldManager
+Hold .. HoldFacade
+@enduml
