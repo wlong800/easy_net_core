@@ -1,56 +1,23 @@
-
-import 'package:app/base/common/lang.dart';
 import 'package:app/base/common/logger.dart';
-import 'package:flutter/services.dart';
-
-var _nativeHeaders = <String, dynamic>{};
+import 'package:all_future_plugin/all_future_plugin.dart';
 
 class HeaderTools {
-  static Future getHeader(Map<String, dynamic>? params) async {
-    Map<String, dynamic> headerData;
+  static Future<Map<dynamic, dynamic>?> getHeaders(String url,
+      {String? method = "get",
+      String? contentType = "json",
+      Map<String, dynamic>? params}) async {
     try {
-      headerData = await _readBuildHeaders(params);
-    } on PlatformException {
-      headerData = <String, dynamic>{
-        'Error:': 'Failed to get platform version.'
-      };
-    }
-    return headerData;
-  }
-
-  static Future<Map<String, dynamic>> _readBuildHeaders(
-      Map<String, dynamic>? params) async {
-    Map<String, dynamic> nativeHeaders = await getNativeHeaders();
-    logger("nativeHeaders :  $nativeHeaders");
-    return nativeHeaders;
-  }
-
-  static void buildNativeHeader() async {
-    try {
-      var map = await platform.invokeMethod("getNativeRequestHeader");
-      map.forEach((key, value) {
-        _nativeHeaders[key] = value;
+      var platformHeaders = await AllFuturePlugin.platformHeaders({
+        "url": url,
+        "method": method,
+        "contentType": contentType,
+        "requestBody": params
       });
-    } on Exception catch (e) {
-      print(e);
+      logger("platformHeaders : $platformHeaders");
+      return platformHeaders;
     } catch (e) {
       logger(e.toString());
     }
+    return null;
   }
-
-  static Future<Map<String, dynamic>> getNativeHeaders() async {
-    var nativeHeaders = <String, dynamic>{};
-    try {
-      var map = await platform.invokeMethod("getNativeRequestHeader");
-      map.forEach((key, value) {
-        nativeHeaders[key] = value;
-      });
-    } on Exception catch (e) {
-      print(e);
-    } catch (e) {
-      logger(e.toString());
-    }
-    return nativeHeaders;
-  }
-
 }

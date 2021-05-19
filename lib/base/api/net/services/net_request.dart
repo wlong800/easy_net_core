@@ -24,7 +24,7 @@ Dio _defaultDio(Map<dynamic, dynamic>? headers) {
     _dio.options.headers = Map<String, dynamic>.from(headers!);
     logger("header : ${_dio.options.headers.toString()}");
   }
-  // _doProxy(_dio);
+  // _addProxy(_dio);
   return _dio;
 }
 
@@ -88,10 +88,12 @@ BaseResponse _handleResponseError(e) {
 }
 
 /// 获取header数据
-Future getHeader(Map<String, dynamic>? params) async {
+Future getHeader(String url,
+    {String? method, String? contentType, Map<String, dynamic>? params}) async {
   dynamic header;
   try {
-    header = await HeaderTools.getHeader(params);
+    header = await HeaderTools.getHeaders(url,
+        method: method, contentType: contentType, params: params);
   } on Exception catch (e) {
     logger(e.toString());
     return null;
@@ -99,7 +101,7 @@ Future getHeader(Map<String, dynamic>? params) async {
   return header;
 }
 
-void _doProxy(Dio dio) {
+void _addProxy(Dio dio) {
   String proxy = Hold.getString("proxy_setting");
   logger("proxy setting >>> $proxy");
   if (isEmpty(proxy)) return;

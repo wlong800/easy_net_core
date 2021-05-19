@@ -9,7 +9,7 @@ import 'HttpStatus2.dart';
 
 
 class Api {
-  static Future<Null> get(String? url,
+  static Future<Null> get(String url,
       {Map<String, String>? params,
       Callback? success,
       Callback3? error,
@@ -26,7 +26,7 @@ class Api {
     return null;
   }
 
-  static Future<Null> post(String? url,
+  static Future<Null> post(String url,
       {Map<String, dynamic>? params,
       Callback? success,
       Callback3? error,
