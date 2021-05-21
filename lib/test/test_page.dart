@@ -51,10 +51,13 @@ class _TestPageState extends State<TestPage> {
             // debugPrint("platformHeaders : $platformHeaders");
 
             Api.post(
-                "https://fu.allhistory.com/api/m/future/login/v1/n/app/token",
+                "https://fu.allhistory.com/api/m/future/v2/y/user/follow/list",
                 params: {
-                  "appId": "wmzh65c3f1601a7d68d9",
-                  "ticket": "8e1044ef7e0d432a9f101779cd17d73b"
+                  "querySource": "mypage",
+                  "size": 20,
+                  "attentionType": 1,
+                  "followType": 0,
+                  "page": 1
                 }, success: (data) {
               logger(data.toString());
             });
