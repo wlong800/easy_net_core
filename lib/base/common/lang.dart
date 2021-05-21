@@ -12,13 +12,7 @@ import 'logger.dart';
 
 /// 封装一些常用的函数
 
-///flutter -> 原生
-const platform = const MethodChannel('all_future_flutter_method_plugin');
-///原生 -> flutter
-const eventChannel = const EventChannel('all_future_flutter_event_plugin');
 
-const basicMessageChannel = const BasicMessageChannel(
-    'all_future_flutter_basic_plugin', StandardMessageCodec());
 
 ///去除空格换换行
 String removeSpaces(String? value) {
@@ -175,30 +169,6 @@ Type typeOf<T>() => T;
 
 String uuid() {
   return Uuid().v4();
-}
-
-/// 本地是否安装微信
-Future<bool?> isWeChatSupport() async {
-  final value = await platform.invokeMethod<bool>("isWeChatLoginSupport");
-  return value;
-}
-
-/// 是否支持AliPay
-Future<bool?> isAliPaySupport() async {
-  final value = await platform.invokeMethod<bool>("isAliPaySupport");
-  return value;
-}
-
-/// 是否支持ApplePay
-Future<bool?> isApplePaySupport() async {
-  final value = await platform.invokeMethod<bool>("isApplePaySupport");
-  return value;
-}
-
-/// 是否支持GooglePay
-Future<bool?> isGooglePaySupport() async {
-  final value = await platform.invokeMethod<bool>("isGooglePaySupport");
-  return value;
 }
 
 RegExp emailRegExp() {

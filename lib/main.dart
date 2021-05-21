@@ -1,4 +1,6 @@
+import 'package:app/base/common/channel_tools.dart';
 import 'package:app/base/common/lang.dart';
+import 'package:app/base/common/logger.dart';
 import 'package:app/test/test_page.dart';
 import 'package:flutter/material.dart';
 
@@ -53,8 +55,29 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
   int _counter = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance?.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    WidgetsBinding.instance?.removeObserver(this);
+  }
+
+  @override
+  Future<bool> didPopRoute() async {
+    if ((await navigatorState.currentState?.maybePop()) == false) {
+        logger("not pop, because _history is null...");
+        systemPop();
+    }
+    return Future<bool>.value(true);
+  }
 
   void _incrementCounter() {
     push(context, TestPage());
@@ -112,4 +135,6 @@ class _MyHomePageState extends State<MyHomePage> {
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+
+  // handlePopRoute
 }

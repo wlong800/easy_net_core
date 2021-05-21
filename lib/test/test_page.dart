@@ -3,7 +3,6 @@ import 'package:app/base/common/logger.dart';
 import 'package:app/base/common/touch_callback.dart';
 import 'package:app/base/widget/common_ui_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:all_future_plugin/all_future_plugin.dart';
 
 class TestPage extends StatefulWidget {
   @override
@@ -50,6 +49,7 @@ class _TestPageState extends State<TestPage> {
             //   }
             // });
             // debugPrint("platformHeaders : $platformHeaders");
+
             Api.post(
                 "https://fu.allhistory.com/api/m/future/login/v1/n/app/token",
                 params: {
