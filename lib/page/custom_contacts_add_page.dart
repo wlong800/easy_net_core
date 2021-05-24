@@ -28,11 +28,11 @@ class _CustomContactsAddPageState extends State<CustomContactsAddPage> {
               child: Text("xxx"),
             ),
             Container(
-              padding: EdgeInsets.only(top: 32.0),
+              padding: EdgeInsets.only(top: 50.0, left: 16.0, right: 16.0),
               child: MyRaisedButton(
                 "保存",
-                () async {
-                },
+                () async {},
+                enableClick: true,
               ),
             )
           ],

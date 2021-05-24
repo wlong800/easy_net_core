@@ -6,7 +6,6 @@ class MyRaisedButton extends StatelessWidget {
   final String text;
   final bool enableClick;
   final VoidCallback callback;
-  final Color highlightColor;
   final Color textColor;
   final Color disabledTextColor;
   final Color enableColor;
@@ -17,14 +16,13 @@ class MyRaisedButton extends StatelessWidget {
 
   MyRaisedButton(this.text, this.callback,
       {this.enableClick = false,
-      this.highlightColor = R.color_1,
       this.textColor = R.color_white,
-      this.disabledTextColor = R.color_1,
-      this.enableColor = R.color_2,
-      this.disabledColor = R.color_font_1,
+      this.disabledTextColor = R.color_white,
+      this.enableColor = R.color_1,
+      this.disabledColor = R.color_1_60,
       this.imageName,
-      this.height = 44.0,
-      this.radius = 10.0});
+      this.height = 45.0,
+      this.radius = 23.0});
 
   @override
   Widget build(BuildContext context) {

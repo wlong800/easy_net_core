@@ -10,6 +10,7 @@ import 'lang.dart';
 class R {
   /// 主色
   static const Color color_1 = Color(0xffFF2773);
+  static const Color color_1_60 = Color(0xff3dFF2773);
   static const Color color_2 = Color(0xffFFDA3F);
   static const Color color_3 = Color(0xffffffff);
   static const Color color_4 = Color(0xff000000);
@@ -37,7 +38,7 @@ class Sp {
 
   static const double font_large = 24.0;
 
-  static const double font_17= 17.0;
+  static const double font_17 = 17.0;
 }
 
 /// 图标大写 & 宽度 & 高度
@@ -81,9 +82,7 @@ bool isPad(context) {
 
 initScreenUtil(BuildContext context, {bool portrait = true}) {
   ScreenUtil.init(
-    BoxConstraints(
-        maxWidth: MediaQuery.of(context).size.width,
-        maxHeight: MediaQuery.of(context).size.height),
+    BoxConstraints(maxWidth: getScreenWidth(), maxHeight: getScreenHeight()),
     designSize: isPad(context)
         ? Size(768, 1024)
         : Size(portrait ? Size2.screen_w : Size2.screen_h,

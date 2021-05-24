@@ -1,5 +1,6 @@
 
 
+import 'package:app/page/view_model/custom_ticket_view_models.dart';
 import 'package:get_it/get_it.dart';
 
 import 'api/api.dart';
@@ -23,5 +24,5 @@ void setupServiceLocator() {
   // serviceLocator.registerLazySingleton<CurrencyService>(() => CurrencyServiceFake());
 
   // view models
-  // serviceLocator.registerFactory<JokeViewModel>(() => JokeViewModel());
+  serviceLocator.registerFactory<CustomTicketViewModel>(() => CustomTicketViewModel());
 }

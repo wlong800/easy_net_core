@@ -14,7 +14,7 @@ class CustomTicketViewModel extends BaseProviderModel<List<ContactsModel>> {
     var response = await appService.fetchContactsData(params: requestParams);
     if (!onResponseSuccess(response)) return;
     (response!.data as List).forEach((element) {
-      data!.add(ContactsModel.fromJson(element));
+      data.add(ContactsModel.fromJson(element));
     });
     notifyDataSetChanged();
   }

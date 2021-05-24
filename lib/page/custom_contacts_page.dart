@@ -31,9 +31,10 @@ class _CustomContactsPageState
 
   @override
   Widget buildFullScreen(BuildContext context, CustomTicketViewModel model) {
+    initScreenUtil(context);
     return Scaffold(
       appBar: WMPreferredSize("购票使用人"),
-      body: buildBody(context, model),
+      body: build2(context, model),
     );
   }
 
@@ -59,6 +60,7 @@ class _CustomContactsPageState
         TouchCallBack(
           child: Container(
             height: 45.0,
+            margin: EdgeInsets.only(left: 16.0, right: 16.0, bottom: 35.0),
             alignment: Alignment.center,
             child: Text(
               "添加使用人",
