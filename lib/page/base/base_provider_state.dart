@@ -76,7 +76,11 @@ abstract class BaseProviderState<T extends StatefulWidget,
   }
 
   Widget buildErrorWidget() {
-    return EmptyWidget();
+    return Error2Widget(
+      func: () {
+        onFetchData();
+      },
+    );
   }
 
   Widget buildLoadingWidget() {

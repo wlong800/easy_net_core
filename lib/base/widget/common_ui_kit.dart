@@ -9,6 +9,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
+import 'base_button.dart';
+
 /// 公共控件前期全部放到这，后期随着页面增多，抽离
 
 /// 标题栏
@@ -210,6 +212,66 @@ class EmptyWidget extends StatelessWidget {
   }
 }
 
+class Error2Widget extends StatelessWidget {
+  final Color bgColor;
+  final Color textColor;
+  final String text;
+  final String btnText;
+  final String image;
+  final Function? func;
+
+  const Error2Widget({
+    Key? key,
+    this.func,
+    this.bgColor = Colors.white,
+    this.textColor = R.color_1,
+    this.text = "Unable to connect to the network\nTry to refresh",
+    this.image = "images/empty_state_network.png",
+    this.btnText = "Refresh",
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: bgColor,
+      alignment: Alignment.center,
+      child: ListView(
+        children: <Widget>[
+          Container(
+            height: 86.0,
+          ),
+          Image.asset(
+            image,
+            width: 110.0,
+            height: 137.0,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 22.0, left: 24.0, right: 24.0),
+            child: Text(
+              text,
+              strutStyle: StrutStyle(forceStrutHeight: true, height: 1.5),
+              textAlign: TextAlign.center,
+              style: TextStyle(color: textColor, fontSize: sp(Sp.font_big)),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 40.0, left: 24.0, right: 24.0),
+            child: MyRaisedButton(
+              btnText,
+              () {
+                func?.call();
+              },
+              enableClick: true,
+              enableColor: R.color_2,
+              textColor: R.color_1,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class CustomLoadingMoreKit extends StatelessWidget {
   final Color color;
   final VoidCallback? onLoadMoreErrorCallback;
@@ -391,30 +453,18 @@ class LoadingKit extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: R.color_2,
-      child: ListView(
+      color: bgColor,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Container(
-            height: 140,
-          ),
-          Container(
-            child: Padding(
-              padding: const EdgeInsets.only(right: 8.0),
-              child: Image.asset(
-                'images/loading.webp',
-                width: 100.0,
-                height: 100,
-              ),
-            ),
-          ),
           Padding(
             padding: const EdgeInsets.only(top: 0.0),
             child: Container(
+              alignment: Alignment.center,
               child: Text(
-                "Loading",
+                "加载中...",
                 style: TextStyle(
-                  color: R.color_2,
-                  decoration: TextDecoration.none,
+                  color: R.color_font_1,
                   fontSize: sp(Sp.font_big),
                 ),
                 textAlign: TextAlign.center,

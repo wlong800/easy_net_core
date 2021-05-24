@@ -111,8 +111,7 @@ abstract class BaseProviderModel<T> extends ChangeNotifier {
           setLoadError = true;
         } else {
           if (connectionState == NetState.waiting) {
-            // onError(response?.code, response?.msg);
-            onEmpty();
+            onError(response?.code, response?.msg);
           } else {
             //todo:
             // showNativeToast(msg: response?.msg);
