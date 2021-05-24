@@ -24,7 +24,7 @@ Dio _defaultDio(Map<dynamic, dynamic>? headers) {
     _dio.options.headers = Map<String, dynamic>.from(headers!);
     logger("header : ${_dio.options.headers.toString()}");
   }
-  // _addProxy(_dio);
+  _addProxy(_dio);
   return _dio;
 }
 
@@ -102,7 +102,7 @@ Future getHeader(String url,
 }
 
 void _addProxy(Dio dio) {
-  String proxy = Hold.getString("proxy_setting");
+  String proxy = /*Hold.getString("proxy_setting")*/"10.6.12.169:8888";
   logger("proxy setting >>> $proxy");
   if (isEmpty(proxy)) return;
   (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =

@@ -13,7 +13,7 @@ class _TestPageState extends State<TestPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AFPreferredSize(
+      appBar: WMPreferredSize(
         "Test",
       ),
       body: Container(

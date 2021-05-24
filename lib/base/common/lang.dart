@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:ffi';
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
@@ -73,9 +72,6 @@ int toInt(value, {int defaultValue = -1}) {
   }
   if (value is double) {
     return value.toInt();
-  }
-  if (value is Double) {
-    return value as int;
   }
   return defaultValue;
 }

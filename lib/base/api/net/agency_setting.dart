@@ -25,7 +25,7 @@ class _AgencySettingState extends State<AgencySetting> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AFPreferredSize(
+      appBar: WMPreferredSize(
         "代理设置",
         elevation: Size2.elevation,
       ),

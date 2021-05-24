@@ -10,11 +10,11 @@ const serviceUrlTest = 'https://dev-api.lumiclass.com/';
 
 String? baseUrl;
 
-getServiceUrl() {
-  if (isNotEmpty(baseUrl)) {
-    if (!baseUrl!.endsWith("/")) baseUrl = baseUrl! + "/";
-    return baseUrl;
-  }
+String getServiceUrl() {
+  // if (isNotEmpty(baseUrl)) {
+  //   if (!baseUrl!.endsWith("/")) baseUrl = baseUrl! + "/";
+  //   return baseUrl;
+  // }
   // logger("base url   ${Global.type}");
   // switch (Global.type) {
   //   case 0:
@@ -26,4 +26,5 @@ getServiceUrl() {
   //   default:
   //     return serviceUrl;
   // }
+  return "http://10.4.40.168/";
 }

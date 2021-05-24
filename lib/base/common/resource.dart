@@ -9,11 +9,18 @@ import 'lang.dart';
 /// 颜色
 class R {
   /// 主色
-  static const Color color_1 = Color(0xff2B2B2D);
+  static const Color color_1 = Color(0xffFF2773);
   static const Color color_2 = Color(0xffFFDA3F);
   static const Color color_3 = Color(0xffffffff);
   static const Color color_4 = Color(0xff000000);
   static const Color color_5 = Color(0xffF4AC22);
+
+  static const Color color_font_1 = Color(0xff333333);
+  static const Color color_font_2 = Color(0xff999999);
+
+  static const Color color_white = Color(0xffffffff);
+
+  static const Color color_background = Color(0xfff7f7f7);
 }
 
 /// 字体大写
@@ -29,6 +36,8 @@ class Sp {
   static const double font_bigger = 20.0;
 
   static const double font_large = 24.0;
+
+  static const double font_17= 17.0;
 }
 
 /// 图标大写 & 宽度 & 高度

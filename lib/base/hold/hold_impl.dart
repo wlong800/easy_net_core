@@ -42,9 +42,9 @@ class HoldFacadeImpl extends HoldFacade {
       return await _prefs!.setBool(key, value);
     } else if (value is List<String>) {
       return await _prefs!.setStringList(key, value);
-    } else if (value is double) {
+    }/* else if (value is double) {
       return await _prefs!.setDouble(key, value);
-    } else {
+    }*/ else {
       throw Exception("value is $value, fail to save...");
     }
   }

@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:app/base/common/common_callback.dart';
 import 'package:app/base/common/lang.dart';
 import 'package:app/base/common/resource.dart';
 import 'package:app/base/common/touch_callback.dart';
@@ -11,7 +12,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 /// 公共控件前期全部放到这，后期随着页面增多，抽离
 
 /// 标题栏
-class AFPreferredSize extends PreferredSize {
+class WMPreferredSize extends PreferredSize {
   final String title;
   final bool leading;
   final bool isSystemPop;
@@ -29,21 +30,21 @@ class AFPreferredSize extends PreferredSize {
   final double height;
   final Brightness brightness;
 
-  AFPreferredSize(this.title,
+  WMPreferredSize(this.title,
       {this.leading = true,
       this.isSystemPop = false,
       this.callback,
       this.rightText,
       this.rightWidget,
       this.bgColor = Colors.white,
-      this.titleColor = R.color_1,
+      this.titleColor = R.color_font_1,
       this.titleBold = false,
       this.titleWidget,
       this.leadingWidget,
       this.height = Size2.app_bar_height,
       this.leadingCallback,
       this.elevation = 0.0,
-      this.titleSize = Sp.font_big,
+      this.titleSize = Sp.font_17,
       this.brightness = Brightness.light})
       : super(child: Container(), preferredSize: Size.fromHeight(height));
 
@@ -167,7 +168,7 @@ class EmptyWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     if (showAppBar) {
       return Scaffold(
-        appBar: AFPreferredSize(""),
+        appBar: WMPreferredSize(""),
         body: _buildContainer(),
       );
     } else {
@@ -422,6 +423,94 @@ class LoadingKit extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class TextFormField2 extends StatelessWidget {
+  final String? hintText;
+  final double hintTextSize;
+  final TextEditingController? controller;
+  final FocusNode? focusNode;
+  final Widget? suffixIcon;
+  final FormFieldValidator<String>? validator;
+  final bool obscureText;
+  final bool enabled;
+  final bool autoFocus;
+  final TextInputType? inputType;
+  final List<TextInputFormatter>? inputFormatter;
+  final Callback? onSaved;
+  final Color enabledBorderColor;
+  final Color focusedBorderColor;
+  final double radius;
+  final Callback? onFieldSubmitted;
+
+  const TextFormField2(
+      {Key? key,
+      this.hintText,
+      this.controller,
+      this.focusNode,
+      this.suffixIcon,
+      this.validator,
+      this.obscureText = false,
+      this.enabled = true,
+      this.onSaved,
+      this.inputType,
+      this.inputFormatter,
+      this.hintTextSize = Sp.font_big,
+      this.enabledBorderColor = R.color_font_1,
+      this.focusedBorderColor = R.color_2,
+      this.onFieldSubmitted,
+      this.autoFocus = false,
+      this.radius = 8.0})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      controller: controller,
+      focusNode: focusNode,
+      //验证用户名
+      validator: validator,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      enabled: enabled,
+      autofocus: autoFocus,
+      inputFormatters: inputFormatter,
+      keyboardType: inputType,
+      cursorColor: R.color_2,
+      style: TextStyle(color: R.color_1, fontSize: sp(Sp.font_big)),
+      decoration: InputDecoration(
+        contentPadding:
+            const EdgeInsets.symmetric(vertical: 4.0, horizontal: 16.0),
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(radius)),
+            borderSide: BorderSide(color: enabledBorderColor, width: 1.0)),
+        enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(radius)),
+            borderSide: BorderSide(color: enabledBorderColor, width: 1.0)),
+        focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(radius)),
+            borderSide: BorderSide(color: focusedBorderColor, width: 1.0)),
+        errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(radius)),
+            borderSide: BorderSide(color: enabledBorderColor, width: 1.0)),
+        focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(radius)),
+            borderSide: BorderSide(color: focusedBorderColor, width: 1.0)),
+        hintText: hintText,
+        hintStyle: TextStyle(color: R.color_font_1, fontSize: sp(hintTextSize)),
+        //尾部添加清除按钮
+        suffixIcon: suffixIcon,
+      ),
+      obscureText: obscureText,
+      onFieldSubmitted: (value) {
+        if (isEmpty(value)) return;
+        onFieldSubmitted!(value);
+      },
+      //保存数据
+      onSaved: (String? value) {
+        onSaved!(value);
+      },
     );
   }
 }
