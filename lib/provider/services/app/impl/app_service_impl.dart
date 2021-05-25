@@ -18,5 +18,5 @@ class AppServiceImpl implements AppService {
 
   @override
   Future<BaseResponse?>? deleteContactsData({Map<String, dynamic>? params})  =>
-      _api.fetchDataByPost(ServicePath.deleteContacts, params: params);
+      _api.fetchDataByPost(ServicePath.deleteContacts + "/${params!["cid"]}", params: params);
 }

@@ -57,7 +57,7 @@ BaseResponse _handleResponse(Response response) {
     if (isEmpty(response.data)) {
       return BaseResponse(code: HttpStatus2.ok);
     }
-    var result = BaseResponse.fromJson(json.decode(response.data));
+    var result = BaseResponse.fromJson(response.data);
     return result;
   } else if (response.statusCode == HttpStatus.unauthorized) {
     return BaseResponse(
@@ -90,10 +90,11 @@ BaseResponse _handleResponseError(e) {
 /// 获取header数据
 Future getHeader(String url,
     {String? method, String? contentType, Map<String, dynamic>? params}) async {
-  dynamic header;
+  Map<dynamic, dynamic>? header;
   try {
     header = await HeaderTools.getHeaders(url,
         method: method, contentType: contentType, params: params);
+    header!["X-APP-APPID"] = "3";
   } on Exception catch (e) {
     logger(e.toString());
     return null;
