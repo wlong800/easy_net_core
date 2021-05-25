@@ -508,7 +508,7 @@ class TextFormField2 extends StatelessWidget {
       this.inputType,
       this.inputFormatter,
       this.hintTextSize = Sp.font_big,
-      this.enabledBorderColor = R.color_font_1,
+      this.enabledBorderColor = R.color_text_field_border,
       this.focusedBorderColor = R.color_2,
       this.onFieldSubmitted,
       this.autoFocus = false,
@@ -530,25 +530,25 @@ class TextFormField2 extends StatelessWidget {
       cursorColor: R.color_2,
       style: TextStyle(color: R.color_1, fontSize: sp(Sp.font_big)),
       decoration: InputDecoration(
-        contentPadding:
-            const EdgeInsets.symmetric(vertical: 4.0, horizontal: 16.0),
-        border: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(radius)),
-            borderSide: BorderSide(color: enabledBorderColor, width: 1.0)),
-        enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(radius)),
-            borderSide: BorderSide(color: enabledBorderColor, width: 1.0)),
-        focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(radius)),
-            borderSide: BorderSide(color: focusedBorderColor, width: 1.0)),
-        errorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(radius)),
-            borderSide: BorderSide(color: enabledBorderColor, width: 1.0)),
-        focusedErrorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(radius)),
-            borderSide: BorderSide(color: focusedBorderColor, width: 1.0)),
+        // contentPadding:
+        //     const EdgeInsets.symmetric(vertical: 4.0, horizontal: 16.0),
+        // border: OutlineInputBorder(
+        //     borderRadius: BorderRadius.all(Radius.circular(radius)),
+        //     borderSide: BorderSide(color: enabledBorderColor, width: 1.0)),
+        // enabledBorder: OutlineInputBorder(
+        //     borderRadius: BorderRadius.all(Radius.circular(radius)),
+        //     borderSide: BorderSide(color: enabledBorderColor, width: 1.0)),
+        // focusedBorder: OutlineInputBorder(
+        //     borderRadius: BorderRadius.all(Radius.circular(radius)),
+        //     borderSide: BorderSide(color: focusedBorderColor, width: 1.0)),
+        // errorBorder: OutlineInputBorder(
+        //     borderRadius: BorderRadius.all(Radius.circular(radius)),
+        //     borderSide: BorderSide(color: enabledBorderColor, width: 1.0)),
+        // focusedErrorBorder: OutlineInputBorder(
+        //     borderRadius: BorderRadius.all(Radius.circular(radius)),
+        //     borderSide: BorderSide(color: focusedBorderColor, width: 1.0)),
         hintText: hintText,
-        hintStyle: TextStyle(color: R.color_font_1, fontSize: sp(hintTextSize)),
+        hintStyle: TextStyle(color: R.color_font_4, fontSize: sp(hintTextSize)),
         //尾部添加清除按钮
         suffixIcon: suffixIcon,
       ),

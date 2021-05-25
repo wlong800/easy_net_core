@@ -18,10 +18,14 @@ class R {
 
   static const Color color_font_1 = Color(0xff333333);
   static const Color color_font_2 = Color(0xff999999);
+  static const Color color_font_3 = Color(0xff666666);
+  static const Color color_font_4 = Color(0xffcccccc);
 
   static const Color color_white = Color(0xffffffff);
 
   static const Color color_background = Color(0xfff7f7f7);
+
+  static const Color color_text_field_border = Color(0xffEDEDED);
 }
 
 /// 字体大写

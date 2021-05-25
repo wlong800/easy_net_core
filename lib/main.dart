@@ -31,6 +31,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return MaterialApp(
       navigatorKey: navigatorState,
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         backgroundColor: R.color_background,
       ),
