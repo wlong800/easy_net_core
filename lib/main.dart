@@ -1,5 +1,10 @@
+
+import 'dart:ui';
+
+import 'package:app/base/common/lang.dart';
 import 'package:app/page/custom_contacts_page.dart';
 import 'package:app/provider/services/service_locator.dart';
+import 'package:app/router.dart';
 import 'package:flutter/material.dart';
 
 import 'base/common/channel_tools.dart';
@@ -12,10 +17,14 @@ GlobalKey<NavigatorState> navigatorState = new GlobalKey();
 main() async {
   setupServiceLocator();
   // await Global.init();
-  runApp(MyApp());
+  runApp(MyApp(scheme: window.defaultRouteName,));
 }
 
 class MyApp extends StatefulWidget {
+  final String? scheme;
+
+  const MyApp({Key? key, this.scheme}) : super(key: key);
+
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -35,7 +44,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       theme: ThemeData(
         backgroundColor: R.color_background,
       ),
-      home: CustomContactsPage(),
+      home: pushPageByRouter(toString2(widget.scheme)),
     );
   }
 

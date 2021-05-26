@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:app/base/api/net/HttpStatus2.dart';
+import 'package:app/base/common/channel_tools.dart';
 import 'package:app/base/common/lang.dart';
 import 'package:app/base/common/logger.dart';
 import 'package:app/base/common/resource.dart';
@@ -14,8 +17,10 @@ import 'models/contacts_model.dart';
 class CustomContactsAddPage extends StatefulWidget {
   final ContactsModel? model;
   final Function? func;
+  final bool isSystemPop;
 
-  const CustomContactsAddPage({Key? key, this.model, this.func})
+  const CustomContactsAddPage(
+      {Key? key, this.model, this.func, this.isSystemPop = false})
       : super(key: key);
 
   @override
@@ -133,8 +138,9 @@ class _CustomContactsAddPageState extends State<CustomContactsAddPage> {
                   });
                   pop(context);
                   if (response?.code == HttpStatus2.ok) {
-                    pop(context);
+                    pop(context, system: widget.isSystemPop);
                     widget.func?.call();
+                    Channel.addContactsData(jsonEncode(response?.data));
                   } else {
                     logger("error msg : ${response?.msg}");
                   }

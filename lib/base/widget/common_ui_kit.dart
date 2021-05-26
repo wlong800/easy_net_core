@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:app/base/common/channel_tools.dart';
 import 'package:app/base/common/common_callback.dart';
 import 'package:app/base/common/lang.dart';
 import 'package:app/base/common/resource.dart';
@@ -111,8 +112,9 @@ class WMPreferredSize extends PreferredSize {
             return;
           }
           if (isSystemPop) {
-            SystemNavigator.pop();
-            Navigator.pop(context);
+            // SystemNavigator.pop();
+            // Navigator.pop(context);
+            systemPop();
           } else {
             Navigator.pop(context);
           }
@@ -132,7 +134,8 @@ class WMPreferredSize extends PreferredSize {
           return;
         }
         if (isSystemPop) {
-          SystemNavigator.pop();
+          // SystemNavigator.pop();
+          systemPop();
         } else {
           Navigator.pop(context);
         }
