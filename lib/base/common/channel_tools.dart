@@ -11,8 +11,24 @@ Future<void> systemPop() async {
   await platform.invokeMethod<void>('SystemNavigator.systemPop');
 }
 
+enum Toast { LENGTH_SHORT, LENGTH_LONG }
+
 class Channel {
   static Future<void> addContactsData(String data) async {
     await platform.invokeMethod<void>('addContactsData', data);
+  }
+
+  static Future<bool?> showNativeToast(
+      {required String? msg, Toast? toastLength}) async {
+    String toast = "short";
+    if (toastLength == Toast.LENGTH_LONG) {
+      toast = "long";
+    }
+    final Map<String, dynamic> params = <String, dynamic>{
+      'msg': msg,
+      'length': toast
+    };
+    final bool? res = await platform.invokeMethod('showToast', params);
+    return res;
   }
 }

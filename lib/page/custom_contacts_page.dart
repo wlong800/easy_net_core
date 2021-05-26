@@ -23,71 +23,47 @@ class _CustomContactsPageState
   @override
   Widget buildBody(BuildContext context, CustomTicketViewModel model) {
     var list = model.data;
-    return Stack(
-      alignment: Alignment.bottomCenter,
-      children: [
-        ListView.builder(
-          itemBuilder: (BuildContext context, int index) {
-            var model = list[index];
-            return SwipeActionCell(
-              key: ValueKey(list[index]),
-              trailingActions: <SwipeAction>[
-                SwipeAction(
-                    title: "删除",
-                    onTap: (CompletionHandler handler) async {
-                      showDialogLoadingKt(context);
-                      var response = await providerModel.appService
-                          .deleteContactsData(params: {"cid": model.id});
-                      pop(context);
-                      if (response?.code == HttpStatus2.ok) {
-                        list.removeAt(index);
-                        if (isEmpty(list)) {
-                          providerModel.setConnectionState = NetState.empty;
-                        }
-                        setState(() {});
-                      }
-                    },
-                    color: R.color_1),
-              ],
-              child: TouchCallBack(
-                child: CustomContactsCell(
-                  model: list[index],
-                ),
-                onPressed: () {
-                  push(
-                      context,
-                      CustomContactsAddPage(
-                        model: list[index],
-                        func: () {
-                          onFetchData(showLoadingUI: false);
-                        },
-                      ));
+    return ListView.builder(
+      itemBuilder: (BuildContext context, int index) {
+        var model = list[index];
+        return SwipeActionCell(
+          key: ValueKey(list[index]),
+          trailingActions: <SwipeAction>[
+            SwipeAction(
+                title: "删除",
+                onTap: (CompletionHandler handler) async {
+                  showDialogLoadingKt(context);
+                  var response = await providerModel.appService
+                      .deleteContactsData(params: {"cid": model.id});
+                  pop(context);
+                  if (response?.code == HttpStatus2.ok) {
+                    list.removeAt(index);
+                    if (isEmpty(list)) {
+                      providerModel.setConnectionState = NetState.empty;
+                    }
+                    setState(() {});
+                  }
                 },
-              ),
-            );
-          },
-          itemCount: list.length,
-        ),
-        TouchCallBack(
-          child: Container(
-            height: 45.0,
-            margin: EdgeInsets.only(left: 16.0, right: 16.0, bottom: 35.0),
-            alignment: Alignment.center,
-            child: Text(
-              "新增使用人",
-              style: TextStyle(color: Colors.white, fontSize: sp(Sp.font_big)),
+                color: R.color_1),
+          ],
+          child: TouchCallBack(
+            child: CustomContactsCell(
+              model: list[index],
             ),
-            decoration: MyBoxDecoration.all(radius: 23.0, color: R.color_1),
+            onPressed: () {
+              push(
+                  context,
+                  CustomContactsAddPage(
+                    model: list[index],
+                    func: () {
+                      onFetchData(showLoadingUI: false);
+                    },
+                  ));
+            },
           ),
-          onPressed: () {
-            push(context, CustomContactsAddPage(
-              func: () {
-                onFetchData(showLoadingUI: false);
-              },
-            ));
-          },
-        )
-      ],
+        );
+      },
+      itemCount: list.length,
     );
   }
 
@@ -96,49 +72,53 @@ class _CustomContactsPageState
     initScreenUtil(context);
     return Scaffold(
       appBar: WMPreferredSize("购票使用人"),
-      body: build2(context, model),
+      body: Column(
+        children: [
+          Expanded(child: build2(context, model)),
+          Container(
+            color: R.color_white,
+            padding: EdgeInsets.only(
+                top: 10.0, left: 16.0, right: 16.0, bottom: 35.0),
+            child: TouchCallBack(
+              child: Container(
+                height: 45.0,
+                alignment: Alignment.center,
+                child: Text(
+                  "新增使用人",
+                  style:
+                      TextStyle(color: Colors.white, fontSize: sp(Sp.font_big)),
+                ),
+                decoration: MyBoxDecoration.all(radius: 23.0, color: R.color_1),
+              ),
+              onPressed: () {
+                push(context, CustomContactsAddPage(
+                  func: () {
+                    onFetchData(showLoadingUI: false);
+                  },
+                ));
+              },
+            ),
+          )
+        ],
+      ),
     );
   }
 
   @override
   Widget buildEmptyWidget() {
-    return Stack(
-      alignment: Alignment.bottomCenter,
-      children: [
-        Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset("images/icon_profile_edit.png"),
-              Padding(
-                padding: const EdgeInsets.only(top: 16.0),
-                child: Text("暂无使用人哦",
-                    style: TextStyle(
-                        color: R.color_font_1, fontSize: sp(Sp.font_big))),
-              ),
-            ],
+    return Container(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset("images/icon_profile_edit.png"),
+          Padding(
+            padding: const EdgeInsets.only(top: 16.0),
+            child: Text("暂无使用人哦",
+                style: TextStyle(
+                    color: R.color_font_1, fontSize: sp(Sp.font_big))),
           ),
-        ),
-        TouchCallBack(
-          child: Container(
-            height: 45.0,
-            margin: EdgeInsets.only(left: 16.0, right: 16.0, bottom: 35.0),
-            alignment: Alignment.center,
-            child: Text(
-              "新增使用人",
-              style: TextStyle(color: Colors.white, fontSize: sp(Sp.font_big)),
-            ),
-            decoration: MyBoxDecoration.all(radius: 23.0, color: R.color_1),
-          ),
-          onPressed: () {
-            push(context, CustomContactsAddPage(
-              func: () {
-                onFetchData(showLoadingUI: false);
-              },
-            ));
-          },
-        )
-      ],
+        ],
+      ),
     );
   }
 }

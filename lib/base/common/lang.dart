@@ -181,6 +181,10 @@ RegExp numberRegExp() {
   return RegExp("[0-9]");
 }
 
+RegExp phoneRegExp() {
+  return RegExp("1{11}");
+}
+
 bool isIOS() {
   return Platform.isIOS;
 }

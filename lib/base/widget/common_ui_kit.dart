@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:app/base/common/channel_tools.dart';
 import 'package:app/base/common/common_callback.dart';
 import 'package:app/base/common/lang.dart';
+import 'package:app/base/common/logger.dart';
 import 'package:app/base/common/resource.dart';
 import 'package:app/base/common/touch_callback.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
+import '../../main.dart';
 import 'base_button.dart';
 
 /// 公共控件前期全部放到这，后期随着页面增多，抽离
@@ -112,8 +114,6 @@ class WMPreferredSize extends PreferredSize {
             return;
           }
           if (isSystemPop) {
-            // SystemNavigator.pop();
-            // Navigator.pop(context);
             systemPop();
           } else {
             Navigator.pop(context);
@@ -128,15 +128,19 @@ class WMPreferredSize extends PreferredSize {
         size: 18.0,
         color: R.color_font_1,
       ),
-      onPressed: () {
+      onPressed: () async {
         if (leadingCallback != null) {
           leadingCallback!();
           return;
         }
         if (isSystemPop) {
-          // SystemNavigator.pop();
           systemPop();
         } else {
+          if ((await navigatorState.currentState?.maybePop()) == false) {
+            logger("not pop, because _history is null...");
+            systemPop();
+            return;
+          }
           Navigator.pop(context);
         }
       },
@@ -512,7 +516,7 @@ class TextFormField2 extends StatelessWidget {
       this.inputFormatter,
       this.hintTextSize = Sp.font_big,
       this.enabledBorderColor = R.color_text_field_border,
-      this.focusedBorderColor = R.color_2,
+      this.focusedBorderColor = R.color_1,
       this.onFieldSubmitted,
       this.autoFocus = false,
       this.radius = 8.0})
@@ -520,50 +524,49 @@ class TextFormField2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: controller,
-      focusNode: focusNode,
-      //验证用户名
-      validator: validator,
-      autovalidateMode: AutovalidateMode.onUserInteraction,
-      enabled: enabled,
-      autofocus: autoFocus,
-      inputFormatters: inputFormatter,
-      keyboardType: inputType,
-      cursorColor: R.color_2,
-      style: TextStyle(color: R.color_1, fontSize: sp(Sp.font_big)),
-      decoration: InputDecoration(
-        // contentPadding:
-        //     const EdgeInsets.symmetric(vertical: 4.0, horizontal: 16.0),
-        // border: OutlineInputBorder(
-        //     borderRadius: BorderRadius.all(Radius.circular(radius)),
-        //     borderSide: BorderSide(color: enabledBorderColor, width: 1.0)),
-        // enabledBorder: OutlineInputBorder(
-        //     borderRadius: BorderRadius.all(Radius.circular(radius)),
-        //     borderSide: BorderSide(color: enabledBorderColor, width: 1.0)),
-        // focusedBorder: OutlineInputBorder(
-        //     borderRadius: BorderRadius.all(Radius.circular(radius)),
-        //     borderSide: BorderSide(color: focusedBorderColor, width: 1.0)),
-        // errorBorder: OutlineInputBorder(
-        //     borderRadius: BorderRadius.all(Radius.circular(radius)),
-        //     borderSide: BorderSide(color: enabledBorderColor, width: 1.0)),
-        // focusedErrorBorder: OutlineInputBorder(
-        //     borderRadius: BorderRadius.all(Radius.circular(radius)),
-        //     borderSide: BorderSide(color: focusedBorderColor, width: 1.0)),
-        hintText: hintText,
-        hintStyle: TextStyle(color: R.color_font_4, fontSize: sp(hintTextSize)),
-        //尾部添加清除按钮
-        suffixIcon: suffixIcon,
+    return ConstrainedBox(
+      constraints: BoxConstraints(
+        maxHeight: 48,
       ),
-      obscureText: obscureText,
-      onFieldSubmitted: (value) {
-        if (isEmpty(value)) return;
-        onFieldSubmitted!(value);
-      },
-      //保存数据
-      onSaved: (String? value) {
-        onSaved!(value);
-      },
+      child: TextFormField(
+        controller: controller,
+        focusNode: focusNode,
+        //验证用户名
+        validator: validator,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        enabled: enabled,
+        autofocus: autoFocus,
+        inputFormatters: inputFormatter,
+        keyboardType: inputType,
+        cursorColor: R.color_1,
+        style: TextStyle(color: R.color_font_1, fontSize: sp(Sp.font_big)),
+        decoration: InputDecoration(
+          border: UnderlineInputBorder(
+              borderSide: BorderSide(color: enabledBorderColor, width: 0.5)),
+          enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: enabledBorderColor, width: 0.5)),
+          focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: focusedBorderColor, width: 0.5)),
+          errorBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: enabledBorderColor, width: 0.5)),
+          focusedErrorBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: focusedBorderColor, width: 0.5)),
+          hintText: hintText,
+          hintStyle:
+              TextStyle(color: R.color_font_4, fontSize: sp(hintTextSize)),
+          //尾部添加清除按钮
+          suffixIcon: suffixIcon,
+        ),
+        obscureText: obscureText,
+        onFieldSubmitted: (value) {
+          if (isEmpty(value)) return;
+          onFieldSubmitted!(value);
+        },
+        //保存数据
+        onSaved: (String? value) {
+          onSaved!(value);
+        },
+      ),
     );
   }
 }

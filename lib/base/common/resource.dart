@@ -149,7 +149,7 @@ class MyBoxDecoration {
   }
 
   static BoxDecoration topDecoration(
-      {Color color = R.color_2, double width = 1.0}) {
+      {Color color = R.color_font_3, double width = 1.0}) {
     return BoxDecoration(
       border: Border(top: BorderSide(color: color, width: width)),
     );
