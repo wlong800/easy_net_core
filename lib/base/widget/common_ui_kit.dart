@@ -12,7 +12,6 @@ import 'package:flutter/widgets.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../main.dart';
-import 'base_button.dart';
 
 /// 公共控件前期全部放到这，后期随着页面增多，抽离
 
@@ -230,11 +229,11 @@ class Error2Widget extends StatelessWidget {
   const Error2Widget({
     Key? key,
     this.func,
-    this.bgColor = Colors.white,
-    this.textColor = R.color_1,
-    this.text = "Unable to connect to the network\nTry to refresh",
-    this.image = "images/empty_state_network.png",
-    this.btnText = "Refresh",
+    this.bgColor = R.color_background,
+    this.textColor = R.color_font_1,
+    this.text = "哎呀怎么没网了",
+    this.image = "images/icon_no_wifi.png",
+    this.btnText = "刷新",
   }) : super(key: key);
 
   @override
@@ -244,16 +243,13 @@ class Error2Widget extends StatelessWidget {
       alignment: Alignment.center,
       child: ListView(
         children: <Widget>[
-          Container(
-            height: 86.0,
-          ),
           Image.asset(
             image,
-            width: 110.0,
-            height: 137.0,
+            width: 200.0,
+            height: 160.0,
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 22.0, left: 24.0, right: 24.0),
+            padding: const EdgeInsets.all(0.0),
             child: Text(
               text,
               strutStyle: StrutStyle(forceStrutHeight: true, height: 1.5),
@@ -262,15 +258,23 @@ class Error2Widget extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 40.0, left: 24.0, right: 24.0),
-            child: MyRaisedButton(
-              btnText,
-              () {
+            padding: const EdgeInsets.only(top: 30.0, left: 24.0, right: 24.0),
+            child: TouchCallBack(
+              child: Container(
+                height: 45.0,
+                decoration: MyBoxDecoration.all(
+                    radius: 23.0,
+                    borderColor: R.color_divider_1,
+                    borderWidth: 0.5),
+                child: Text(
+                  btnText,
+                  style: TextStyle(
+                      color: R.color_font_1, fontSize: sp(Sp.font_big)),
+                ),
+              ),
+              onPressed: () {
                 func?.call();
               },
-              enableClick: true,
-              enableColor: R.color_2,
-              textColor: R.color_1,
             ),
           ),
         ],

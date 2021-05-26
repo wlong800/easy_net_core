@@ -1,4 +1,3 @@
-
 import 'dart:ui';
 
 import 'package:app/base/common/lang.dart';
@@ -15,7 +14,9 @@ GlobalKey<NavigatorState> navigatorState = new GlobalKey();
 main() async {
   setupServiceLocator();
   // await Global.init();
-  runApp(MyApp(scheme: window.defaultRouteName,));
+  runApp(MyApp(
+    scheme: window.defaultRouteName,
+  ));
 }
 
 class MyApp extends StatefulWidget {

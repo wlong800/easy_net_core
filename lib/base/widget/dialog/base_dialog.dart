@@ -42,7 +42,7 @@ class LoadingDialog extends Dialog {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Image.asset(
-                  "images/icon_profile_edit.png",
+                  "images/icon_dialog_loading.webp",
                   width: 58.0,
                 ),
                 isEmpty(text) || !showText

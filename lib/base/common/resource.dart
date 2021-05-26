@@ -21,6 +21,8 @@ class R {
   static const Color color_font_3 = Color(0xff666666);
   static const Color color_font_4 = Color(0xffcccccc);
 
+  static const Color color_divider_1 = Color(0xffE0E0E0);
+
   static const Color color_white = Color(0xffffffff);
 
   static const Color color_background = Color(0xfff7f7f7);
