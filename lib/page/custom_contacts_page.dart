@@ -101,7 +101,7 @@ class _CustomContactsPageState
   }
 
   @override
-  Widget buildErrorWidget() {
+  Widget buildEmptyWidget() {
     return Stack(
       alignment: Alignment.bottomCenter,
       children: [
@@ -109,7 +109,7 @@ class _CustomContactsPageState
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset("xxx.png"),
+              Image.asset("images/icon_profile_edit.png"),
               Padding(
                 padding: const EdgeInsets.only(top: 16.0),
                 child: Text("暂无使用人哦",
