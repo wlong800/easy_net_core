@@ -468,7 +468,8 @@ class AvatarKit extends StatelessWidget {
 class LoadingKit extends StatelessWidget {
   final Color bgColor;
 
-  const LoadingKit({Key? key, this.bgColor = Colors.white}) : super(key: key);
+  const LoadingKit({Key? key, this.bgColor = R.color_background})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -481,13 +482,24 @@ class LoadingKit extends StatelessWidget {
             padding: const EdgeInsets.only(top: 0.0),
             child: Container(
               alignment: Alignment.center,
-              child: Text(
-                "加载中...",
-                style: TextStyle(
-                  color: R.color_font_1,
-                  fontSize: sp(Sp.font_big),
-                ),
-                textAlign: TextAlign.center,
+              child: Column(
+                children: [
+                  Image.asset(
+                    "images/icon_dialog_loading.webp",
+                    width: 32.0,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 12.0),
+                    child: Text(
+                      "加载中...",
+                      style: TextStyle(
+                        color: R.color_font_1,
+                        fontSize: sp(Sp.font_big),
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
