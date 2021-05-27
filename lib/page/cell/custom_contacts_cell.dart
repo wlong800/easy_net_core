@@ -13,7 +13,7 @@ class CustomContactsCell extends StatelessWidget {
     return Container(
       decoration: MyBoxDecoration.all(radius: 12.0, color: R.color_white),
       padding: EdgeInsets.only(top: 20.0, bottom: 20.0, left: 16.0),
-      margin: EdgeInsets.only(left: 16.0, right: 16.0, top: 8.0),
+      margin: EdgeInsets.only(left: 16.0),
       child: Stack(
         alignment: Alignment.centerRight,
         children: [

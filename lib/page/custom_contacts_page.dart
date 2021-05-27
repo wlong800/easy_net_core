@@ -1,5 +1,6 @@
 import 'package:app/base/api/net/HttpStatus2.dart';
 import 'package:app/base/api/net/services/net_state_enum.dart';
+import 'package:app/base/common/channel_tools.dart';
 import 'package:app/base/common/lang.dart';
 import 'package:app/base/common/resource.dart';
 import 'package:app/base/common/touch_callback.dart';
@@ -26,40 +27,54 @@ class _CustomContactsPageState
     return ListView.builder(
       itemBuilder: (BuildContext context, int index) {
         var model = list[index];
-        return SwipeActionCell(
-          key: ValueKey(list[index]),
-          trailingActions: <SwipeAction>[
-            SwipeAction(
-                title: "删除",
-                onTap: (CompletionHandler handler) async {
-                  showDialogLoadingKt(context);
-                  var response = await providerModel.appService
-                      .deleteContactsData(params: {"cid": model.id});
-                  pop(context);
-                  if (response?.code == HttpStatus2.ok) {
-                    list.removeAt(index);
-                    if (isEmpty(list)) {
-                      providerModel.setConnectionState = NetState.empty;
+        return Container(
+          margin: EdgeInsets.only(right: 16.0, top: 8.0),
+          child: SwipeActionCell(
+            key: ValueKey(list[index]),
+            trailingActions: <SwipeAction>[
+              SwipeAction(
+                  content: Container(
+                    child: Text(
+                      "删除",
+                      style: TextStyle(
+                          color: R.color_white, fontSize: sp(Sp.font_middle2)),
+                    ),
+                    alignment: Alignment.center,
+                    decoration: MyBoxDecoration.only(
+                        topRight: 12.0, bottomRight: 12.0, color: R.color_1),
+                  ),
+                  onTap: (CompletionHandler handler) async {
+                    showDialogLoadingKt(context);
+                    var response = await providerModel.appService
+                        .deleteContactsData(params: {"cid": model.id});
+                    pop(context);
+                    if (response?.code == HttpStatus2.ok) {
+                      list.removeAt(index);
+                      if (isEmpty(list)) {
+                        providerModel.setConnectionState = NetState.empty;
+                      }
+                      setState(() {});
+                    } else {
+                      Channel.showNativeToast(msg: response?.msg);
                     }
-                    setState(() {});
-                  }
-                },
-                color: R.color_1),
-          ],
-          child: TouchCallBack(
-            child: CustomContactsCell(
-              model: list[index],
+                  },
+                  color: R.color_background),
+            ],
+            child: TouchCallBack(
+              child: CustomContactsCell(
+                model: list[index],
+              ),
+              onPressed: () {
+                push(
+                    context,
+                    CustomContactsAddPage(
+                      model: list[index],
+                      func: () {
+                        onFetchData(showLoadingUI: false);
+                      },
+                    ));
+              },
             ),
-            onPressed: () {
-              push(
-                  context,
-                  CustomContactsAddPage(
-                    model: list[index],
-                    func: () {
-                      onFetchData(showLoadingUI: false);
-                    },
-                  ));
-            },
           ),
         );
       },
