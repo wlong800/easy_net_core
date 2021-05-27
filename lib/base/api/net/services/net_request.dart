@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:app/base/api/models/base_response.dart';
+import 'package:app/base/common/channel_tools.dart';
 import 'package:app/base/common/lang.dart';
 import 'package:app/base/common/logger.dart';
 import 'package:app/base/common/resource.dart';
@@ -10,6 +11,7 @@ import 'package:app/base/hold/hold.dart';
 import 'package:app/base/utils/common_header_tools.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 
 import '../HttpStatus2.dart';
 
@@ -24,7 +26,7 @@ Dio _defaultDio(Map<dynamic, dynamic>? headers) {
     _dio.options.headers = Map<String, dynamic>.from(headers!);
     logger("header : ${_dio.options.headers.toString()}");
   }
-  // _addProxy(_dio);
+  _addProxy(_dio);
   return _dio;
 }
 
@@ -94,7 +96,8 @@ Future getHeader(String url,
   try {
     header = await HeaderTools.getHeaders(url,
         method: method, contentType: contentType, params: params);
-    header!["X-APP-APPID"] = "3";
+    var nativeHeaders  = await Channel.getNativeHeaders();
+    header?.addAll(nativeHeaders);
   } on Exception catch (e) {
     logger(e.toString());
     return null;

@@ -26,5 +26,5 @@ String getServiceUrl() {
   //   default:
   //     return serviceUrl;
   // }
-  return "http://10.4.40.54/";
+  return baseUrl ?? "http://10.4.40.54/";
 }

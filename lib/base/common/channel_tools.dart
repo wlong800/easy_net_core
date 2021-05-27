@@ -1,4 +1,7 @@
+import 'package:app/base/api/net/base_url.dart';
 import 'package:flutter/services.dart';
+
+import 'logger.dart';
 
 const platform = const MethodChannel('all_future_flutter_method_plugin');
 
@@ -30,5 +33,22 @@ class Channel {
     };
     final bool? res = await platform.invokeMethod('showToast', params);
     return res;
+  }
+
+  static Future<Map<String, dynamic>> getNativeHeaders() async {
+    var nativeHeaders = <String, dynamic>{};
+    try {
+      var map = await platform.invokeMethod("getNativeRequestHeader");
+      map.forEach((key, value) {
+        nativeHeaders[key] = value;
+      });
+      baseUrl = nativeHeaders["base_url"];
+      nativeHeaders.remove("base_url");
+    } on Exception catch (e) {
+      print(e);
+    } catch (e) {
+      logger(e.toString());
+    }
+    return nativeHeaders;
   }
 }
