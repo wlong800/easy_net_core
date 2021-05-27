@@ -182,7 +182,8 @@ RegExp numberRegExp() {
 }
 
 RegExp phoneRegExp() {
-  return RegExp("1{11}");
+  //1[0-9]\d{9}
+  return RegExp("1");
 }
 
 bool isIOS() {

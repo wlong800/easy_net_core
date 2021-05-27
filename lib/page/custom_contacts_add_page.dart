@@ -221,8 +221,8 @@ class _CustomContactsAddPageState extends State<CustomContactsAddPage> {
               child: MyRaisedButton(
                 "保存",
                 () async {
-                  if (_phoneController?.text.startsWith("1") != true) {
-                    Channel.showNativeToast(msg: "手机号格式不对");
+                  if (toInt(_phoneController?.text.length) < 11) {
+                    Channel.showNativeToast(msg: "手机号位数不对");
                     return;
                   }
                   showDialogLoadingKt(context);
@@ -258,6 +258,7 @@ class _CustomContactsAddPageState extends State<CustomContactsAddPage> {
 
   bool _enableClick() {
     return isNotEmpty(_userNameController?.text) &&
-        isNotEmpty(_phoneController?.text);
+        isNotEmpty(_phoneController?.text) &&
+        phoneRegExp().hasMatch(toString2(_phoneController?.text));
   }
 }
