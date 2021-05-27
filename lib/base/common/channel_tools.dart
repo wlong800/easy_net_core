@@ -42,7 +42,7 @@ class Channel {
       map.forEach((key, value) {
         nativeHeaders[key] = value;
       });
-      baseUrl = nativeHeaders["base_url"];
+      baseUrl = nativeHeaders["base_url"] + "/";
       nativeHeaders.remove("base_url");
     } on Exception catch (e) {
       print(e);

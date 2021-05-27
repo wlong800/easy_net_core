@@ -125,7 +125,7 @@ class _CustomContactsPageState
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset("images/icon_profile_edit.png"),
+          Image.asset("images/icon_nothing.png"),
           Padding(
             padding: const EdgeInsets.only(top: 16.0),
             child: Text("暂无使用人哦",
