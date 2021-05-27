@@ -245,7 +245,8 @@ class Error2Widget extends StatelessWidget {
     return Container(
       color: bgColor,
       alignment: Alignment.center,
-      child: ListView(
+      margin: EdgeInsets.only(top: 150.0),
+      child: Column(
         children: <Widget>[
           Image.asset(
             image,
@@ -266,12 +267,16 @@ class Error2Widget extends StatelessWidget {
             child: TouchCallBack(
               child: Container(
                 height: 45.0,
+                width: 200.0,
+                alignment: Alignment.center,
                 decoration: MyBoxDecoration.all(
                     radius: 23.0,
+                    color: R.color_background,
                     borderColor: R.color_divider_1,
                     borderWidth: 0.5),
                 child: Text(
                   btnText,
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                       color: R.color_font_1, fontSize: sp(Sp.font_big)),
                 ),
