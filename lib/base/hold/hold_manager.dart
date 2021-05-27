@@ -15,7 +15,7 @@ class HoldManager {
   HoldFacade get holdFacade => _holdFacade;
 
   static Future<Null> init() async {
-    var holdImpl = await HoldFacadeImpl().init();
-    _instance = HoldManager(holdImpl);
+    // var holdImpl = await HoldFacadeImpl().init();
+    // _instance = HoldManager(holdImpl);
   }
 }

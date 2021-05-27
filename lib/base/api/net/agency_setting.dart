@@ -2,7 +2,7 @@ import 'package:app/base/common/lang.dart';
 import 'package:app/base/common/resource.dart';
 import 'package:app/base/widget/common_ui_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
 class AgencySetting extends StatefulWidget {
   @override
@@ -17,9 +17,9 @@ class _AgencySettingState extends State<AgencySetting> {
   @override
   void initState() {
     super.initState();
-    SharedPreferences.getInstance().then((value) {
-      _showAgency = value.getBool("agency_setting") ?? false;
-    });
+    // SharedPreferences.getInstance().then((value) {
+    //   _showAgency = value.getBool("agency_setting") ?? false;
+    // });
   }
 
   @override
