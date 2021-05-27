@@ -171,7 +171,7 @@ class EmptyWidget extends StatelessWidget {
       this.bgColor = Colors.white,
       this.textColor = R.color_1,
       this.text = String2.error,
-      this.image = "images/icon_profile_edit.png",
+      this.image = "images/icon_nothing.png",
       this.paddingTop = 89.0,
       this.showAppBar = false})
       : super(key: key);
