@@ -34,7 +34,6 @@ class _CustomContactsAddPageState extends State<CustomContactsAddPage> {
   TextEditingController? _phoneController;
   TextEditingController? _emailController;
   TextEditingController? _addressController;
-  
   AppService appService = serviceLocator<AppService>();
 
   @override
