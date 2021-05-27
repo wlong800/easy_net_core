@@ -91,6 +91,7 @@ class _CustomContactsAddPageState extends State<CustomContactsAddPage> {
                               child: TextFormField2(
                                 hintText: "请输入姓名",
                                 controller: _userNameController,
+                                inputType: TextInputType.text,
                                 inputFormatter: [
                                   LengthLimitingTextInputFormatter(15)
                                 ],
@@ -115,6 +116,7 @@ class _CustomContactsAddPageState extends State<CustomContactsAddPage> {
                                 padding: const EdgeInsets.only(top: 16.0),
                                 child: TextFormField2(
                                   hintText: "请填写身份证号",
+                                  inputType: TextInputType.text,
                                   inputFormatter: [
                                     LengthLimitingTextInputFormatter(18)
                                   ],
@@ -144,6 +146,8 @@ class _CustomContactsAddPageState extends State<CustomContactsAddPage> {
                                   inputType: TextInputType.phone,
                                   inputFormatter: [
                                     LengthLimitingTextInputFormatter(11),
+                                    FilteringTextInputFormatter.allow(
+                                        numberRegExp())
                                   ],
                                   controller: _phoneController,
                                 ),
@@ -168,6 +172,7 @@ class _CustomContactsAddPageState extends State<CustomContactsAddPage> {
                                 padding: const EdgeInsets.only(top: 16.0),
                                 child: TextFormField2(
                                   hintText: "请输入邮箱",
+                                  inputType: TextInputType.text,
                                   controller: _emailController,
                                   inputFormatter: [
                                     FilteringTextInputFormatter.allow(
@@ -195,6 +200,7 @@ class _CustomContactsAddPageState extends State<CustomContactsAddPage> {
                                 padding: const EdgeInsets.only(top: 16.0),
                                 child: TextFormField2(
                                   hintText: "请输入地址",
+                                  inputType: TextInputType.text,
                                   controller: _addressController,
                                   inputFormatter: [
                                     LengthLimitingTextInputFormatter(50),

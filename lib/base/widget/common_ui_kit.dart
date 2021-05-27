@@ -129,7 +129,7 @@ class WMPreferredSize extends PreferredSize {
       ),
       onPressed: () async {
         if (leadingCallback != null) {
-          leadingCallback!();
+          leadingCallback?.call();
           return;
         }
         if (isSystemPop) {
