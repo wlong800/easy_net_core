@@ -26,8 +26,8 @@ class LoadingDialog extends Dialog {
       child: Center(
         //保证控件居中效果
         child: SizedBox(
-          width: 100.0,
-          height: 100.0,
+          width: 80.0,
+          height: 80.0,
           child: Container(
             decoration: ShapeDecoration(
               color: R.color_3,
@@ -43,7 +43,7 @@ class LoadingDialog extends Dialog {
               children: <Widget>[
                 Image.asset(
                   "images/icon_dialog_loading.webp",
-                  width: 58.0,
+                  width: 38.0,
                 ),
                 isEmpty(text) || !showText
                     ? Container()
