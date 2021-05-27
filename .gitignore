@@ -49,3 +49,4 @@ app.*.map.json
 .metadata
 *.iml
 pubspec.lock
+all_future_flutter_module.iml
