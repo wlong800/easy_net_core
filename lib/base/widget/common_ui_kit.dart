@@ -135,10 +135,14 @@ class WMPreferredSize extends PreferredSize {
         if (isSystemPop) {
           systemPop();
         } else {
-          if ((await navigatorState.currentState?.maybePop()) == false) {
-            logger("not pop, because _history is null...");
-            systemPop();
-            return;
+          try {
+            if ((navigatorState.currentState?.canPop()) == false) {
+              logger("not pop, because _history is null...");
+              systemPop();
+              return;
+            }
+          } catch (e) {
+            print(e);
           }
           Navigator.pop(context);
         }
