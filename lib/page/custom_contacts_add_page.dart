@@ -225,6 +225,11 @@ class _CustomContactsAddPageState extends State<CustomContactsAddPage> {
                     Channel.showNativeToast(msg: "手机号位数不对");
                     return;
                   }
+                  if (toInt(_cardController?.text.length) != 15 &&
+                      toInt(_cardController?.text.length) != 18) {
+                    Channel.showNativeToast(msg: "身份证号码不对");
+                    return;
+                  }
                   showDialogLoadingKt(context);
                   var params = {
                     "contactAddr": _addressController?.text,
