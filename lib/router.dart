@@ -10,6 +10,8 @@ Widget pushPageByRouter(String scheme) {
     return CustomContactsAddPage(
       isSystemPop: true,
     );
+  } else if (scheme == "/report") {
+    return ComplaintOfUserPage();
   }
-  return ComplaintOfUserPage();
+  return CustomContactsPage();
 }

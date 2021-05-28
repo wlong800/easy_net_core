@@ -12,8 +12,6 @@ import 'logger.dart';
 
 /// 封装一些常用的函数
 
-
-
 ///去除空格换换行
 String removeSpaces(String? value) {
   if (value == null) return "";
@@ -80,7 +78,7 @@ int toInt(value, {int defaultValue = -1}) {
 String toString2(value, {String defaultValue = ""}) {
   if (value is int || value is double) return value.toString();
   if (value is String) return value;
- return defaultValue;
+  return defaultValue;
 }
 
 bool toBool(value) {
@@ -103,8 +101,7 @@ String getLimitText(value, {required int maxLen, String ellipsis = "..."}) {
 }
 
 ///类似android中 startActivity
-push(BuildContext context, Widget route,
-    {bool replace = false}) async {
+push(BuildContext context, Widget route, {bool replace = false}) async {
   if (replace) {
     await Navigator.pushReplacement(context,
         CupertinoPageRoute(builder: (context) {
@@ -133,7 +130,7 @@ double getScreenHeight() {
 pop(BuildContext context, {bool system = false}) {
   if (system) {
     // SystemNavigator.pop();
-    // Navigator.pop(context);
+    Navigator.pop(context);
     systemPop();
   } else {
     Navigator.pop(context);
