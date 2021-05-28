@@ -239,10 +239,12 @@ class _CustomContactsAddPageState extends State<CustomContactsAddPage> {
                       await appService.updateContactsData(params: params);
                   pop(context);
                   if (response?.code == HttpStatus2.ok) {
-                    pop(context, system: widget.isSystemPop);
                     widget.func?.call();
                     params["id"] = toInt(response?.data);
                     Channel.addContactsData(jsonEncode(params));
+                    Future.delayed(Duration(milliseconds: 300), () {
+                      pop(context, system: widget.isSystemPop);
+                    });
                   } else {
                     logger("error msg : ${response?.msg}");
                   }

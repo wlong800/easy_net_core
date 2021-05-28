@@ -26,7 +26,7 @@ Dio _defaultDio(Map<dynamic, dynamic>? headers) {
     _dio.options.headers = Map<String, dynamic>.from(headers!);
     logger("header : ${_dio.options.headers.toString()}");
   }
-  _addProxy(_dio);
+  // _addProxy(_dio);
   return _dio;
 }
 

@@ -137,7 +137,6 @@ class WMPreferredSize extends PreferredSize {
         } else {
           try {
             if ((navigatorState.currentState?.canPop()) == false) {
-              logger("not pop, because _history is null...");
               systemPop();
               return;
             }
@@ -488,17 +487,17 @@ class LoadingKit extends StatelessWidget {
                     "images/icon_dialog_loading.webp",
                     width: 32.0,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 12.0),
-                    child: Text(
-                      "加载中...",
-                      style: TextStyle(
-                        color: R.color_font_1,
-                        fontSize: sp(Sp.font_big),
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
+                  // Padding(
+                  //   padding: const EdgeInsets.only(top: 12.0),
+                  //   child: Text(
+                  //     "加载中...",
+                  //     style: TextStyle(
+                  //       color: R.color_font_1,
+                  //       fontSize: sp(Sp.font_big),
+                  //     ),
+                  //     textAlign: TextAlign.center,
+                  //   ),
+                  // ),
                 ],
               ),
             ),
