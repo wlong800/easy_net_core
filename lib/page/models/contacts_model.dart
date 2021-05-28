@@ -1,3 +1,5 @@
+import 'package:app/base/common/lang.dart';
+
 class ContactsModel {
   String? contactAddr;
   String? contactEmail;
@@ -32,5 +34,13 @@ class ContactsModel {
     data['contactName'] = this.contactName;
     data['id'] = this.id;
     return data;
+  }
+
+  String getContactsIDCard() {
+    return getHideCenterText(toString2(contactIdNo));
+  }
+
+  String getContactsPhone() {
+    return getHideCenterText(toString2(contactMobile));
   }
 }

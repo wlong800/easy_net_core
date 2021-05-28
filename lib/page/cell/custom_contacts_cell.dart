@@ -34,7 +34,7 @@ class CustomContactsCell extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(top: 12.0),
                     child: Text(
-                      "身份证 ${toString2(model.contactIdNo)}",
+                      "身份证 ${model.getContactsIDCard()}",
                       style: TextStyle(
                           color: R.color_font_2, fontSize: sp(Sp.font_middle)),
                     ),
@@ -45,7 +45,7 @@ class CustomContactsCell extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(top: 12.0),
                     child: Text(
-                      "手机号 ${toString2(model.contactMobile)}",
+                      "手机号 ${model.getContactsPhone()}",
                       style: TextStyle(
                           color: R.color_font_2, fontSize: sp(Sp.font_middle)),
                     ),

@@ -186,6 +186,15 @@ RegExp phoneRegExp() {
   return RegExp("1");
 }
 
+String getHideCenterText(String text) {
+  var re = RegExp("(\\w{3})(\\w+)(\\w{4})");
+  if (re.hasMatch(text)) {
+    var len = text.length;
+    return text.replaceRange(3, len - 4, "*" * (len - 7));
+  }
+  return text;
+}
+
 bool isIOS() {
   return Platform.isIOS;
 }
