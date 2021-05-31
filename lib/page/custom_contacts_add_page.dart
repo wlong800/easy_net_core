@@ -240,6 +240,11 @@ class _CustomContactsAddPageState extends State<CustomContactsAddPage> {
                     "contactName": _userNameController?.text,
                     "id": toInt(widget.model?.id, defaultValue: 0)
                   };
+                  if (isEmpty(params['contactAddr'])) params.remove("contactAddr");
+                  if (isEmpty(params['contactEmail'])) params.remove("contactEmail");
+                  if (isEmpty(params['contactIdNo'])) params.remove("contactIdNo");
+                  if (isEmpty(params['contactMobile'])) params.remove("contactMobile");
+                  if (isEmpty(params['contactName'])) params.remove("contactName");
                   if (toInt(params["id"]) <= 0) params.remove("id");
                   var response =
                       await appService.updateContactsData(params: params);

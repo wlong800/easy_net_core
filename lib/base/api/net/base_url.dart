@@ -1,12 +1,4 @@
-import 'package:app/base/common/global.dart';
-import 'package:app/base/common/lang.dart';
-import 'package:app/base/common/logger.dart';
 
-const serviceUrl = 'https://api.lumiclass.com/';
-
-const serviceUrlBate = 'https://api.lumiclass.com/';
-
-const serviceUrlTest = 'https://dev-api.lumiclass.com/';
 
 String? baseUrl;
 
