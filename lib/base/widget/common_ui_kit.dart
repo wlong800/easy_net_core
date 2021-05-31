@@ -122,10 +122,9 @@ class WMPreferredSize extends PreferredSize {
     }
     return IconButton(
       padding: EdgeInsets.all(14.0),
-      icon: Icon(
-        Icons.arrow_back_ios,
-        size: 18.0,
-        color: R.color_font_1,
+      icon: Image.asset(
+        "images/icon_back_black.webp",
+        height: 18.0,
       ),
       onPressed: () async {
         if (leadingCallback != null) {

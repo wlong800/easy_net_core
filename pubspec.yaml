@@ -59,6 +59,7 @@ flutter:
     - images/icon_dialog_loading.webp
     - images/icon_no_wifi.png
     - images/icon_nothing.png
+    - images/icon_back_black.webp
     - images/icon_message_icon_location_checked.png
 
   # An image asset can refer to one or more resolution-specific "variants", see

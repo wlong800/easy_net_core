@@ -68,7 +68,7 @@ class _CustomContactsAddPageState extends State<CustomContactsAddPage> {
             Container(
               decoration:
                   MyBoxDecoration.all(radius: 12.0, color: R.color_white),
-              padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
+              padding: EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0, bottom: 16.0),
               child: Column(
                 children: [
                   Container(
@@ -87,7 +87,7 @@ class _CustomContactsAddPageState extends State<CustomContactsAddPage> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 16.0),
+                              padding: const EdgeInsets.only(top: 0.0),
                               child: TextFormField2(
                                 hintText: "请输入姓名",
                                 controller: _userNameController,
@@ -100,7 +100,7 @@ class _CustomContactsAddPageState extends State<CustomContactsAddPage> {
                           ],
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 20.0),
+                          padding: const EdgeInsets.only(top: 16.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -113,7 +113,7 @@ class _CustomContactsAddPageState extends State<CustomContactsAddPage> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top: 16.0),
+                                padding: const EdgeInsets.only(top: 0.0),
                                 child: TextFormField2(
                                   hintText: "请填写身份证号",
                                   inputType: TextInputType.text,
@@ -127,7 +127,7 @@ class _CustomContactsAddPageState extends State<CustomContactsAddPage> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 20.0),
+                          padding: const EdgeInsets.only(top: 16.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -140,7 +140,7 @@ class _CustomContactsAddPageState extends State<CustomContactsAddPage> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top: 16.0),
+                                padding: const EdgeInsets.only(top: 0.0),
                                 child: TextFormField2(
                                   hintText: "请填写该使用人的手机号",
                                   inputType: TextInputType.phone,
@@ -156,7 +156,7 @@ class _CustomContactsAddPageState extends State<CustomContactsAddPage> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 20.0),
+                          padding: const EdgeInsets.only(top: 16.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -169,7 +169,7 @@ class _CustomContactsAddPageState extends State<CustomContactsAddPage> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top: 16.0),
+                                padding: const EdgeInsets.only(top: 0.0),
                                 child: TextFormField2(
                                   hintText: "请输入邮箱",
                                   inputType: TextInputType.text,
@@ -184,7 +184,7 @@ class _CustomContactsAddPageState extends State<CustomContactsAddPage> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 20.0),
+                          padding: const EdgeInsets.only(top: 16.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -197,7 +197,7 @@ class _CustomContactsAddPageState extends State<CustomContactsAddPage> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top: 16.0),
+                                padding: const EdgeInsets.only(top: 0.0),
                                 child: TextFormField2(
                                   hintText: "请输入地址",
                                   inputType: TextInputType.text,
