@@ -73,6 +73,7 @@ class ComplaintSelectState extends State<ComplaintOfUserPage> {
                 }
                 showDialogLoadingKt(context);
                 Future.delayed(Duration(seconds: 1), () {
+                  Channel.showNativeToast(msg: "举报成功");
                   pop(context, system: true);
                 });
               },

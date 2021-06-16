@@ -23,9 +23,6 @@ class _CustomContactsPageState
     extends BaseProviderState<CustomContactsPage, CustomTicketViewModel> {
   @override
   Widget buildBody(BuildContext context, CustomTicketViewModel model) {
-    setState(() {
-
-    });
     var list = model.data;
     return ListView.builder(
       itemBuilder: (BuildContext context, int index) {
