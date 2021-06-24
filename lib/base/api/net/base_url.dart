@@ -1,22 +1,13 @@
-
+import 'package:app/base/common/global.dart';
+import 'package:app/base/common/lang.dart';
 
 String? baseUrl;
 
-String getServiceUrl() {
-  // if (isNotEmpty(baseUrl)) {
-  //   if (!baseUrl!.endsWith("/")) baseUrl = baseUrl! + "/";
-  //   return baseUrl;
-  // }
-  // logger("base url   ${Global.type}");
-  // switch (Global.type) {
-  //   case 0:
-  //     return serviceUrl;
-  //   case 1:
-  //     return serviceUrlTest;
-  //   case 2:
-  //     return serviceUrlBate;
-  //   default:
-  //     return serviceUrl;
-  // }
-  return baseUrl ?? "https://fu.allhistory.com/";
+String getBaseUrl() {
+  if (isEmpty(baseUrl)) return Global.defaultBaseUrl;
+  if (isNotEmpty(baseUrl)) {
+    if (baseUrl?.endsWith("/") == false) baseUrl = toString2(baseUrl) + "/";
+    return toString2(baseUrl);
+  }
+  return toString2(baseUrl);
 }

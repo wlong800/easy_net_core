@@ -11,6 +11,8 @@ enum Environment {
 class Global {
   static int env = 0;
 
+  static String defaultBaseUrl = "https://evt.tomorrow365.com";
+
   static bool get isTest => env == 1;
 
   static bool get isBeta => env == 2;

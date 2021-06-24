@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:app/base/api/models/base_response.dart';
+import 'package:app/base/api/net/base_url.dart';
 import 'package:app/base/common/channel_tools.dart';
 import 'package:app/base/common/lang.dart';
 import 'package:app/base/common/logger.dart';
@@ -22,6 +23,7 @@ final Dio _dio = Dio(BaseOptions(
 
 Dio _defaultDio(Map<dynamic, dynamic>? headers) {
   _dio.options.contentType = Headers.jsonContentType;
+  _dio.options.baseUrl = getBaseUrl();
   if (isNotEmpty(headers)) {
     _dio.options.headers = Map<String, dynamic>.from(headers!);
     logger("header : ${_dio.options.headers.toString()}");
@@ -94,9 +96,9 @@ Future getHeader(String url,
     {String? method, String? contentType, Map<String, dynamic>? params}) async {
   Map<dynamic, dynamic>? header;
   try {
-    header = await HeaderTools.getHeaders(url,
-        method: method, contentType: contentType, params: params);
     var nativeHeaders  = await Channel.getNativeHeaders();
+    header = await HeaderTools.getHeaders(getBaseUrl() + url,
+        method: method, contentType: contentType, params: params);
     header?.addAll(nativeHeaders);
   } on Exception catch (e) {
     logger(e.toString());

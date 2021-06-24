@@ -1,4 +1,5 @@
 import 'package:app/base/api/net/base_url.dart';
+import 'package:app/base/common/lang.dart';
 import 'package:flutter/services.dart';
 
 import 'logger.dart';
@@ -11,7 +12,11 @@ const basicMessageChannel = const BasicMessageChannel(
     'all_future_flutter_basic_plugin', StandardMessageCodec());
 
 Future<void> systemPop() async {
-  await platform.invokeMethod<void>('SystemNavigator.systemPop');
+  if (isAndroid()) {
+    await platform.invokeMethod<void>('SystemNavigator.systemPop');
+  } else {
+    SystemNavigator.pop();
+  }
 }
 
 enum Toast { LENGTH_SHORT, LENGTH_LONG }

@@ -129,7 +129,6 @@ double getScreenHeight() {
 ///类似android中 finish
 pop(BuildContext context, {bool system = false}) {
   if (system) {
-    // SystemNavigator.pop();
     Navigator.pop(context);
     systemPop();
   } else {

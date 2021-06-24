@@ -49,7 +49,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   @override
   Future<bool> didPopRoute() async {
-    if ((await navigatorState.currentState?.maybePop()) == false) {
+    if (isAndroid() && (await navigatorState.currentState?.maybePop()) == false) {
       logger("not pop, because _history is null...");
       systemPop();
     }

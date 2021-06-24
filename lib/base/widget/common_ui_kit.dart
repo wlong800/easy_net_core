@@ -94,7 +94,7 @@ class WMPreferredSize extends PreferredSize {
               ),
             ),
             onPressed: () {
-              callback!();
+              callback?.call();
             });
 
     return <Widget>[
@@ -112,11 +112,7 @@ class WMPreferredSize extends PreferredSize {
             leadingCallback!();
             return;
           }
-          if (isSystemPop) {
-            systemPop();
-          } else {
-            Navigator.pop(context);
-          }
+          pop(context, system: isSystemPop);
         },
       );
     }
