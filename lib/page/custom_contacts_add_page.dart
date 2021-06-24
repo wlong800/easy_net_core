@@ -233,11 +233,11 @@ class _CustomContactsAddPageState extends State<CustomContactsAddPage> {
                   }
                   showDialogLoadingKt(context);
                   var params = {
-                    "contactAddr": _addressController?.text,
-                    "contactEmail": _emailController?.text,
-                    "contactIdNo": _cardController?.text,
                     "contactMobile": _phoneController?.text,
+                    "contactEmail": _emailController?.text,
+                    "contactAddr": _addressController?.text,
                     "contactName": _userNameController?.text,
+                    "contactIdNo": _cardController?.text,
                     "id": toInt(widget.model?.id, defaultValue: 0)
                   };
                   if (isEmpty(params['contactAddr'])) params.remove("contactAddr");
