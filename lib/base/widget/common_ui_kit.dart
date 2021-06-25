@@ -529,6 +529,7 @@ class MyOutlineInputDecoration {
           borderSide: BorderSide(color: focusedBorderColor!, width: 0.5)),
       hintText: hintText,
       hintStyle: TextStyle(color: R.color_font_4, fontSize: sp(hintTextSize!)),
+      contentPadding: EdgeInsets.symmetric(horizontal: 12.0),
     );
   }
 }
