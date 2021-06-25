@@ -44,7 +44,7 @@ class Channel {
     var nativeHeaders = <String, dynamic>{};
     try {
       var map = await platform.invokeMethod("getNativeRequestHeader");
-      map.forEach((key, value) {
+      map?.forEach((key, value) {
         nativeHeaders[key] = value;
       });
       baseUrl = nativeHeaders["base_url"] + "/";

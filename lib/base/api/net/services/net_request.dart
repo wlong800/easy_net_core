@@ -99,7 +99,9 @@ Future getHeader(String url,
     var nativeHeaders  = await Channel.getNativeHeaders();
     header = await HeaderTools.getHeaders(getBaseUrl() + url,
         method: method, contentType: contentType, params: params);
-    header?.addAll(nativeHeaders);
+    if (nativeHeaders.length > 0) {
+      header?.addAll(nativeHeaders);
+    }
   } on Exception catch (e) {
     logger(e.toString());
     return null;
