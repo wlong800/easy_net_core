@@ -46,53 +46,54 @@ class _UserTTALSetPageState extends State<UserTTALSetPage> {
       body: Container(
         padding: EdgeInsets.only(top: 20.0, left: 16.0, right: 16.0),
         color: R.color_white,
-        child: Column(
+        child: Stack(
+          alignment: Alignment.bottomCenter,
           children: [
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "请填写你的两真一假",
+            ListView(
+              children: [
+                Text(
+                  "请填写你的两真一假",
+                  style: TextStyle(
+                      color: R.color_font_1,
+                      fontSize: sp(Sp.font_bigger),
+                      fontWeight: FontWeight.bold),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 12.0),
+                  child: Text(
+                    "填写2件真实+1件虚假的事情来描述你自己，看看谁最懂你~",
                     style: TextStyle(
-                        color: R.color_font_1,
-                        fontSize: sp(Sp.font_bigger),
-                        fontWeight: FontWeight.bold),
+                        color: R.color_font_2, fontSize: sp(Sp.font_middle2)),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 12.0),
-                    child: Text(
-                      "填写2件真实+1件虚假的事情来描述你自己，看看谁最懂你~",
-                      style: TextStyle(
-                          color: R.color_font_2, fontSize: sp(Sp.font_middle2)),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 40.0),
-                    child: _buildGussItem(_real1Controller, "我是单身", true),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 24.0),
-                    child: _buildGussItem(_real2Controller, "我能吃", true),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 24.0),
-                    child: _buildGussItem(_fakeController, "我能玩", false),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 24.0),
-                    child: TouchCallBack(
-                        child: Text(
-                          "看看他们怎么写 >",
-                          style: TextStyle(
-                              color: R.color_1, fontSize: sp(Sp.font_middle2)),
-                        ),
-                        onPressed: () {
-                          push(context, GussExamplePage());
-                        }),
-                  )
-                ],
-              ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 40.0),
+                  child: _buildGussItem(_real1Controller, "我是单身", true),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 24.0),
+                  child: _buildGussItem(_real2Controller, "我能吃", true),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 24.0),
+                  child: _buildGussItem(_fakeController, "我能玩", false),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 24.0),
+                  child: TouchCallBack(
+                      child: Text(
+                        "看看他们怎么写 >",
+                        style: TextStyle(
+                            color: R.color_1, fontSize: sp(Sp.font_middle2)),
+                      ),
+                      onPressed: () {
+                        push(context, GussExamplePage());
+                      }),
+                ),
+                Container(
+                  height: 360.0,
+                )
+              ],
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 35.0),
