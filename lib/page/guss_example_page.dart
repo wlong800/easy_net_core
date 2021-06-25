@@ -106,7 +106,7 @@ class _GussExamplePageState extends State<GussExamplePage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 12.0),
+              padding: const EdgeInsets.only(top: 12.0, bottom: 36.0),
               child: Text(
                 "祝你在「完美活动」找到有趣的活动，和有意思的人！",
                 style: TextStyle(
