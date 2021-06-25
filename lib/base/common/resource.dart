@@ -45,6 +45,7 @@ class Sp {
   static const double font_large = 24.0;
 
   static const double font_17 = 17.0;
+  static const double font_15 = 17.0;
 }
 
 /// 图标大写 & 宽度 & 高度

@@ -61,6 +61,8 @@ flutter:
     - images/icon_nothing.png
     - images/icon_back_black.webp
     - images/icon_message_icon_location_checked.png
+    - images/icon_guss_title_mark.png
+    - json/guss_example_data.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

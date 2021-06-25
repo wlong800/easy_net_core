@@ -26,6 +26,10 @@ class Channel {
     await platform.invokeMethod<void>('addContactsData', data);
   }
 
+  static Future<void> updateUserTTALData(String data) async {
+    await platform.invokeMethod<void>('updateUserTTALData', data);
+  }
+
   static Future<bool?> showNativeToast(
       {required String? msg, Toast? toastLength}) async {
     String toast = "short";

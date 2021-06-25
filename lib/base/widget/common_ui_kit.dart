@@ -503,6 +503,36 @@ class LoadingKit extends StatelessWidget {
   }
 }
 
+class MyOutlineInputDecoration {
+  final Color? enabledBorderColor;
+  final Color? focusedBorderColor;
+  final String? hintText;
+  final double? hintTextSize;
+
+  MyOutlineInputDecoration(
+      {this.enabledBorderColor = R.color_background,
+      this.focusedBorderColor = R.color_background,
+      this.hintText,
+      this.hintTextSize = Sp.font_big});
+
+  InputDecoration build() {
+    return InputDecoration(
+      border: OutlineInputBorder(
+          borderSide: BorderSide(color: enabledBorderColor!, width: 0.5)),
+      enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: enabledBorderColor!, width: 0.5)),
+      focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: focusedBorderColor!, width: 0.5)),
+      errorBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: enabledBorderColor!, width: 0.5)),
+      focusedErrorBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: focusedBorderColor!, width: 0.5)),
+      hintText: hintText,
+      hintStyle: TextStyle(color: R.color_font_4, fontSize: sp(hintTextSize!)),
+    );
+  }
+}
+
 class TextFormField2 extends StatelessWidget {
   final String? hintText;
   final double hintTextSize;
@@ -519,6 +549,7 @@ class TextFormField2 extends StatelessWidget {
   final Color enabledBorderColor;
   final Color focusedBorderColor;
   final double radius;
+  final InputDecoration? inputDecoration;
   final Callback? onFieldSubmitted;
 
   const TextFormField2(
@@ -538,7 +569,8 @@ class TextFormField2 extends StatelessWidget {
       this.focusedBorderColor = R.color_1,
       this.onFieldSubmitted,
       this.autoFocus = false,
-      this.radius = 8.0})
+      this.radius = 8.0,
+      this.inputDecoration})
       : super(key: key);
 
   @override
@@ -559,23 +591,30 @@ class TextFormField2 extends StatelessWidget {
         keyboardType: inputType,
         cursorColor: R.color_1,
         style: TextStyle(color: R.color_font_1, fontSize: sp(Sp.font_big)),
-        decoration: InputDecoration(
-          border: UnderlineInputBorder(
-              borderSide: BorderSide(color: enabledBorderColor, width: 0.5)),
-          enabledBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: enabledBorderColor, width: 0.5)),
-          focusedBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: focusedBorderColor, width: 0.5)),
-          errorBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: enabledBorderColor, width: 0.5)),
-          focusedErrorBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: focusedBorderColor, width: 0.5)),
-          hintText: hintText,
-          hintStyle:
-              TextStyle(color: R.color_font_4, fontSize: sp(hintTextSize)),
-          //尾部添加清除按钮
-          suffixIcon: suffixIcon,
-        ),
+        decoration: inputDecoration != null
+            ? inputDecoration
+            : InputDecoration(
+                border: UnderlineInputBorder(
+                    borderSide:
+                        BorderSide(color: enabledBorderColor, width: 0.5)),
+                enabledBorder: UnderlineInputBorder(
+                    borderSide:
+                        BorderSide(color: enabledBorderColor, width: 0.5)),
+                focusedBorder: UnderlineInputBorder(
+                    borderSide:
+                        BorderSide(color: focusedBorderColor, width: 0.5)),
+                errorBorder: UnderlineInputBorder(
+                    borderSide:
+                        BorderSide(color: enabledBorderColor, width: 0.5)),
+                focusedErrorBorder: UnderlineInputBorder(
+                    borderSide:
+                        BorderSide(color: focusedBorderColor, width: 0.5)),
+                hintText: hintText,
+                hintStyle: TextStyle(
+                    color: R.color_font_4, fontSize: sp(hintTextSize)),
+                //尾部添加清除按钮
+                suffixIcon: suffixIcon,
+              ),
         obscureText: obscureText,
         onFieldSubmitted: (value) {
           if (isEmpty(value)) return;
