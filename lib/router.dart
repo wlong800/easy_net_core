@@ -13,7 +13,7 @@ Widget pushPageByRouter(String scheme) {
     );
   } else if (scheme == "/report") {
     return ComplaintOfUserPage();
-  } else if (scheme == "/user_guss_set") {
+  } else if (scheme == "/user_ttal_set") {
     return UserTTALSetPage();
   } else if (scheme == "contacts_list") {
     return CustomContactsPage();
