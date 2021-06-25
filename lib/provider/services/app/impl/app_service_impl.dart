@@ -22,7 +22,7 @@ class AppServiceImpl implements AppService {
           params: params);
 
   @override
-  Future<BaseResponse?>? updateUserGussData({Map<String, dynamic>? params}) =>
-      _api.fetchDataByPost(ServicePath.updateUserGussData, params: params);
+  Future<BaseResponse?>? updateUserTTALData({Map<String, dynamic>? params}) =>
+      _api.fetchDataByPost(ServicePath.updateUserTTAL, params: params);
 
 }

@@ -15,26 +15,26 @@ import 'package:flutter/material.dart';
 
 import 'guss_example_page.dart';
 
-class GussAnswerSetPage extends StatefulWidget {
-  const GussAnswerSetPage({Key? key}) : super(key: key);
+class UserTTALSetPage extends StatefulWidget {
+  const UserTTALSetPage({Key? key}) : super(key: key);
 
   @override
-  _GussAnswerSetPageState createState() => _GussAnswerSetPageState();
+  _UserTTALSetPageState createState() => _UserTTALSetPageState();
 }
 
-class _GussAnswerSetPageState extends State<GussAnswerSetPage> {
-  TextEditingController? _guss1Controller;
-  TextEditingController? _guss2Controller;
-  TextEditingController? _guss3Controller;
+class _UserTTALSetPageState extends State<UserTTALSetPage> {
+  TextEditingController? _real1Controller;
+  TextEditingController? _real2Controller;
+  TextEditingController? _fakeController;
 
   AppService appService = serviceLocator<AppService>();
 
   @override
   void initState() {
     super.initState();
-    _guss1Controller = TextEditingController();
-    _guss2Controller = TextEditingController();
-    _guss3Controller = TextEditingController();
+    _real1Controller = TextEditingController();
+    _real2Controller = TextEditingController();
+    _fakeController = TextEditingController();
   }
 
   @override
@@ -69,15 +69,15 @@ class _GussAnswerSetPageState extends State<GussAnswerSetPage> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 40.0),
-                    child: _buildGussItem(_guss1Controller, "我是单身", true),
+                    child: _buildGussItem(_real1Controller, "我是单身", true),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 24.0),
-                    child: _buildGussItem(_guss2Controller, "我能吃", true),
+                    child: _buildGussItem(_real2Controller, "我能吃", true),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 24.0),
-                    child: _buildGussItem(_guss3Controller, "我能玩", false),
+                    child: _buildGussItem(_fakeController, "我能玩", false),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 24.0),
@@ -103,9 +103,9 @@ class _GussAnswerSetPageState extends State<GussAnswerSetPage> {
                   var params = {
                     "type": "TTAL",
                     "ttalQuestion": {
-                      "lieOption": _guss3Controller?.text,
-                      "truthOption1": _guss1Controller?.text,
-                      "truthOption2": _guss2Controller?.text,
+                      "lieOption": _fakeController?.text,
+                      "truthOption1": _real1Controller?.text,
+                      "truthOption2": _real2Controller?.text,
                     }
                   };
                   if (isEmpty(params['contactAddr']))
@@ -115,7 +115,7 @@ class _GussAnswerSetPageState extends State<GussAnswerSetPage> {
                   if (isEmpty(params['contactIdNo']))
                     params.remove("contactIdNo");
                   var response =
-                      await appService.updateUserGussData(params: params);
+                      await appService.updateUserTTALData(params: params);
                   pop(context);
                   if (response?.code == HttpStatus2.ok) {
                     Channel.updateUserTTALData(jsonEncode(params));
@@ -158,8 +158,8 @@ class _GussAnswerSetPageState extends State<GussAnswerSetPage> {
   }
 
   bool enableClick() {
-    return isNotEmpty(_guss1Controller?.text) &&
-        isNotEmpty(_guss2Controller?.text) &&
-        isNotEmpty(_guss3Controller?.text);
+    return isNotEmpty(_real1Controller?.text) &&
+        isNotEmpty(_real2Controller?.text) &&
+        isNotEmpty(_fakeController?.text);
   }
 }
