@@ -5,7 +5,7 @@ import 'package:app/base/api/net/services/business_request.dart';
 import 'package:app/base/common/common_callback.dart';
 import 'package:app/base/common/lang.dart';
 
-import 'HttpStatus2.dart';
+import 'http_status2.dart';
 
 
 class Api {

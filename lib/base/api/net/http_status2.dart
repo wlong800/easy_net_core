@@ -2,6 +2,8 @@ class HttpStatus2 {
   /// 自定义错误码
   static const int error_code = 10001;
   static const int ok = 200;
+  static const int login_error = 401;
+  static const int auth_error = 403;
 
   /// 第三方登录-请根据oauthId去第三方账号绑定邮箱页面，请求第三方账号绑定邮箱接口
   static const int status_30001 = 30001;

@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:app/base/common/lang.dart';
-import 'package:app/provider/services/service_locator.dart';
+import 'package:app/services/service_locator.dart';
 import 'package:app/router.dart';
 import 'package:flutter/material.dart';
 

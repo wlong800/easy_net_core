@@ -1,5 +1,5 @@
 import 'package:app/base/api/models/base_response.dart';
-import 'package:app/provider/services/api/api.dart';
+import 'package:app/services/api/api.dart';
 
 import '../../../../service_url.dart';
 import '../../service_locator.dart';

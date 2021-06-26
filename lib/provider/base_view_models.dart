@@ -1,11 +1,11 @@
 import 'package:app/base/api/models/base_response.dart';
-import 'package:app/base/api/net/HttpStatus2.dart';
+import 'package:app/base/api/net/http_status2.dart';
 import 'package:app/base/api/net/services/net_state_enum.dart';
 import 'package:app/base/common/common_callback.dart';
 import 'package:app/base/common/lang.dart';
 import 'package:app/base/common/logger.dart';
-import 'package:app/provider/services/app/app_service.dart';
-import 'package:app/provider/services/service_locator.dart';
+import 'package:app/services/app/app_service.dart';
+import 'package:app/services/service_locator.dart';
 import 'package:flutter/foundation.dart';
 
 typedef S ItemCreator<S>();

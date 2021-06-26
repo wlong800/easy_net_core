@@ -1,4 +1,3 @@
-import 'package:app/base/api/net/base_url.dart';
 import 'package:app/base/common/lang.dart';
 import 'package:app/base/common/logger.dart';
 import 'package:all_future_plugin/all_future_plugin.dart';
@@ -9,7 +8,6 @@ class HeaderTools {
       String? contentType = "json",
       Map<String, dynamic>? params}) async {
     try {
-      logger("11111111 $params");
       var platformHeaders;
       if (isIOS()) {
         platformHeaders = await platform.invokeMethod("getPlatformHeaders", {
@@ -30,7 +28,6 @@ class HeaderTools {
       logger("platformHeaders : $platformHeaders");
       return platformHeaders;
     } catch (e) {
-      logger(e.toString() + "........");
     }
     return null;
   }

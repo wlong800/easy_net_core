@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:app/base/api/net/HttpStatus2.dart';
+import 'package:app/base/api/net/http_status2.dart';
 import 'package:app/base/common/channel_tools.dart';
 import 'package:app/base/common/lang.dart';
 import 'package:app/base/common/logger.dart';
@@ -9,8 +9,8 @@ import 'package:app/base/common/touch_callback.dart';
 import 'package:app/base/widget/base_button.dart';
 import 'package:app/base/widget/common_ui_kit.dart';
 import 'package:app/base/widget/dialog/base_dialog.dart';
-import 'package:app/provider/services/app/app_service.dart';
-import 'package:app/provider/services/service_locator.dart';
+import 'package:app/services/app/app_service.dart';
+import 'package:app/services/service_locator.dart';
 import 'package:flutter/material.dart';
 
 import 'guss_example_page.dart';

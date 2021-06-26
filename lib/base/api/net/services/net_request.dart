@@ -14,7 +14,7 @@ import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
-import '../HttpStatus2.dart';
+import '../http_status2.dart';
 
 final Dio _dio = Dio(BaseOptions(
   connectTimeout: 30000, //单位毫秒  超时时间 30秒

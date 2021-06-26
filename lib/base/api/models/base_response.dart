@@ -1,4 +1,4 @@
-import 'package:app/base/api/net/HttpStatus2.dart';
+import 'package:app/base/api/net/http_status2.dart';
 import 'package:app/base/common/resource.dart';
 
 class BaseResponse {

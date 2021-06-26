@@ -1,4 +1,4 @@
-import 'package:app/base/api/net/HttpStatus2.dart';
+import 'package:app/base/api/net/http_status2.dart';
 import 'package:app/base/api/net/services/net_state_enum.dart';
 import 'package:app/base/common/channel_tools.dart';
 import 'package:app/base/common/lang.dart';
@@ -6,7 +6,7 @@ import 'package:app/base/common/resource.dart';
 import 'package:app/base/common/touch_callback.dart';
 import 'package:app/base/widget/common_ui_kit.dart';
 import 'package:app/base/widget/dialog/base_dialog.dart';
-import 'package:app/page/base/base_provider_state.dart';
+import 'package:app/provider/base_provider_state.dart';
 import 'package:app/page/cell/custom_contacts_cell.dart';
 import 'package:app/page/view_model/custom_ticket_view_models.dart';
 import 'package:flutter/material.dart';
