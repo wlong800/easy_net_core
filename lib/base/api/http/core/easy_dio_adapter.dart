@@ -27,7 +27,8 @@ class EasyDioAdapter extends EasyNetAdapter {
               queryParameters: await request.getRequestParams());
           break;
         case EasyHttpMethod.POST:
-          response = await _dio.post(request.getPath());
+          response = await _dio.post(request.getPath(),
+              data: await request.getRequestParams());
           break;
         case EasyHttpMethod.DELETE:
           response = await _dio.delete(request.getUrl(),
@@ -63,8 +64,7 @@ class EasyDioAdapter extends EasyNetAdapter {
     _dio.options.contentType = Headers.jsonContentType;
     _dio.options.baseUrl = request.getBaseUrl();
     if (isNotEmpty(headers)) {
-      _dio.options.headers =
-          Map<String, dynamic>.from(headers);
+      _dio.options.headers = Map<String, dynamic>.from(headers);
       logger("header : ${_dio.options.headers.toString()}");
     }
     _findProxy(request);
