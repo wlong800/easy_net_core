@@ -15,7 +15,7 @@ Widget pushPageByRouter(String scheme) {
     return ComplaintOfUserPage();
   } else if (scheme == "/user_ttal_set") {
     return UserTTALSetPage();
-  } else if (scheme == "contacts_list") {
+  } else if (scheme == "/contacts_list") {
     return CustomContactsPage();
   }
   return Container(
