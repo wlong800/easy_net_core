@@ -8,11 +8,9 @@ import 'package:app/tools/channel_tools.dart';
 import 'package:app/base/common/lang.dart';
 import 'package:app/base/common/logger.dart';
 import 'package:app/base/common/resource.dart';
-import 'package:app/base/hold/hold.dart';
 import 'package:app/base/utils/common_header_tools.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 
 import '../http_status2.dart';
 

@@ -12,8 +12,9 @@ abstract class AppBaseRequest extends EasyBaseRequest {
   @override
   Future<Map<String, dynamic>> getRequestHeaders() async {
     var nativeHeaders = await Channel.getNativeHeaders();
+    var methodEnumStr = EasyHttpMethod.values[getHttpMethod().index].toString();
     var header = await HeaderTools.getHeaders(getUrl(),
-        method: EasyHttpMethod.values[getHttpMethod().index].toString(),
+        method: methodEnumStr.substring(methodEnumStr.indexOf(".") + 1).toLowerCase(),
         params: await getRequestParams());
     if (nativeHeaders.length > 0) {
       header.addAll(nativeHeaders);
