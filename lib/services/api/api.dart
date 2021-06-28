@@ -1,13 +1,10 @@
-import 'package:app/base/api/models/base_response.dart';
+import 'package:app/base/api/http/core/easy_net_adapter.dart';
+import 'package:app/base/api/http/request/easy_base_request.dart';
 
-/// 目前支持get post,后期需要扩展
 abstract class Api {
-  Future<BaseResponse?> fetchDataByGet(String url,
-      {Map<String, dynamic>? params});
 
-  Future<BaseResponse?> fetchDataByPost(String url,
-      {Map<String, dynamic>? params});
+  Future<EasyBaseResponse?> fetchDataByNet(EasyBaseRequest request);
 
-  Future<BaseResponse?> fetchDataByNative(String method,
-      {Map<String, dynamic>? params});
+  // Future<BaseResponse?> fetchDataByNative(String method,
+  //     {Map<String, dynamic>? params});
 }

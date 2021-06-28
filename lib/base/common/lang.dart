@@ -7,7 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../main.dart';
-import 'channel_tools.dart';
+import '../../tools/channel_tools.dart';
 import 'logger.dart';
 
 /// 封装一些常用的函数

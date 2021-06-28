@@ -5,7 +5,8 @@ import 'package:app/services/service_locator.dart';
 import 'package:app/router.dart';
 import 'package:flutter/material.dart';
 
-import 'base/common/channel_tools.dart';
+import 'base/common/global.dart';
+import 'tools/channel_tools.dart';
 import 'base/common/logger.dart';
 import 'base/common/resource.dart';
 

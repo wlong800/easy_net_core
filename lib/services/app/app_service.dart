@@ -1,8 +1,8 @@
-import 'package:app/base/api/models/base_response.dart';
+import 'package:app/base/api/http/core/easy_net_adapter.dart';
 
 abstract class AppService {
-  Future<BaseResponse?>? fetchContactsData({Map<String, dynamic>? params});
-  Future<BaseResponse?>? updateContactsData({Map<String, dynamic>? params});
-  Future<BaseResponse?>? deleteContactsData({Map<String, dynamic>? params});
-  Future<BaseResponse?>? updateUserTTALData({Map<String, dynamic>? params});
+  Future<EasyBaseResponse?>? fetchContactsData({Map<String, dynamic>? requestParams});
+  Future<EasyBaseResponse?>? updateContactsData({Map<String, dynamic>? requestParams});
+  Future<EasyBaseResponse?>? deleteContactsData({Map<String, dynamic>? requestParams});
+  Future<EasyBaseResponse?>? updateUserTTALData({Map<String, dynamic>? requestParams});
 }

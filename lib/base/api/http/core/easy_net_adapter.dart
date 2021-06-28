@@ -1,16 +1,17 @@
 import 'dart:convert';
 
-import 'package:app/base/api/http/request/base_request.dart';
+import 'package:app/base/api/http/request/easy_base_request.dart';
 
 ///网络请求适配器抽象类,添加适配器的目的是方便扩展，会有多个适配器....
 abstract class EasyNetAdapter {
-  Future<EasyNetResponse<T>> send<T>(BaseRequest request);
-  rich(BaseRequest request);///丰富options
+  Future<EasyBaseResponse> send(EasyBaseRequest request);
+
+  ///丰富options
 }
 
 /// 统一网络层返回格式
-class EasyNetResponse<T> {
-  EasyNetResponse({
+class EasyBaseResponse {
+  EasyBaseResponse({
     this.data,
     this.request,
     this.code,
@@ -19,10 +20,10 @@ class EasyNetResponse<T> {
   });
 
   /// Response body. may have been transformed, please refer to [ResponseType].
-  T? data;
+  dynamic data;
 
   /// The corresponding request info.
-  BaseRequest? request;
+  EasyBaseRequest? request;
 
   /// Http status code.
   int? code;

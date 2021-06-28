@@ -1,7 +1,9 @@
-import 'package:app/base/api/models/base_response.dart';
+import 'package:app/base/api/http/core/easy_net_adapter.dart';
+import 'package:app/service_url.dart';
 import 'package:app/services/api/api.dart';
+import 'package:app/services/request/base/app_get_request.dart';
+import 'package:app/services/request/base/app_post_request.dart';
 
-import '../../../../service_url.dart';
 import '../../service_locator.dart';
 import '../app_service.dart';
 
@@ -9,20 +11,31 @@ class AppServiceImpl implements AppService {
   Api _api = serviceLocator<Api>();
 
   @override
-  Future<BaseResponse?> fetchContactsData({Map<String, dynamic>? params}) =>
-      _api.fetchDataByGet(ServicePath.getContacts, params: params);
+  Future<EasyBaseResponse?>? updateUserTTALData(
+      {Map<String, dynamic>? requestParams}) {
+    return _api.fetchDataByNet(
+        AppPostRequest(AppServicePath.getContacts, requestParams));
+  }
 
   @override
-  Future<BaseResponse?>? updateContactsData({Map<String, dynamic>? params}) =>
-      _api.fetchDataByPost(ServicePath.updateContacts, params: params);
+  Future<EasyBaseResponse?>? fetchContactsData(
+      {Map<String, dynamic>? requestParams}) {
+    return _api.fetchDataByNet(
+        AppGetRequest(AppServicePath.getContacts, requestParams));
+  }
 
   @override
-  Future<BaseResponse?>? deleteContactsData({Map<String, dynamic>? params}) =>
-      _api.fetchDataByPost(ServicePath.deleteContacts + "/${params!["cid"]}",
-          params: params);
+  Future<EasyBaseResponse?>? deleteContactsData(
+      {Map<String, dynamic>? requestParams}) {
+    return _api.fetchDataByNet(AppGetRequest(
+        AppServicePath.deleteContacts + "/${requestParams!["cid"]}",
+        requestParams));
+  }
 
   @override
-  Future<BaseResponse?>? updateUserTTALData({Map<String, dynamic>? params}) =>
-      _api.fetchDataByPost(ServicePath.updateUserTTAL, params: params);
-
+  Future<EasyBaseResponse?>? updateContactsData(
+      {Map<String, dynamic>? requestParams}) {
+    return _api.fetchDataByNet(
+        AppPostRequest(AppServicePath.updateContacts, requestParams));
+  }
 }

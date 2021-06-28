@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:app/base/api/net/http_status2.dart';
-import 'package:app/base/common/channel_tools.dart';
+import 'package:app/tools/channel_tools.dart';
 import 'package:app/base/common/lang.dart';
 import 'package:app/base/common/logger.dart';
 import 'package:app/base/common/resource.dart';
@@ -247,7 +247,7 @@ class _CustomContactsAddPageState extends State<CustomContactsAddPage> {
                   if (isEmpty(params['contactName'])) params.remove("contactName");
                   if (toInt(params["id"]) <= 0) params.remove("id");
                   var response =
-                      await appService.updateContactsData(params: params);
+                      await appService.updateContactsData(requestParams: params);
                   pop(context);
                   if (response?.code == HttpStatus2.ok) {
                     widget.func?.call();

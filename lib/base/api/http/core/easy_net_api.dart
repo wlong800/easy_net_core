@@ -1,7 +1,7 @@
 import 'package:app/base/api/net/http_status2.dart';
 import 'package:app/base/common/logger.dart';
 
-import '../request/base_request.dart';
+import '../request/easy_base_request.dart';
 import 'easy_dio_adapter.dart';
 import 'easy_error.dart';
 import 'easy_net_adapter.dart';
@@ -22,8 +22,8 @@ class EasyNetApi {
     return _instance!;
   }
 
-  Future fire(BaseRequest request) async {
-    EasyNetResponse? response;
+  Future fire(EasyBaseRequest request) async {
+    EasyBaseResponse? response;
     var error;
     try {
       response = await send(request);
@@ -54,7 +54,7 @@ class EasyNetApi {
     }
   }
 
-  Future<EasyNetResponse<T>> send<T>(BaseRequest request) async {
+  Future<EasyBaseResponse> send(EasyBaseRequest request) async {
     ///使用Dio发送请求，拓展性体现，可以插拔
     EasyNetAdapter adapter = EasyDioAdapter();
     return adapter.send(request);

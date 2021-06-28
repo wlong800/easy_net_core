@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:app/base/api/net/http_status2.dart';
-import 'package:app/base/common/channel_tools.dart';
+import 'package:app/tools/channel_tools.dart';
 import 'package:app/base/common/lang.dart';
 import 'package:app/base/common/logger.dart';
 import 'package:app/base/common/resource.dart';
@@ -116,7 +116,7 @@ class _UserTTALSetPageState extends State<UserTTALSetPage> {
                   if (isEmpty(params['contactIdNo']))
                     params.remove("contactIdNo");
                   var response =
-                      await appService.updateUserTTALData(params: params);
+                      await appService.updateUserTTALData(requestParams: params);
                   pop(context);
                   if (response?.code == HttpStatus2.ok) {
                     Channel.updateUserTTALData(jsonEncode(params));

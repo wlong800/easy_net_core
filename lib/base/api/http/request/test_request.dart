@@ -1,18 +1,28 @@
-import 'base_request.dart';
+import 'easy_base_request.dart';
 
-class TestRequest extends BaseRequest {
+class TestRequest extends EasyBaseRequest {
   @override
-  HttpMethod httpMethod() {
-    return HttpMethod.GET;
-  }
-
-  @override
-  bool needLogin() {
-    return false;
+  EasyHttpMethod getHttpMethod() {
+    // TODO: implement getHttpMethod
+    throw UnimplementedError();
   }
 
   @override
   String getPath() {
-    return 'uapi/test/test';
+    // TODO: implement getPath
+    throw UnimplementedError();
   }
+
+  @override
+  Future<Map<String, dynamic>> getRequestHeaders() {
+    // TODO: implement getRequestHeaders
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Map<String, dynamic>>? getRequestParams() {
+    // TODO: implement getRequestParams
+    throw UnimplementedError();
+  }
+
 }

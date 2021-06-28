@@ -1,4 +1,5 @@
-class ServicePath {
+///按模块划分，目前只有App模块
+class AppServicePath {
   static String getContacts =
       'api/m/future/mall/portal/user/contact/list'; // 获取常用联系人
   static String updateContacts =
@@ -10,3 +11,5 @@ class ServicePath {
       'api/m/future/homepage/v1/y/user/info/update'; // 添加用户俩真一假接口
 
 }
+
+class XXServicePath {}

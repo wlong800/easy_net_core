@@ -1,8 +1,8 @@
-import 'package:app/base/api/net/base_url.dart';
+import 'package:app/base/api/http/easy_net_global.dart';
 import 'package:app/base/common/lang.dart';
 import 'package:flutter/services.dart';
 
-import 'logger.dart';
+import '../base/common/logger.dart';
 
 const platform = const MethodChannel('all_future_flutter_method_plugin');
 
@@ -44,6 +44,7 @@ class Channel {
     return res;
   }
 
+  ///获取native头信息
   static Future<Map<String, dynamic>> getNativeHeaders() async {
     var nativeHeaders = <String, dynamic>{};
     try {
@@ -52,7 +53,7 @@ class Channel {
         nativeHeaders[key] = value;
       });
       if (nativeHeaders.containsKey("base_url")) {
-        baseUrl = nativeHeaders["base_url"] + "/";
+        EasyNetGlobal.defaultBaseUrl = nativeHeaders["base_url"] + "/";
         nativeHeaders.remove("base_url");
       }
     } on Exception catch (e) {
