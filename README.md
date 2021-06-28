@@ -2,20 +2,24 @@
 
 ### route & channel
 > route规则：wanmei:host/path?params1={}&params2=xxx
->  channel 默认 all_future_flutter_method_plugin
+>  channel 
+
+> 默认channel : all_future_flutter_method_plugin
 
 
-1. （调起俩真一假页面->UserTTALSetPage()）: 
-> user_ttal_set?params={
+1. (俩真一假) user_ttal_set?params={
                                                      "lieOption": _fakeController?.text,
                                                      "truthOption1": _real1Controller?.text,
-                                                     "truthOption2": _real2Controller?.text,
+               getNativeGlobalInfo
+
+{
+ "                                      "truthOption2": _real2Controller?.text
                                                    }
 
 
 ```
 update成功后，把下边的数据回传给原生，通过 ->
-channel: updateUserTTALData
+channel: updateUserTTALData ->
 {
                     "type": "TTAL",
                     "ttalQuestion": {
@@ -25,6 +29,18 @@ channel: updateUserTTALData
                     }
                   }
 ```
+
+2. (给到flutter一些全局数据，比如appbar高度..) 
+```
+getNativeGlobalInfo ->
+{
+    "appBarHeight":80,
+    "baseUrl":""
+}
+
+ios字典格式，android Map格式
+```
+
 
 
 ### 重构1.0(网络库)-2021.6.26
