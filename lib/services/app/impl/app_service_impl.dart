@@ -1,4 +1,4 @@
-import 'package:app/base/api/http/core/easy_net_adapter.dart';
+import 'package:app/base/api/models/base_response.dart';
 import 'package:app/service_url.dart';
 import 'package:app/services/api/api.dart';
 import 'package:app/services/request/base/app_get_request.dart';
@@ -11,21 +11,21 @@ class AppServiceImpl implements AppService {
   Api _api = serviceLocator<Api>();
 
   @override
-  Future<EasyBaseResponse?>? updateUserTTALData(
+  Future<BaseResponse?>? updateUserTTALData(
       {Map<String, dynamic>? requestParams}) {
     return _api.fetchDataByNet(
         AppPostRequest(AppServicePath.getContacts, requestParams));
   }
 
   @override
-  Future<EasyBaseResponse?>? fetchContactsData(
+  Future<BaseResponse?>? fetchContactsData(
       {Map<String, dynamic>? requestParams}) {
     return _api.fetchDataByNet(
         AppGetRequest(AppServicePath.getContacts, requestParams));
   }
 
   @override
-  Future<EasyBaseResponse?>? deleteContactsData(
+  Future<BaseResponse?>? deleteContactsData(
       {Map<String, dynamic>? requestParams}) {
     return _api.fetchDataByNet(AppGetRequest(
         AppServicePath.deleteContacts + "/${requestParams!["cid"]}",
@@ -33,7 +33,7 @@ class AppServiceImpl implements AppService {
   }
 
   @override
-  Future<EasyBaseResponse?>? updateContactsData(
+  Future<BaseResponse?>? updateContactsData(
       {Map<String, dynamic>? requestParams}) {
     return _api.fetchDataByNet(
         AppPostRequest(AppServicePath.updateContacts, requestParams));

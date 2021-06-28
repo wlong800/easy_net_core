@@ -22,7 +22,7 @@ class EasyNetApi {
     return _instance!;
   }
 
-  Future fire(EasyBaseRequest request) async {
+  Future<EasyBaseResponse> fire(EasyBaseRequest request) async {
     EasyBaseResponse? response;
     var error;
     try {
@@ -44,7 +44,7 @@ class EasyNetApi {
     var status = response?.code;
     switch (status) {
       case HttpStatus2.ok:
-        return result;
+        return Future.value(response);
       case HttpStatus2.login_error:
         throw NeedLogin();
       case HttpStatus2.auth_error:

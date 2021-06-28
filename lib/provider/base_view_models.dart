@@ -1,4 +1,4 @@
-import 'package:app/base/api/http/core/easy_net_adapter.dart';
+import 'package:app/base/api/models/base_response.dart';
 import 'package:app/base/api/net/http_status2.dart';
 import 'package:app/base/api/net/services/net_state_enum.dart';
 import 'package:app/base/common/common_callback.dart';
@@ -84,7 +84,7 @@ abstract class BaseProviderModel<T> extends ChangeNotifier {
 
   void fetchLastId() {}
 
-  bool onResponseSuccess(EasyBaseResponse? response) {
+  bool onResponseSuccess(BaseResponse? response) {
     bool responseSuccess = false;
     setLoadError = false;
     switch (response?.code) {

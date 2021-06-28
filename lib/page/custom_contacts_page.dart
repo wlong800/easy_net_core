@@ -87,34 +87,36 @@ class _CustomContactsPageState
     initScreenUtil(context);
     return Scaffold(
       appBar: WMPreferredSize("购票使用人"),
-      body: Column(
-        children: [
-          Expanded(child: build2(context, model)),
-          Container(
-            color: R.color_white,
-            padding: EdgeInsets.only(
-                top: 10.0, left: 16.0, right: 16.0, bottom: 35.0),
-            child: TouchCallBack(
-              child: Container(
-                height: 45.0,
-                alignment: Alignment.center,
-                child: Text(
-                  "新增使用人",
-                  style:
-                      TextStyle(color: Colors.white, fontSize: sp(Sp.font_big)),
+      body: Container(
+        child: Column(
+          children: [
+            Expanded(child: build2(context, model)),
+            Container(
+              color: R.color_white,
+              padding: EdgeInsets.only(
+                  top: 10.0, left: 16.0, right: 16.0, bottom: 35.0),
+              child: TouchCallBack(
+                child: Container(
+                  height: 45.0,
+                  alignment: Alignment.center,
+                  child: Text(
+                    "新增使用人",
+                    style:
+                        TextStyle(color: Colors.white, fontSize: sp(Sp.font_big)),
+                  ),
+                  decoration: MyBoxDecoration.all(radius: 23.0, color: R.color_1),
                 ),
-                decoration: MyBoxDecoration.all(radius: 23.0, color: R.color_1),
+                onPressed: () {
+                  push(context, CustomContactsAddPage(
+                    func: () {
+                      onFetchData(showLoadingUI: false);
+                    },
+                  ));
+                },
               ),
-              onPressed: () {
-                push(context, CustomContactsAddPage(
-                  func: () {
-                    onFetchData(showLoadingUI: false);
-                  },
-                ));
-              },
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

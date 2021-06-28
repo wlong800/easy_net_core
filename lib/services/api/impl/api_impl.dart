@@ -4,20 +4,24 @@ import 'package:app/base/api/http/core/easy_error.dart';
 import 'package:app/base/api/http/core/easy_net_adapter.dart';
 import 'package:app/base/api/http/core/easy_net_api.dart';
 import 'package:app/base/api/http/request/easy_base_request.dart';
+import 'package:app/base/api/models/base_response.dart';
 import 'package:app/base/common/logger.dart';
 import 'package:app/services/api/api.dart';
 
 class ApiImpl implements Api {
   @override
-  Future<EasyBaseResponse> fetchDataByNet(EasyBaseRequest request) async {
-    var response;
+  Future<BaseResponse> fetchDataByNet(EasyBaseRequest request) async {
+    EasyBaseResponse response;
     try {
       response = await EasyNetApi.getInstance().fire(request);
-    } on BaseEasyNetError catch(e) {
-      response = Future.value(EasyBaseResponse(code: e.code, msg: e.message));
+    } on BaseEasyNetError catch (e) {
+      response = EasyBaseResponse(code: e.code, msg: e.message);
       logger(e);
     }
-    return response;
+    var data = (response.data != null && response.data is Map)
+        ? response.data["data"]
+        : null;
+    return BaseResponse(code: response.code, msg: response.msg, data: data);
   }
 
 // @override

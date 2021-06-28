@@ -239,7 +239,7 @@ class Error2Widget extends StatelessWidget {
     return Container(
       color: bgColor,
       alignment: Alignment.center,
-      margin: EdgeInsets.only(top: 150.0),
+      padding: EdgeInsets.only(top: 150.0),
       child: Column(
         children: <Widget>[
           Image.asset(
