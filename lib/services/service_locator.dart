@@ -1,6 +1,7 @@
 
 
-import 'package:app/page/view_model/custom_ticket_view_models.dart';
+import 'package:app/page/view_model/custom_contacts_view_models.dart';
+import 'package:app/page/view_model/user_ttal_view_models.dart';
 import 'package:get_it/get_it.dart';
 
 import 'api/api.dart';
@@ -24,5 +25,6 @@ void setupServiceLocator() {
   // serviceLocator.registerLazySingleton<CurrencyService>(() => CurrencyServiceFake());
 
   // view models
-  serviceLocator.registerFactory<CustomTicketViewModel>(() => CustomTicketViewModel());
+  serviceLocator.registerFactory<CustomContactsViewModel>(() => CustomContactsViewModel());
+  serviceLocator.registerFactory<UserInfoViewModel>(() => UserInfoViewModel());
 }

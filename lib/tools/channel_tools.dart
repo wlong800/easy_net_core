@@ -63,4 +63,8 @@ class Channel {
     }
     return nativeHeaders;
   }
+
+  static getNativeGlobalInfo() async {
+    return await platform.invokeMethod("getNativeGlobalInfo");
+  }
 }

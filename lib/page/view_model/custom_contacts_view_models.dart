@@ -2,8 +2,8 @@ import 'package:app/base/common/common_callback.dart';
 import 'package:app/page/models/contacts_model.dart';
 import 'package:app/provider/base_view_models.dart';
 
-class CustomTicketViewModel extends BaseProviderModel<List<ContactsModel>> {
-  CustomTicketViewModel() : super(creator: () => []);
+class CustomContactsViewModel extends BaseProviderModel<List<ContactsModel>> {
+  CustomContactsViewModel() : super(creator: () => []);
 
   @override
   Future<Null> loadData(

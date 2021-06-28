@@ -1,8 +1,17 @@
 
 
 ### route & channel
-1. route: user_ttal_set（调起俩真一假页面->UserTTALSetPage()）
+> route规则：wanmei:host/path?params1={}&params2=xxx
 >  channel 默认 all_future_flutter_method_plugin
+
+
+1. （调起俩真一假页面->UserTTALSetPage()）: 
+> user_ttal_set?params={
+                                                     "lieOption": _fakeController?.text,
+                                                     "truthOption1": _real1Controller?.text,
+                                                     "truthOption2": _real2Controller?.text,
+                                                   }
+
 
 ```
 update成功后，把下边的数据回传给原生，通过 ->

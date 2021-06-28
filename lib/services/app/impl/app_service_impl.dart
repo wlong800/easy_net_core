@@ -11,21 +11,21 @@ class AppServiceImpl implements AppService {
   Api _api = serviceLocator<Api>();
 
   @override
-  Future<BaseResponse?>? updateUserTTALData(
+  Future<BaseResponse>? updateUserTTALData(
       {Map<String, dynamic>? requestParams}) {
     return _api.fetchDataByNet(
-        AppPostRequest(AppServicePath.getContacts, requestParams));
+        AppPostRequest(AppServicePath.updateUserTTAL, requestParams));
   }
 
   @override
-  Future<BaseResponse?>? fetchContactsData(
+  Future<BaseResponse>? fetchContactsData(
       {Map<String, dynamic>? requestParams}) {
     return _api.fetchDataByNet(
         AppGetRequest(AppServicePath.getContacts, requestParams));
   }
 
   @override
-  Future<BaseResponse?>? deleteContactsData(
+  Future<BaseResponse>? deleteContactsData(
       {Map<String, dynamic>? requestParams}) {
     return _api.fetchDataByNet(AppPostRequest(
         AppServicePath.deleteContacts + "/${requestParams!["cid"]}",
@@ -33,9 +33,15 @@ class AppServiceImpl implements AppService {
   }
 
   @override
-  Future<BaseResponse?>? updateContactsData(
+  Future<BaseResponse>? updateContactsData(
       {Map<String, dynamic>? requestParams}) {
     return _api.fetchDataByNet(
         AppPostRequest(AppServicePath.updateContacts, requestParams));
+  }
+
+  @override
+  Future<BaseResponse>? fetchUserInfoData({Map<String, dynamic>? requestParams}) {
+    return _api.fetchDataByNet(
+        AppGetRequest(AppServicePath.getUserInfo, requestParams));
   }
 }

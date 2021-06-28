@@ -8,7 +8,7 @@ import 'package:app/base/widget/common_ui_kit.dart';
 import 'package:app/base/widget/dialog/base_dialog.dart';
 import 'package:app/provider/base_provider_state.dart';
 import 'package:app/page/cell/custom_contacts_cell.dart';
-import 'package:app/page/view_model/custom_ticket_view_models.dart';
+import 'package:app/page/view_model/custom_contacts_view_models.dart';
 import 'package:flutter/material.dart';
 
 import 'custom_contacts_add_page.dart';
@@ -20,9 +20,9 @@ class CustomContactsPage extends StatefulWidget {
 }
 
 class _CustomContactsPageState
-    extends BaseProviderState<CustomContactsPage, CustomTicketViewModel> {
+    extends BaseProviderState<CustomContactsPage, CustomContactsViewModel> {
   @override
-  Widget buildBody(BuildContext context, CustomTicketViewModel model) {
+  Widget buildBody(BuildContext context, CustomContactsViewModel model) {
     var list = model.data;
     return ListView.builder(
       itemBuilder: (BuildContext context, int index) {
@@ -83,7 +83,7 @@ class _CustomContactsPageState
   }
 
   @override
-  Widget buildFullScreen(BuildContext context, CustomTicketViewModel model) {
+  Widget buildFullScreen(BuildContext context, CustomContactsViewModel model) {
     initScreenUtil(context);
     return Scaffold(
       appBar: WMPreferredSize("购票使用人"),

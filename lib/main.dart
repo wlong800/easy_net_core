@@ -3,11 +3,13 @@ import 'dart:ui';
 import 'package:app/base/common/lang.dart';
 import 'package:app/base/config/impl/base_logger_config.dart';
 import 'package:app/base/config/impl/base_proxy_config.dart';
+import 'package:app/global.dart';
 import 'package:app/services/service_locator.dart';
 import 'package:app/router.dart';
 import 'package:flutter/material.dart';
 
 import 'base/config/config_manager.dart';
+import 'base/widget/common_ui_kit.dart';
 import 'tools/channel_tools.dart';
 import 'base/logger/logger.dart';
 import 'base/common/resource.dart';
@@ -21,15 +23,14 @@ main() async {
       .addConfig(BaseLoggerConfig())
       .build();
   runApp(MyApp(
-    scheme: window.defaultRouteName,
+    router: window.defaultRouteName,
   ));
 }
 
 class MyApp extends StatefulWidget {
-  final String? scheme;
+  final String? router;
 
-  const MyApp({Key? key, this.scheme}) : super(key: key);
-
+  const MyApp({Key? key, this.router}) : super(key: key);
 
   @override
   _MyAppState createState() => _MyAppState();
@@ -40,7 +41,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   void initState() {
     super.initState();
     WidgetsBinding.instance?.addObserver(this);
-    logger("scheme: ${widget.scheme}");
+    logger("router: ${widget.router}");
   }
 
   @override
@@ -51,7 +52,17 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       theme: ThemeData(
         backgroundColor: R.color_background,
       ),
-      home: pushPageByRouter(toString2(widget.scheme)),
+      home: FutureBuilder(
+        future: _initGlobalInfo(),
+        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            return pushPageByRouter(widget.router!);
+          }
+          return Material(
+            child: LoadingKit(),
+          );
+        },
+      ),
     );
   }
 
@@ -69,5 +80,9 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   void dispose() {
     super.dispose();
     WidgetsBinding.instance?.removeObserver(this);
+  }
+
+  _initGlobalInfo() async {
+    await Global.getNativeGlobalInfo();
   }
 }

@@ -13,10 +13,12 @@ import 'package:app/services/app/app_service.dart';
 import 'package:app/services/service_locator.dart';
 import 'package:flutter/material.dart';
 
-import 'guss_example_page.dart';
+import 'user_ttal_example_page.dart';
 
 class UserTTALSetPage extends StatefulWidget {
-  const UserTTALSetPage({Key? key}) : super(key: key);
+  final Map<String, dynamic>? questions;
+
+  const UserTTALSetPage({Key? key, this.questions}) : super(key: key);
 
   @override
   _UserTTALSetPageState createState() => _UserTTALSetPageState();
@@ -32,9 +34,16 @@ class _UserTTALSetPageState extends State<UserTTALSetPage> {
   @override
   void initState() {
     super.initState();
-    _real1Controller = TextEditingController();
-    _real2Controller = TextEditingController();
-    _fakeController = TextEditingController();
+    var questions = widget.questions;
+    if (questions != null && questions.length >= 3) {
+      _real1Controller = TextEditingController(text: questions["truthOption1"]);
+      _real2Controller = TextEditingController(text: questions["truthOption2"]);
+      _fakeController = TextEditingController(text: questions["lieOption"]);
+    } else {
+      _real1Controller = TextEditingController();
+      _real2Controller = TextEditingController();
+      _fakeController = TextEditingController();
+    }
   }
 
   @override
@@ -87,7 +96,7 @@ class _UserTTALSetPageState extends State<UserTTALSetPage> {
                             color: R.color_1, fontSize: sp(Sp.font_middle2)),
                       ),
                       onPressed: () {
-                        push(context, GussExamplePage());
+                        push(context, UserTTALExamplePage());
                       }),
                 ),
                 Container(
@@ -115,8 +124,8 @@ class _UserTTALSetPageState extends State<UserTTALSetPage> {
                     params.remove("contactEmail");
                   if (isEmpty(params['contactIdNo']))
                     params.remove("contactIdNo");
-                  var response =
-                      await appService.updateUserTTALData(requestParams: params);
+                  var response = await appService.updateUserTTALData(
+                      requestParams: params);
                   pop(context);
                   if (response?.code == HttpStatus2.ok) {
                     Channel.updateUserTTALData(jsonEncode(params));

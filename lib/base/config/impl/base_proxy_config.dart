@@ -9,7 +9,7 @@ class BaseProxyConfig extends LightSwitchConfig {
 
   @override
   bool enable() {
-    ///默认都是true,如果有需求自定义，继承ProxyConfig
+    ///默认都是true,如果有需求自定义，继承BaseProxyConfig
     return true;
   }
 

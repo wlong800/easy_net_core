@@ -4,17 +4,18 @@ import 'package:app/base/common/lang.dart';
 import 'package:app/base/common/resource.dart';
 import 'package:app/base/utils/tools.dart';
 import 'package:app/base/widget/common_ui_kit.dart';
+import 'package:app/global.dart';
 import 'package:app/page/models/guss_example_model.dart';
 import 'package:flutter/material.dart';
 
-class GussExamplePage extends StatefulWidget {
-  const GussExamplePage({Key? key}) : super(key: key);
+class UserTTALExamplePage extends StatefulWidget {
+  const UserTTALExamplePage({Key? key}) : super(key: key);
 
   @override
-  _GussExamplePageState createState() => _GussExamplePageState();
+  _UserTTALExamplePageState createState() => _UserTTALExamplePageState();
 }
 
-class _GussExamplePageState extends State<GussExamplePage> {
+class _UserTTALExamplePageState extends State<UserTTALExamplePage> {
   var _data = [];
 
   @override
@@ -33,7 +34,12 @@ class _GussExamplePageState extends State<GussExamplePage> {
   Widget build(BuildContext context) {
     initScreenUtil(context);
     return Scaffold(
-      appBar: WMPreferredSize(""),
+      appBar: WMPreferredSize(
+        "",
+        height: toInt(Global.globalInfo?.appBarHeight) > 0
+            ? toInt(Global.globalInfo?.appBarHeight).toDouble()
+            : Size2.app_bar_height,
+      ),
       body: Container(
         color: R.color_white,
         padding: EdgeInsets.only(top: 20.0, left: 16.0, right: 16.0),
