@@ -1,5 +1,5 @@
 import 'package:app/base/api/http/easy_net_global.dart';
-import 'package:app/base/common/logger.dart';
+import 'package:app/base/logger/logger.dart';
 
 enum EasyHttpMethod { GET, POST, DELETE }
 

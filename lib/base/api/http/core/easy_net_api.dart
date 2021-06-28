@@ -1,5 +1,5 @@
 import 'package:app/base/api/net/http_status2.dart';
-import 'package:app/base/common/logger.dart';
+import 'package:app/base/logger/logger.dart';
 
 import '../request/easy_base_request.dart';
 import 'easy_dio_adapter.dart';

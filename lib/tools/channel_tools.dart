@@ -2,7 +2,7 @@ import 'package:app/base/api/http/easy_net_global.dart';
 import 'package:app/base/common/lang.dart';
 import 'package:flutter/services.dart';
 
-import '../base/common/logger.dart';
+import '../base/logger/logger.dart';
 
 const platform = const MethodChannel('all_future_flutter_method_plugin');
 

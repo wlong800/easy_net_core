@@ -1,5 +1,5 @@
 import 'package:app/base/api/net/api.dart';
-import 'package:app/base/common/logger.dart';
+import 'package:app/base/logger/logger.dart';
 import 'package:app/base/common/touch_callback.dart';
 import 'package:app/base/widget/common_ui_kit.dart';
 import 'package:flutter/material.dart';

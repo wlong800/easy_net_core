@@ -1,5 +1,5 @@
 import 'package:app/base/common/lang.dart';
-import 'package:app/base/common/logger.dart';
+import 'package:app/base/logger/logger.dart';
 import 'package:all_future_plugin/all_future_plugin.dart';
 import 'package:app/tools/channel_tools.dart';
 class HeaderTools {

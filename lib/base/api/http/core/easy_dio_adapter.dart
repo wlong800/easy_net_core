@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:app/base/api/http/request/easy_base_request.dart';
 import 'package:app/base/common/lang.dart';
-import 'package:app/base/common/logger.dart';
+import 'package:app/base/logger/logger.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 

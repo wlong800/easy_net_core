@@ -5,7 +5,7 @@ import 'package:app/base/api/http/core/easy_net_adapter.dart';
 import 'package:app/base/api/http/core/easy_net_api.dart';
 import 'package:app/base/api/http/request/easy_base_request.dart';
 import 'package:app/base/api/models/base_response.dart';
-import 'package:app/base/common/logger.dart';
+import 'package:app/base/logger/logger.dart';
 import 'package:app/services/api/api.dart';
 
 class ApiImpl implements Api {

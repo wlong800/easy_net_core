@@ -1,4 +1,4 @@
-import 'package:app/base/common/logger.dart';
+import 'package:app/base/logger/logger.dart';
 import 'package:app/page/complaint_of_user_page.dart';
 import 'package:app/page/custom_contacts_add_page.dart';
 import 'package:app/page/custom_contacts_page.dart';

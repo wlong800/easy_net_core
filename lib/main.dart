@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 
 import 'base/config/config_manager.dart';
 import 'tools/channel_tools.dart';
-import 'base/common/logger.dart';
+import 'base/logger/logger.dart';
 import 'base/common/resource.dart';
 
 GlobalKey<NavigatorState> navigatorState = new GlobalKey();

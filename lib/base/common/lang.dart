@@ -8,7 +8,7 @@ import 'package:uuid/uuid.dart';
 
 import '../../main.dart';
 import '../../tools/channel_tools.dart';
-import 'logger.dart';
+import '../logger/logger.dart';
 
 /// 封装一些常用的函数
 

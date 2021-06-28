@@ -1,5 +1,5 @@
 import 'package:app/base/api/net/services/net_state_enum.dart';
-import 'package:app/base/common/logger.dart';
+import 'package:app/base/logger/logger.dart';
 import 'package:app/base/widget/common_ui_kit.dart';
 import 'package:app/provider/base_view_models.dart';
 import 'package:app/services/service_locator.dart';
