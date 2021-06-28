@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:app/base/api/http/request/easy_base_request.dart';
 import 'package:app/base/common/lang.dart';
 import 'package:app/base/common/logger.dart';
+import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 
 import 'easy_net_adapter.dart';
@@ -14,7 +17,7 @@ class EasyDioAdapter extends EasyNetAdapter {
 
   @override
   Future<EasyBaseResponse> send(EasyBaseRequest request) async {
-    _richRequest(request);
+    await _richRequest(request);
     var response;
     var error;
     try {
@@ -45,7 +48,8 @@ class EasyDioAdapter extends EasyNetAdapter {
   }
 
   ///构建HiNetResponse
-  Future<EasyBaseResponse> buildRes(Response response, EasyBaseRequest request) {
+  Future<EasyBaseResponse> buildRes(
+      Response response, EasyBaseRequest request) {
     return Future.value(EasyBaseResponse(
         data: response.data,
         request: request,
@@ -57,10 +61,26 @@ class EasyDioAdapter extends EasyNetAdapter {
   _richRequest(EasyBaseRequest request) async {
     _dio.options.contentType = Headers.jsonContentType;
     _dio.options.baseUrl = request.getBaseUrl();
-    if (isNotEmpty(request.getRequestHeaders())) {
+    var headers = await request.getRequestHeaders();
+    if (isNotEmpty(headers)) {
       _dio.options.headers =
-          Map<String, dynamic>.from(await request.getRequestHeaders());
+          Map<String, dynamic>.from(headers);
       logger("header : ${_dio.options.headers.toString()}");
     }
+    _findProxy(request);
+  }
+
+  void _findProxy(EasyBaseRequest request) {
+    String? proxy = request.getProxy();
+    logger("proxy setting >>> $proxy");
+    if (isEmpty(proxy)) return;
+    (_dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
+        (client) {
+      client.badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+      client.findProxy = (uri) {
+        return "PROXY $proxy";
+      };
+    };
   }
 }

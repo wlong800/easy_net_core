@@ -24,10 +24,11 @@ class HeaderTools {
           "requestBody": params
         });
       }
-
+      platformHeaders = Map<String, dynamic>.from(platformHeaders);
       logger("platformHeaders : $platformHeaders");
       return platformHeaders;
     } catch (e) {
+      logger(e);
     }
     return {};
   }

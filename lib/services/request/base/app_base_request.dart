@@ -1,4 +1,5 @@
 import 'package:app/base/api/http/request/easy_base_request.dart';
+import 'package:app/base/config/config_manager.dart';
 import 'package:app/tools/channel_tools.dart';
 import 'package:app/base/utils/common_header_tools.dart';
 
@@ -32,6 +33,6 @@ abstract class AppBaseRequest extends EasyBaseRequest {
 
   @override
   String? getProxy() {
-    return super.getProxy();
+    return ConfigManager.getInstance().getProxy();
   }
 }
