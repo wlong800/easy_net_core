@@ -59,9 +59,9 @@ class EasyDioAdapter extends EasyNetAdapter {
   }
 
   _richRequest(EasyBaseRequest request) async {
+    var headers = await request.getRequestHeaders();
     _dio.options.contentType = Headers.jsonContentType;
     _dio.options.baseUrl = request.getBaseUrl();
-    var headers = await request.getRequestHeaders();
     if (isNotEmpty(headers)) {
       _dio.options.headers =
           Map<String, dynamic>.from(headers);
