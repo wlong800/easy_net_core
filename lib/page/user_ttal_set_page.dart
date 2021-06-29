@@ -51,7 +51,7 @@ class _UserTTALSetPageState extends State<UserTTALSetPage> {
     initScreenUtil(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: WMPreferredSize(""),
+      appBar: WMPreferredSize("", isSystemPop: true,),
       body: Container(
         padding: EdgeInsets.only(left: 16.0, right: 16.0),
         color: R.color_white,
