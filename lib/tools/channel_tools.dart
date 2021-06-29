@@ -11,11 +11,7 @@ const basicMessageChannel = const BasicMessageChannel(
     'all_future_flutter_basic_plugin', StandardMessageCodec());
 
 Future<void> systemPop() async {
-  if (isAndroid()) {
-    await platform.invokeMethod<void>('SystemNavigator.systemPop');
-  } else {
-    SystemNavigator.pop();
-  }
+  await platform.invokeMethod<void>('SystemNavigator.systemPop');
 }
 
 enum Toast { LENGTH_SHORT, LENGTH_LONG }
