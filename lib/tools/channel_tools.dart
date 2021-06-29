@@ -26,7 +26,7 @@ class Channel {
     await platform.invokeMethod<void>('addContactsData', data);
   }
 
-  static Future<void> updateUserTTALData(String data) async {
+  static Future<void> updateUserTTALData(dynamic data) async {
     await platform.invokeMethod<void>('updateUserTTALData', data);
   }
 

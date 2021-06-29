@@ -128,7 +128,7 @@ class _UserTTALSetPageState extends State<UserTTALSetPage> {
                       requestParams: params);
                   pop(context);
                   if (response?.code == HttpStatus2.ok) {
-                    Channel.updateUserTTALData(jsonEncode(params));
+                    Channel.updateUserTTALData(params);
                     Future.delayed(Duration(milliseconds: 300), () {
                       pop(context, system: true);
                     });
