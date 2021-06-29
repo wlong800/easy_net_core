@@ -145,6 +145,174 @@ class WMPreferredSize extends PreferredSize {
   }
 }
 
+class WMPreferredSize2 extends PreferredSize {
+  final String title;
+  final bool leading;
+  final bool isSystemPop;
+  final VoidCallback? callback;
+  final VoidCallback? leadingCallback;
+  final String? rightText;
+  final Widget? rightWidget;
+  final Color bgColor;
+  final Color titleColor;
+  final double titleSize;
+  final bool titleBold;
+  final Widget? titleWidget;
+  final Widget? leadingWidget;
+  final double elevation;
+  final double height;
+  final Brightness brightness;
+
+  WMPreferredSize2(this.title,
+      {this.leading = true,
+      this.isSystemPop = false,
+      this.callback,
+      this.rightText,
+      this.rightWidget,
+      this.bgColor = Colors.white,
+      this.titleColor = R.color_font_1,
+      this.titleBold = false,
+      this.titleWidget,
+      this.leadingWidget,
+      this.height = Size2.app_bar_height,
+      this.leadingCallback,
+      this.elevation = 0.0,
+      this.titleSize = Sp.font_17,
+      this.brightness = Brightness.light})
+      : super(child: Container(), preferredSize: Size.fromHeight(height));
+
+  @override
+  Size get preferredSize => Size.fromHeight(height);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      backgroundColor: bgColor,
+      title: Container(
+        child: Stack(
+          children: [
+            TouchCallBack(
+              child: Container(
+                alignment: Alignment.bottomLeft,
+                padding:
+                    const EdgeInsets.only(top: 16.0, bottom: 12.0, right: 16.0),
+                child: Image.asset(
+                  "images/icon_back.png",
+                  height: 18.0,
+                ),
+              ),
+              onPressed: () {
+                if (leadingCallback != null) {
+                  leadingCallback?.call();
+                  return;
+                }
+                if (isSystemPop) {
+                  systemPop();
+                } else {
+                  try {
+                    if ((navigatorState.currentState?.canPop()) == false) {
+                      systemPop();
+                      return;
+                    }
+                  } catch (e) {
+                    print(e);
+                  }
+                  Navigator.pop(context);
+                }
+              },
+            ),
+            Container(
+              child: Container(
+                child: _buildTitleWidget(),
+                margin: EdgeInsets.only(bottom: 12.0),
+              ),
+              alignment: Alignment.bottomCenter,
+            ),
+          ],
+        ),
+        alignment: Alignment.bottomLeft,
+        height: height,
+      ),
+      toolbarHeight: height,
+    );
+  }
+
+  Widget _buildTitleWidget() {
+    if (titleWidget != null) return titleWidget!;
+    return Text(
+      title,
+      style: TextStyle(
+          fontSize: sp(titleSize),
+          color: titleColor,
+          fontWeight: titleBold ? FontWeight.bold : FontWeight.normal),
+    );
+  }
+
+  List<Widget>? getActions() {
+    Widget widget = rightText == null
+        ? Container()
+        : TouchCallBack(
+            child: Container(
+              padding: EdgeInsets.only(right: 10.0),
+              alignment: Alignment.center,
+              child: Text(
+                rightText!,
+                style:
+                    TextStyle(color: R.color_2, fontSize: sp(Sp.font_middle2)),
+              ),
+            ),
+            onPressed: () {
+              callback?.call();
+            });
+
+    return <Widget>[
+      rightWidget != null ? rightWidget! : widget,
+    ];
+  }
+
+  Widget _buildLeadingButton(BuildContext context) {
+    if (!leading) return Container();
+    if (leadingWidget != null) {
+      return TouchCallBack(
+        child: leadingWidget,
+        onPressed: () {
+          if (leadingCallback != null) {
+            leadingCallback!();
+            return;
+          }
+          pop(context, system: isSystemPop);
+        },
+      );
+    }
+    return IconButton(
+      padding: EdgeInsets.all(14.0),
+      icon: Image.asset(
+        "images/icon_back_black.webp",
+        height: 18.0,
+      ),
+      onPressed: () async {
+        if (leadingCallback != null) {
+          leadingCallback?.call();
+          return;
+        }
+        if (isSystemPop) {
+          systemPop();
+        } else {
+          try {
+            if ((navigatorState.currentState?.canPop()) == false) {
+              systemPop();
+              return;
+            }
+          } catch (e) {
+            print(e);
+          }
+          Navigator.pop(context);
+        }
+      },
+    );
+  }
+}
+
 Widget buildRightButton({required String imageName}) {
   return Container(
     padding: EdgeInsets.all(16.0),
