@@ -36,8 +36,8 @@ class _UserTTALExamplePageState extends State<UserTTALExamplePage> {
     return Scaffold(
       appBar: WMPreferredSize(
         "",
-        height: toInt(Global.globalInfo?.appBarHeight) > 0
-            ? toInt(Global.globalInfo?.appBarHeight).toDouble()
+        height: toDouble(Global.globalInfo?.appBarHeight) > 0
+            ? toDouble(Global.globalInfo?.appBarHeight)
             : Size2.app_bar_height,
       ),
       body: Container(

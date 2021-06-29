@@ -1,5 +1,5 @@
 class GlobalInfo {
-  int? appBarHeight;
+  double? appBarHeight;
   String? baseUrl;
 
   GlobalInfo({this.appBarHeight, this.baseUrl});

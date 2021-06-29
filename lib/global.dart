@@ -20,7 +20,8 @@ class Global {
     var globalInfoStr = await Channel.getNativeGlobalInfo();
     logger("globalInfoStr: $globalInfoStr");
     if (globalInfoStr != null) {
-      globalInfo = GlobalInfo.fromJson(Map.from(globalInfoStr));
+      globalInfo =
+          GlobalInfo.fromJson(Map<String, dynamic>.from(globalInfoStr));
       EasyNetGlobal.defaultBaseUrl =
           globalInfo?.baseUrl ?? "https://evt.tomorrow365.com/";
       logger("defaultBaseUrl: ${EasyNetGlobal.defaultBaseUrl}");

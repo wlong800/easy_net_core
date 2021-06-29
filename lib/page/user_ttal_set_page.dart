@@ -13,6 +13,7 @@ import 'package:app/services/app/app_service.dart';
 import 'package:app/services/service_locator.dart';
 import 'package:flutter/material.dart';
 
+import '../global.dart';
 import 'user_ttal_example_page.dart';
 
 class UserTTALSetPage extends StatefulWidget {
@@ -51,7 +52,13 @@ class _UserTTALSetPageState extends State<UserTTALSetPage> {
     initScreenUtil(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: WMPreferredSize("", isSystemPop: true,),
+      appBar: WMPreferredSize(
+        "",
+        height: toDouble(Global.globalInfo?.appBarHeight) > 0
+            ? toDouble(Global.globalInfo?.appBarHeight)
+            : Size2.app_bar_height,
+        isSystemPop: true,
+      ),
       body: Container(
         padding: EdgeInsets.only(left: 16.0, right: 16.0),
         color: R.color_white,
