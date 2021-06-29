@@ -1,3 +1,3 @@
 class EasyNetGlobal {
-  static String defaultBaseUrl = "https://evt.tomorrow365.com";
+  static String defaultBaseUrl = "https://evt.tomorrow365.com/";
 }

@@ -1,5 +1,6 @@
 import 'package:app/base/api/http/request/easy_base_request.dart';
 import 'package:app/base/config/config_manager.dart';
+import 'package:app/base/logger/logger.dart';
 import 'package:app/tools/channel_tools.dart';
 import 'package:app/base/utils/common_header_tools.dart';
 
@@ -11,8 +12,11 @@ abstract class AppBaseRequest extends EasyBaseRequest {
 
   @override
   Future<Map<String, dynamic>> getRequestHeaders() async {
+    logger("getRequestHeaders start...");
     var nativeHeaders = await Channel.getNativeHeaders();
+    logger("getRequestHeaders start...<nativeHeaders>");
     var methodEnumStr = EasyHttpMethod.values[getHttpMethod().index].toString();
+    logger("getRequestHeaders methodEnumStr...<$methodEnumStr>");
     var header = await HeaderTools.getHeaders(getUrl(),
         method: methodEnumStr.substring(methodEnumStr.indexOf(".") + 1).toLowerCase(),
         params: await getRequestParams());
