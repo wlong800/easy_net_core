@@ -1,4 +1,3 @@
-import 'package:app/base/api/http/easy_net_global.dart';
 import 'package:app/base/common/lang.dart';
 import 'package:flutter/services.dart';
 
@@ -52,10 +51,6 @@ class Channel {
       map?.forEach((key, value) {
         nativeHeaders[key] = value;
       });
-      if (nativeHeaders.containsKey("base_url")) {
-        EasyNetGlobal.defaultBaseUrl = nativeHeaders["base_url"] + "/";
-        nativeHeaders.remove("base_url");
-      }
     } on Exception catch (e) {
       print(e);
     } catch (e) {

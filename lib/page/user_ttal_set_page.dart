@@ -53,19 +53,22 @@ class _UserTTALSetPageState extends State<UserTTALSetPage> {
       resizeToAvoidBottomInset: false,
       appBar: WMPreferredSize(""),
       body: Container(
-        padding: EdgeInsets.only(top: 20.0, left: 16.0, right: 16.0),
+        padding: EdgeInsets.only(left: 16.0, right: 16.0),
         color: R.color_white,
         child: Stack(
           alignment: Alignment.bottomCenter,
           children: [
             ListView(
               children: [
-                Text(
-                  "请填写你的两真一假",
-                  style: TextStyle(
-                      color: R.color_font_1,
-                      fontSize: sp(Sp.font_bigger),
-                      fontWeight: FontWeight.bold),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20.0),
+                  child: Text(
+                    "请填写你的两真一假",
+                    style: TextStyle(
+                        color: R.color_font_1,
+                        fontSize: sp(Sp.font_bigger),
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 12.0),

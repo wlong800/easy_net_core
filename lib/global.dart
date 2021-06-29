@@ -1,5 +1,6 @@
 import 'package:app/base/api/http/easy_net_global.dart';
 import 'package:app/base/common/lang.dart';
+import 'package:app/base/common/resource.dart';
 import 'package:app/base/hold/hold_manager.dart';
 import 'package:app/base/logger/logger.dart';
 import 'package:app/page/models/global_model.dart';
@@ -8,6 +9,7 @@ import 'package:flutter/material.dart';
 
 class Global {
   static GlobalInfo? globalInfo;
+  static double appBarHeight = Size2.app_bar_height;
 
   /// 初始化全局信息，会在APP启动时执行
   static Future init() async {
@@ -17,10 +19,14 @@ class Global {
   static getNativeGlobalInfo() async {
     var globalInfoStr = await Channel.getNativeGlobalInfo();
     logger("globalInfoStr: $globalInfoStr");
-    if (isNotEmpty(globalInfoStr)) {
-      globalInfo = GlobalInfo.fromJson(globalInfoStr);
+    if (globalInfoStr != null) {
+      globalInfo = GlobalInfo.fromJson(Map.from(globalInfoStr));
       EasyNetGlobal.defaultBaseUrl =
           globalInfo?.baseUrl ?? "https://evt.tomorrow365.com/";
+      logger("defaultBaseUrl: ${EasyNetGlobal.defaultBaseUrl}");
+      if (globalInfo?.appBarHeight != null) {
+        appBarHeight = toDouble(globalInfo?.appBarHeight);
+      }
     }
   }
 }

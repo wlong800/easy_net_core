@@ -92,6 +92,23 @@ int toFloor(double value) {
   return value.floor();
 }
 
+double toDouble(dynamic value, {double defaultValue = 0.0}) {
+  if (isEmpty(value)) return defaultValue;
+  if (value is double) return value;
+  if (value is String) {
+    try {
+      return double.parse(value);
+    } catch (e) {
+      logger(e.toString());
+      return defaultValue;
+    }
+  }
+  if (value is int) {
+    return value.toDouble();
+  }
+  return defaultValue;
+}
+
 String getLimitText(value, {required int maxLen, String ellipsis = "..."}) {
   var text = toString2(value);
   if (text.length > maxLen) {
