@@ -25,6 +25,8 @@ class Global {
       EasyNetGlobal.defaultBaseUrl =
           globalInfo?.baseUrl ?? "https://evt.tomorrow365.com/";
       logger("defaultBaseUrl: ${EasyNetGlobal.defaultBaseUrl}");
+      if (!EasyNetGlobal.defaultBaseUrl.endsWith("/"))
+        EasyNetGlobal.defaultBaseUrl = EasyNetGlobal.defaultBaseUrl + "/";
       if (globalInfo?.appBarHeight != null) {
         appBarHeight = toDouble(globalInfo?.appBarHeight);
       }

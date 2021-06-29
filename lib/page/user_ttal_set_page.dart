@@ -12,6 +12,7 @@ import 'package:app/base/widget/dialog/base_dialog.dart';
 import 'package:app/services/app/app_service.dart';
 import 'package:app/services/service_locator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../global.dart';
 import 'user_ttal_example_page.dart';
@@ -53,7 +54,7 @@ class _UserTTALSetPageState extends State<UserTTALSetPage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: WMPreferredSize2(
-        "",
+        "我的两真一假",
         height: toDouble(Global.globalInfo?.appBarHeight) > 0
             ? toDouble(Global.globalInfo?.appBarHeight)
             : Size2.app_bar_height,
@@ -88,15 +89,15 @@ class _UserTTALSetPageState extends State<UserTTALSetPage> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 40.0),
-                  child: _buildGussItem(_real1Controller, "我是单身", true),
+                  child: _buildGussItem(_real1Controller, "正在享受校园生活的学生党", true),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 24.0),
-                  child: _buildGussItem(_real2Controller, "我能吃", true),
+                  child: _buildGussItem(_real2Controller, "母胎至今单身", true),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 24.0),
-                  child: _buildGussItem(_fakeController, "我能玩", false),
+                  child: _buildGussItem(_fakeController, "喜欢打王者荣耀，虽然很菜", false),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 24.0),
@@ -171,6 +172,7 @@ class _UserTTALSetPageState extends State<UserTTALSetPage> {
               MyBoxDecoration.all(radius: 4.0, color: R.color_background),
           child: TextFormField2(
             controller: controller,
+            inputFormatter: [LengthLimitingTextInputFormatter(20)],
             inputDecoration: MyOutlineInputDecoration(hintText: hint).build(),
           ),
         ),
