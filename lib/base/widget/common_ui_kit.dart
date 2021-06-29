@@ -234,6 +234,7 @@ class WMPreferredSize2 extends PreferredSize {
         height: height,
       ),
       toolbarHeight: height,
+      elevation: 0.0,
     );
   }
 
