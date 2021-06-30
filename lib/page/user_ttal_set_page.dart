@@ -55,9 +55,7 @@ class _UserTTALSetPageState extends State<UserTTALSetPage> {
       resizeToAvoidBottomInset: false,
       appBar: WMPreferredSize2(
         "我的两真一假",
-        height: toDouble(Global.globalInfo?.appBarHeight) > 0
-            ? toDouble(Global.globalInfo?.appBarHeight)
-            : Size2.app_bar_height,
+        height: Global.appBarHeight,
         isSystemPop: true,
         leading: false,
       ),

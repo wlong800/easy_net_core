@@ -21,6 +21,8 @@ class R {
   static const Color color_font_3 = Color(0xff666666);
   static const Color color_font_4 = Color(0xffcccccc);
 
+  static const Color color_d8d8d8 = Color(0xffD8D8D8);
+
   static const Color color_divider_1 = Color(0xffE0E0E0);
 
   static const Color color_white = Color(0xffffffff);
@@ -155,6 +157,13 @@ class MyBoxDecoration {
       {Color color = R.color_font_3, double width = 1.0}) {
     return BoxDecoration(
       border: Border(top: BorderSide(color: color, width: width)),
+    );
+  }
+
+  static BoxDecoration leftDecoration(
+      {Color color = R.color_font_3, double width = 1.0}) {
+    return BoxDecoration(
+      border: Border(left: BorderSide(color: color, width: width)),
     );
   }
 }

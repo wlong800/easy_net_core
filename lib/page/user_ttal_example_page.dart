@@ -36,29 +36,32 @@ class _UserTTALExamplePageState extends State<UserTTALExamplePage> {
     return Scaffold(
       appBar: WMPreferredSize(
         "",
-        height: toDouble(Global.globalInfo?.appBarHeight) > 0
-            ? toDouble(Global.globalInfo?.appBarHeight)
-            : Size2.app_bar_height,
+        height: Global.appBarHeight,
       ),
       body: Container(
         color: R.color_white,
-        padding: EdgeInsets.only(top: 20.0, left: 16.0, right: 16.0),
+        padding: EdgeInsets.only(left: 16.0, right: 16.0),
         child: ListView(
           shrinkWrap: true,
           children: [
-            Text(
-              "填写两真一假，更能吸引TA",
-              style: TextStyle(
-                  color: R.color_font_1,
-                  fontSize: sp(Sp.font_bigger),
-                  fontWeight: FontWeight.bold),
+            Padding(
+              padding: const EdgeInsets.only(top: 20.0),
+              child: Text(
+                "填写两真一假，更能吸引TA",
+                style: TextStyle(
+                    color: R.color_font_1,
+                    fontSize: sp(Sp.font_bigger),
+                    fontWeight: FontWeight.bold),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 30.0),
               child: Text(
                 "为什么要填写两真一假？",
-                style:
-                    TextStyle(color: R.color_font_1, fontSize: sp(Sp.font_big)),
+                style: TextStyle(
+                    color: R.color_font_1,
+                    fontSize: sp(Sp.font_big),
+                    fontWeight: FontWeight.bold),
               ),
             ),
             Padding(
@@ -73,28 +76,20 @@ class _UserTTALExamplePageState extends State<UserTTALExamplePage> {
               padding: const EdgeInsets.only(top: 30.0),
               child: Text(
                 "写点什么呢？",
-                style:
-                    TextStyle(color: R.color_font_1, fontSize: sp(Sp.font_big)),
+                style: TextStyle(
+                    color: R.color_font_1,
+                    fontSize: sp(Sp.font_big),
+                    fontWeight: FontWeight.bold),
               ),
             ),
             //_buildGridViewItem
-            Padding(
-              padding: const EdgeInsets.only(top: 12.0),
+            Container(
               child: Expanded(
                 child: Container(
-                  child: GridView.builder(
+                  child: ListView.builder(
                     physics: NeverScrollableScrollPhysics(),
                     //增加
                     shrinkWrap: true,
-                    //增加
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        //横轴三个子widget
-                        crossAxisSpacing: 16.0,
-                        mainAxisSpacing: 12.0,
-                        mainAxisExtent: 230.0,
-                        childAspectRatio: 0.5 //宽高比为1时，子widget
-                        ),
                     itemBuilder: (BuildContext context, int index) {
                       return _buildGridViewItem(index);
                     },
@@ -129,21 +124,31 @@ class _UserTTALExamplePageState extends State<UserTTALExamplePage> {
     var data = _data[index] as GussExampleModel;
     return Container(
       decoration: MyBoxDecoration.all(radius: 6.0, color: R.color_background),
-      padding: EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 20.0),
+      margin: EdgeInsets.only(top: 12.0),
+      child: Row(
         children: [
-          Text(
-            toString2(data.title),
-            style: TextStyle(
-                color: R.color_font_1,
-                fontSize: sp(Sp.font_big),
-                fontWeight: FontWeight.bold),
+          Container(
+            width: 24,
+            child: Text(
+              toString2(data.title),
+              textDirection: TextDirection.ltr,
+              softWrap: true,
+              style: TextStyle(
+                  color: R.color_font_1,
+                  fontSize: sp(Sp.font_bigger),
+                  fontWeight: FontWeight.bold),
+            ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 4.0),
-            child: Column(children: _getChildrenAsList(data.subData)),
-          )
+          Container(
+            padding: EdgeInsets.only(left: 16.0),
+            margin: EdgeInsets.only(left: 24.0),
+            decoration: MyBoxDecoration.leftDecoration(
+                color: R.color_d8d8d8, width: 0.5),
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: _getChildrenAsList(data.subData)),
+          ),
         ],
       ),
     );
@@ -151,9 +156,10 @@ class _UserTTALExamplePageState extends State<UserTTALExamplePage> {
 
   List<Widget> _getChildrenAsList(List<String>? descriptionList) {
     var list = <Widget>[];
+    int index = 0;
     descriptionList?.forEach((element) {
       list.add(Padding(
-        padding: const EdgeInsets.only(top: 16.0),
+        padding: EdgeInsets.only(top: (index == 0) ? 0.0 : 16.0),
         child: Row(
           children: [
             Image.asset(
@@ -171,6 +177,7 @@ class _UserTTALExamplePageState extends State<UserTTALExamplePage> {
           ],
         ),
       ));
+      index++;
     });
     return list;
   }
