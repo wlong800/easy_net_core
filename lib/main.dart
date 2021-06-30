@@ -19,7 +19,7 @@ GlobalKey<NavigatorState> navigatorState = new GlobalKey();
 main() async {
   setupServiceLocator();
   ConfigManager.getInstance()
-      .addConfig(BaseProxyConfig("10.6.12.169", "8888"))
+      // .addConfig(BaseProxyConfig("10.6.12.169", "8888"))
       .addConfig(BaseLoggerConfig())
       .build();
   runApp(MyApp(
