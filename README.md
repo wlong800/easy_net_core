@@ -1,51 +1,42 @@
 
 
-### route & channel
-> route规则：wanmei:host/path?params1={}&params2=xxx
->  channel 
+### route & channel篇
+> **默认channel : all_future_flutter_method_plugin**
 
-> 默认channel : all_future_flutter_method_plugin
+> route规则：wanmei://host/path?params1={}&params2=xxx
 
+> eg.  wmactivity://user_ttal_set?params={"lieOption": "text1","truthOption1": "text2","truthOption2": "text3"}
 
-1. (俩真一假) user_ttal_set?params={
-                                                     "lieOption": _fakeController?.text,
-                                                     "truthOption1": _real1Controller?.text,
-               getNativeGlobalInfo
+scheme | host | path | queryParameters
+--|--|--|--
+wmactivity | user_ttal_set | null | {"lieOption": "text1","truthOption1": "text2","truthOption2": "text3"}
 
-{
- "                                      "truthOption2": _real2Controller?.text
-                                                   }
+ 
 
+1. 端上启动flutter，需要按router规则进入相应的页面，如下：
 
-```
-update成功后，把下边的数据回传给原生，通过 ->
-channel: updateUserTTALData ->
-{
-                    "type": "TTAL",
-                    "ttalQuestion": {
-                      "lieOption": _fakeController?.text,
-                      "truthOption1": _real1Controller?.text,
-                      "truthOption2": _real2Controller?.text,
-                    }
-                  }
-```
+router(host) | requestParams | responseChannel | responseData | 备注
+---|---|---|---|---
+user_ttal_set | {"lieOption": "text1","truthOption1": "text2","truthOption2": "text3"} | updateUserTTALData | {"type":"TTAL","ttalQuestion":{"lieOption":"t1", "truthOption1":"t2", "truthOption2":"t3"}} | 俩真一假
+contacts_list |  |  |  | 购票联系人列表
+contacts_add |  |  |  | 新增购票联系人
+report |  |  |  | 举报页面
 
-2. (给到flutter一些全局数据，比如appbar高度..) 
-```
-getNativeGlobalInfo ->
-{
-    "appBarHeight":80,
-    "baseUrl":""
-}
+2. 端上注册 flutter调用
 
-ios字典格式，android Map格式
-```
+nativeRegisterChannel | flutterPullDataByChannel | flutterPushDataByChannel | 备注
+---|---|---|---|---
+getNativeGlobalInfo |  | {"appBarHeight":80.0,"baseUrl":""} | 全局的一些属性，会在启动的时候调用，需要端上准备好
+getPlatformHeaders | {"url": "url","method": "post/get", "contentType": "json","requestBody": {"key","value"}} | {"ax":""} | 需要把端上的header数据都带过来，特别是ax,否则报401
 
+### API篇
 
+1. ConfigManager （全局）
+2. EasyNetApi（网络请求） 
+3. 
 
-### 重构1.0(网络库)-2021.6.26
-1. 引入adapter模式，实现快速插拔
-2. 模块分工进一步明确
+### 项目架构篇
+
 ```
 lib
 ├── base
@@ -60,3 +51,7 @@ lib
 ├── provider(基于provider这个库，做一个封装，方便page层使用)
 └── test(写一些测试demo,比如widgets通用控件有哪些)
 ```
+
+- #### 重构1.0(网络库)-2021.6.26
+1. 引入adapter模式，实现快速插拔
+2. 模块分工进一步明确
