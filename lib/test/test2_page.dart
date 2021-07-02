@@ -1,4 +1,6 @@
 import 'package:app/base/common/lang.dart';
+import 'package:app/base/common/touch_callback.dart';
+import 'package:app/base/logger/logger.dart';
 import 'package:flutter/material.dart';
 
 class TextAreaPage extends StatefulWidget {
@@ -9,11 +11,13 @@ class TextAreaPage extends StatefulWidget {
 }
 
 class _TextAreaPageState extends State<TextAreaPage> {
-  double _top = 0.0; //距顶部的偏移
-  double _left = 0.0; //距左边的偏移
+  double _top = 10.0; //距顶部的偏移
+  double _left = 10.0; //距左边的偏移
   @override
   void initState() {
     super.initState();
+    _left = getScreenWidth() / 2 - 75;
+    _top = getScreenHeight() / 2 - 75;
   }
 
   @override
@@ -26,8 +30,24 @@ class _TextAreaPageState extends State<TextAreaPage> {
             left: _left,
             child: GestureDetector(
               child: Container(
-                color: Colors.red,
-                  child: Center(child: Image.asset("images/icon_no_wifi.png", width: 150.0,))),
+                  color: Colors.red,
+                  child: Center(
+                      child: Column(
+                        children: [
+                          TouchCallBack(
+                            child: Image.asset(
+                    "images/icon_no_wifi.png",
+                    width: 150.0,
+                  ),
+                            onPressed: () {
+                              logger("dddddd");
+                            },
+                          ),Image.asset(
+                            "images/icon_no_wifi.png",
+                            width: 150.0,
+                          ),
+                        ],
+                      ))),
               //手指按下时会触发此回调
               onPanDown: (DragDownDetails e) {
                 //打印手指按下的位置(相对于屏幕)

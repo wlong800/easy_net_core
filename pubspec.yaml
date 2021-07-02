@@ -27,7 +27,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-#  shared_preferences: ^2.0.5 #本地存储
+  shared_preferences: ^2.0.6 #本地存储
   uuid: ^3.0.4
   flutter_screenutil: ^5.0.0 #屏幕适配库
   dio: ^4.0.0  #接口请求使用的库
@@ -55,14 +55,7 @@ flutter:
     # To add Flutter specific assets to your application, add an assets section,
     # like this:
   assets:
-    - images/icon_profile_edit.png
-    - images/icon_dialog_loading.webp
-    - images/icon_no_wifi.png
-    - images/icon_nothing.png
-    - images/icon_back.png
-    - images/icon_back_black.webp
-    - images/icon_message_icon_location_checked.png
-    - images/icon_guss_title_mark.png
+    - images/
     - json/guss_example_data.json
 
   # An image asset can refer to one or more resolution-specific "variants", see

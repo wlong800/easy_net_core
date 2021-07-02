@@ -1,14 +1,11 @@
 import 'dart:ui';
 
 import 'package:app/base/common/lang.dart';
-import 'package:app/base/config/impl/base_logger_config.dart';
-import 'package:app/base/config/impl/base_proxy_config.dart';
 import 'package:app/global.dart';
 import 'package:app/services/service_locator.dart';
 import 'package:app/router.dart';
 import 'package:flutter/material.dart';
 
-import 'base/config/config_manager.dart';
 import 'base/widget/common_ui_kit.dart';
 import 'tools/channel_tools.dart';
 import 'base/logger/logger.dart';
@@ -18,10 +15,6 @@ GlobalKey<NavigatorState> navigatorState = new GlobalKey();
 
 main() async {
   setupServiceLocator();
-  ConfigManager.getInstance()
-      // .addConfig(BaseProxyConfig("10.6.12.169", "8888"))
-      .addConfig(BaseLoggerConfig())
-      .build();
   runApp(MyApp(
     router: window.defaultRouteName,
   ));
@@ -53,7 +46,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         backgroundColor: R.color_background,
       ),
       home: FutureBuilder(
-        future: _initGlobalInfo(),
+        future: _initData(),
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             return pushPageByRouter(widget.router!);
@@ -82,7 +75,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     WidgetsBinding.instance?.removeObserver(this);
   }
 
-  _initGlobalInfo() async {
-    await Global.getNativeGlobalInfo();
+  _initData() async {
+    await Global.init();
   }
 }

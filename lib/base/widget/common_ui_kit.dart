@@ -188,6 +188,8 @@ class WMPreferredSize2 extends PreferredSize {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: bgColor,
+      leading: _buildLeadingButton(context),
+      leadingWidth: 0.0,
       title: Container(
         child: Stack(
           children: [
@@ -224,7 +226,7 @@ class WMPreferredSize2 extends PreferredSize {
             Container(
               child: Container(
                 child: _buildTitleWidget(),
-                margin: EdgeInsets.only(bottom: 12.0),
+                margin: EdgeInsets.only(bottom: 11.0),
               ),
               alignment: Alignment.bottomCenter,
             ),
@@ -288,7 +290,7 @@ class WMPreferredSize2 extends PreferredSize {
     return IconButton(
       padding: EdgeInsets.all(14.0),
       icon: Image.asset(
-        "images/icon_back_black.webp",
+        "images/icon_back.png",
         height: 18.0,
       ),
       onPressed: () async {

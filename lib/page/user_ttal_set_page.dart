@@ -1,4 +1,3 @@
-
 import 'package:app/base/api/net/http_status2.dart';
 import 'package:app/tools/channel_tools.dart';
 import 'package:app/base/common/lang.dart';
@@ -118,6 +117,10 @@ class _UserTTALSetPageState extends State<UserTTALSetPage> {
               child: MyRaisedButton(
                 "完成",
                 () async {
+                  if (!_isComplete()) {
+                    Channel.showNativeToast(msg: "信息填写不完整呢!");
+                    return;
+                  }
                   showDialogLoadingKt(context);
                   var params = {
                     "type": "TTAL",
@@ -127,6 +130,9 @@ class _UserTTALSetPageState extends State<UserTTALSetPage> {
                       "truthOption2": _real2Controller?.text,
                     }
                   };
+                  if (_isNull()) {
+                    params = {"type": "TTAL"};
+                  }
                   if (isEmpty(params['contactAddr']))
                     params.remove("contactAddr");
                   if (isEmpty(params['contactEmail']))
@@ -137,7 +143,8 @@ class _UserTTALSetPageState extends State<UserTTALSetPage> {
                       requestParams: params);
                   pop(context);
                   if (response?.code == HttpStatus2.ok) {
-                    Channel.updateUserTTALData(params);
+                    Channel.updateUserTTALData(
+                        params.containsKey("ttalQuestion") ? params : null);
                     Future.delayed(Duration(milliseconds: 300), () {
                       pop(context, system: true);
                     });
@@ -145,7 +152,7 @@ class _UserTTALSetPageState extends State<UserTTALSetPage> {
                     logger("error msg : ${response?.msg}");
                   }
                 },
-                enableClick: enableClick(),
+                enableClick: true,
               ),
             )
           ],
@@ -177,9 +184,16 @@ class _UserTTALSetPageState extends State<UserTTALSetPage> {
     );
   }
 
-  bool enableClick() {
+  bool _isComplete() {
     return isNotEmpty(_real1Controller?.text) &&
-        isNotEmpty(_real2Controller?.text) &&
-        isNotEmpty(_fakeController?.text);
+            isNotEmpty(_real2Controller?.text) &&
+            isNotEmpty(_fakeController?.text) ||
+        _isNull();
+  }
+
+  bool _isNull() {
+    return isEmpty(_real1Controller?.text) &&
+        isEmpty(_real2Controller?.text) &&
+        isEmpty(_fakeController?.text);
   }
 }

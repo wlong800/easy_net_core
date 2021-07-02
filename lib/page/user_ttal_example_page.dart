@@ -86,14 +86,8 @@ class _UserTTALExamplePageState extends State<UserTTALExamplePage> {
             Container(
               child: Expanded(
                 child: Container(
-                  child: ListView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    //增加
-                    shrinkWrap: true,
-                    itemBuilder: (BuildContext context, int index) {
-                      return _buildGridViewItem(index);
-                    },
-                    itemCount: _data.length,
+                  child: Column(
+                    children: _getParentChildrenAsList(),
                   ),
                 ),
               ),
@@ -118,6 +112,16 @@ class _UserTTALExamplePageState extends State<UserTTALExamplePage> {
         ),
       ),
     );
+  }
+
+  List<Widget> _getParentChildrenAsList() {
+    var children = <Widget>[];
+    int index = 0;
+    _data.forEach((element) {
+      children.add(_buildGridViewItem(index));
+      index++;
+    });
+    return children;
   }
 
   Widget _buildGridViewItem(int index) {

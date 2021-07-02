@@ -7,6 +7,10 @@ import 'package:app/page/models/global_model.dart';
 import 'package:app/tools/channel_tools.dart';
 import 'package:flutter/material.dart';
 
+import 'base/config/config_manager.dart';
+import 'base/config/impl/base_logger_config.dart';
+import 'base/config/impl/base_proxy_config.dart';
+
 class Global {
   static GlobalInfo? globalInfo;
   static double appBarHeight = Size2.app_bar_height;
@@ -14,6 +18,14 @@ class Global {
   /// 初始化全局信息，会在APP启动时执行
   static Future init() async {
     await HoldManager.instance?.init();
+
+    // ConfigManager.getInstance()
+    // .addConfig(BaseProxyConfig("10.6.12.169", "8888"))
+    //     .addConfig(BaseLoggerConfig())
+    //     .build();
+
+    await getNativeGlobalInfo();
+
   }
 
   static getNativeGlobalInfo() async {
