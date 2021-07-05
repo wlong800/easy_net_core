@@ -41,50 +41,59 @@ class _UserTTALExamplePageState extends State<UserTTALExamplePage> {
       body: Container(
         color: R.color_white,
         padding: EdgeInsets.only(left: 16.0, right: 16.0),
-        child: ListView(
+        child: CustomScrollView(
           shrinkWrap: true,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 20.0),
-              child: Text(
-                "填写两真一假，更能吸引TA",
-                style: TextStyle(
-                    color: R.color_font_1,
-                    fontSize: sp(Sp.font_bigger),
-                    fontWeight: FontWeight.bold),
+          physics: BouncingScrollPhysics(),
+          slivers: [
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 20.0),
+                child: Text(
+                  "填写两真一假，更能吸引TA",
+                  style: TextStyle(
+                      color: R.color_font_1,
+                      fontSize: sp(Sp.font_bigger),
+                      fontWeight: FontWeight.bold),
+                ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 30.0),
-              child: Text(
-                "为什么要填写两真一假？",
-                style: TextStyle(
-                    color: R.color_font_1,
-                    fontSize: sp(Sp.font_big),
-                    fontWeight: FontWeight.bold),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 30.0),
+                child: Text(
+                  "为什么要填写两真一假？",
+                  style: TextStyle(
+                      color: R.color_font_1,
+                      fontSize: sp(Sp.font_big),
+                      fontWeight: FontWeight.bold),
+                ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 12.0),
-              child: Text(
-                "当然是更容易吸引到TA啦！通过两真一假能更好的去了解TA, 更方便的开启聊天~",
-                style: TextStyle(
-                    color: R.color_font_2, fontSize: sp(Sp.font_middle2)),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 12.0),
+                child: Text(
+                  "当然是更容易吸引到TA啦！通过两真一假能更好的去了解TA, 更方便的开启聊天~",
+                  style: TextStyle(
+                      color: R.color_font_2, fontSize: sp(Sp.font_middle2)),
+                ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 30.0),
-              child: Text(
-                "写点什么呢？",
-                style: TextStyle(
-                    color: R.color_font_1,
-                    fontSize: sp(Sp.font_big),
-                    fontWeight: FontWeight.bold),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 30.0),
+                child: Text(
+                  "写点什么呢？",
+                  style: TextStyle(
+                      color: R.color_font_1,
+                      fontSize: sp(Sp.font_big),
+                      fontWeight: FontWeight.bold),
+                ),
               ),
             ),
             //_buildGridViewItem
-            Container(
-              child: Expanded(
+            SliverToBoxAdapter(
+              child: Container(
                 child: Container(
                   child: Column(
                     children: _getParentChildrenAsList(),
@@ -92,20 +101,24 @@ class _UserTTALExamplePageState extends State<UserTTALExamplePage> {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 30.0),
-              child: Text(
-                "END",
-                style:
-                    TextStyle(color: R.color_font_1, fontSize: sp(Sp.font_big)),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 30.0),
+                child: Text(
+                  "END",
+                  style: TextStyle(
+                      color: R.color_font_1, fontSize: sp(Sp.font_big)),
+                ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 12.0, bottom: 36.0),
-              child: Text(
-                "祝你在「完美活动」找到有趣的活动，和有意思的人！",
-                style: TextStyle(
-                    color: R.color_font_3, fontSize: sp(Sp.font_middle2)),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 12.0, bottom: 36.0),
+                child: Text(
+                  "祝你在「完美活动」找到有趣的活动，和有意思的人！",
+                  style: TextStyle(
+                      color: R.color_font_3, fontSize: sp(Sp.font_middle2)),
+                ),
               ),
             ),
           ],
