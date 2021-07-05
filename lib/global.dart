@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'base/config/config_manager.dart';
 import 'base/config/impl/base_logger_config.dart';
 import 'base/config/impl/base_proxy_config.dart';
+import 'base/hold/hold.dart';
 
 class Global {
   static GlobalInfo? globalInfo;
@@ -17,13 +18,14 @@ class Global {
 
   /// 初始化全局信息，会在APP启动时执行
   static Future init() async {
-    await HoldManager.instance?.init();
-
-    // ConfigManager.getInstance()
-    // .addConfig(BaseProxyConfig("10.6.12.169", "8888"))
-    //     .addConfig(BaseLoggerConfig())
-    //     .build();
-
+    await HoldManager?.init();
+    String proxy = Hold.getString("proxy_setting");
+    if (isNotEmpty(proxy)) {
+      ConfigManager.getInstance()
+          .addConfig(BaseProxyConfig(proxy.split(":")[0], proxy.split(":")[1]))
+          .addConfig(BaseLoggerConfig())
+          .build();
+    }
     await getNativeGlobalInfo();
 
   }

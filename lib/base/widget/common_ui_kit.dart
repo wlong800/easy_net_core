@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:app/test/proxy_setting_page.dart';
 import 'package:app/tools/channel_tools.dart';
 import 'package:app/base/common/common_callback.dart';
 import 'package:app/base/common/lang.dart';
@@ -225,7 +226,7 @@ class WMPreferredSize2 extends PreferredSize {
             ),
             Container(
               child: Container(
-                child: _buildTitleWidget(),
+                child: _buildTitleWidget(context),
                 margin: EdgeInsets.only(bottom: 11.0),
               ),
               alignment: Alignment.bottomCenter,
@@ -240,14 +241,26 @@ class WMPreferredSize2 extends PreferredSize {
     );
   }
 
-  Widget _buildTitleWidget() {
+
+  Widget _buildTitleWidget(BuildContext context) {
     if (titleWidget != null) return titleWidget!;
-    return Text(
-      title,
-      style: TextStyle(
-          fontSize: sp(titleSize),
-          color: titleColor,
-          fontWeight: titleBold ? FontWeight.bold : FontWeight.normal),
+    int i = 0;
+    return TouchCallBack(
+      child: Text(
+        title,
+        style: TextStyle(
+            fontSize: sp(titleSize),
+            color: titleColor,
+            fontWeight: titleBold ? FontWeight.bold : FontWeight.normal),
+      ),
+      onPressed: () {
+        if (i >= 5) {
+          i = 0;
+          push(context, ProxySettingPage());
+          return;
+        }
+        i++;
+      },
     );
   }
 
