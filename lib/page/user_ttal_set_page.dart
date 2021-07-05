@@ -175,6 +175,7 @@ class _UserTTALSetPageState extends State<UserTTALSetPage> {
           decoration:
               MyBoxDecoration.all(radius: 4.0, color: R.color_background),
           child: TextFormField2(
+            hintTextSize: sp(Sp.font_big),
             controller: controller,
             inputFormatter: [LengthLimitingTextInputFormatter(20)],
             inputDecoration: MyOutlineInputDecoration(hintText: hint).build(),

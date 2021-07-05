@@ -51,7 +51,10 @@ class MyRaisedButton extends StatelessWidget {
                               height: 15.0,
                             ),
                           ),
-                    Text(text),
+                    Text(
+                      text,
+                      style: TextStyle(fontSize: sp(Sp.font_big)),
+                    ),
                   ],
                 ),
               ),
