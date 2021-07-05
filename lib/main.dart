@@ -11,7 +11,7 @@ import 'tools/channel_tools.dart';
 import 'base/logger/logger.dart';
 import 'base/common/resource.dart';
 
-GlobalKey<NavigatorState> navigatorState = new GlobalKey();
+GlobalKey<NavigatorState> navigatorState = GlobalKey();
 
 main() async {
   setupServiceLocator();

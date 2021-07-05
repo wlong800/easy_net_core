@@ -7,7 +7,12 @@ class HoldFacadeImpl extends HoldFacade {
   static SharedPreferences? _prefs;
 
   Future<HoldFacadeImpl> init() async {
-    _prefs = await SharedPreferences.getInstance();
+    try {
+      SharedPreferences.setMockInitialValues({}); // set initial values here if desired
+      _prefs = await SharedPreferences.getInstance();
+    } catch (e) {
+      print(e);
+    }
     return this;
   }
 
@@ -42,9 +47,7 @@ class HoldFacadeImpl extends HoldFacade {
       return await _prefs?.setBool(key, value);
     } else if (value is List<String>) {
       return await _prefs?.setStringList(key, value);
-    }/* else if (value is double) {
-      return await _prefs!.setDouble(key, value);
-    }*/ else {
+    } else {
       throw Exception("value is $value, fail to save...");
     }
   }
