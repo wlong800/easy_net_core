@@ -10,7 +10,7 @@
 scheme | host | path | queryParameters
 --|--|--|--
 wmactivity | user_ttal_set | null | {"lieOption": "text1","truthOption1": "text2","truthOption2": "text3"}
-
+ 
  
 
 1. 端上启动flutter，需要按router规则进入相应的页面，如下：

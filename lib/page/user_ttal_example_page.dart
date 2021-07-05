@@ -144,14 +144,16 @@ class _UserTTALExamplePageState extends State<UserTTALExamplePage> {
                   fontWeight: FontWeight.bold),
             ),
           ),
-          Container(
-            padding: EdgeInsets.only(left: 16.0),
-            margin: EdgeInsets.only(left: 24.0),
-            decoration: MyBoxDecoration.leftDecoration(
-                color: R.color_d8d8d8, width: 0.5),
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: _getChildrenAsList(data.subData)),
+          Expanded(
+            child: Container(
+              padding: EdgeInsets.only(left: 16.0),
+              margin: EdgeInsets.only(left: 24.0),
+              decoration: MyBoxDecoration.leftDecoration(
+                  color: R.color_d8d8d8, width: 0.5),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: _getChildrenAsList(data.subData)),
+            ),
           ),
         ],
       ),
@@ -170,12 +172,14 @@ class _UserTTALExamplePageState extends State<UserTTALExamplePage> {
               "images/icon_guss_title_mark.png",
               width: 10.0,
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 8.0),
-              child: Text(
-                element,
-                style: TextStyle(
-                    color: R.color_font_1, fontSize: sp(Sp.font_middle2)),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: Text(
+                  element,
+                  style: TextStyle(
+                      color: R.color_font_1, fontSize: sp(Sp.font_middle2)),
+                ),
               ),
             ),
           ],
