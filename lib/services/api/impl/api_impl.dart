@@ -15,8 +15,8 @@ class ApiImpl implements Api {
     try {
       response = await EasyNetApi.getInstance().fire(request);
     } on BaseEasyNetError catch (e) {
-      response = EasyBaseResponse(code: e.code, msg: e.message);
       logger(e);
+      return BaseResponse(code: e.code, msg: e.message);
     }
     var data = (response.data != null && response.data is Map)
         ? response.data["data"]
