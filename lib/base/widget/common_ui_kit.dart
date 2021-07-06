@@ -110,7 +110,7 @@ class WMPreferredSize extends PreferredSize {
         child: leadingWidget,
         onPressed: () {
           if (leadingCallback != null) {
-            leadingCallback!();
+            leadingCallback?.call();
             return;
           }
           pop(context, system: isSystemPop);
@@ -189,6 +189,8 @@ class WMPreferredSize2 extends PreferredSize {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: bgColor,
+      primary: true,
+      systemOverlayStyle: SystemUiOverlayStyle.dark,
       leading: _buildLeadingButton(context),
       leadingWidth: 0.0,
       title: Container(
