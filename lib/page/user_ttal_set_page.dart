@@ -125,9 +125,9 @@ class _UserTTALSetPageState extends State<UserTTALSetPage> {
                   var params = {
                     "type": "TTAL",
                     "ttalQuestion": {
+                      "truthOption2": _real2Controller?.text,
                       "lieOption": _fakeController?.text,
                       "truthOption1": _real1Controller?.text,
-                      "truthOption2": _real2Controller?.text,
                     }
                   };
                   if (_isNull()) {
