@@ -44,4 +44,10 @@ class AppServiceImpl implements AppService {
     return _api.fetchDataByNet(
         AppGetRequest(AppServicePath.getUserInfo, requestParams));
   }
+
+  @override
+  Future<BaseResponse>? fetchCommunityData({Map<String, dynamic>? requestParams}) {
+    return _api.fetchDataByNet(
+        AppPostRequest(AppServicePath.getCommunity, requestParams));
+  }
 }

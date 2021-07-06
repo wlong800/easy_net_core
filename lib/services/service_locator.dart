@@ -1,5 +1,6 @@
 
 
+import 'package:app/page/home/view_model/community_view_model.dart';
 import 'package:app/page/view_model/custom_contacts_view_models.dart';
 import 'package:app/page/view_model/user_ttal_view_models.dart';
 import 'package:get_it/get_it.dart';
@@ -27,4 +28,5 @@ void setupServiceLocator() {
   // view models
   serviceLocator.registerFactory<CustomContactsViewModel>(() => CustomContactsViewModel());
   serviceLocator.registerFactory<UserInfoViewModel>(() => UserInfoViewModel());
+  serviceLocator.registerFactory<CommunityViewModel>(() => CommunityViewModel());
 }

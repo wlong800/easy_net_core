@@ -1,4 +1,4 @@
-import 'package:app/page/main_home_page.dart';
+import 'package:app/page/home/main_home_page.dart';
 import 'package:app/page/main_four_page.dart';
 import 'package:app/page/main_second_page.dart';
 import 'package:app/page/main_third_page.dart';
@@ -40,6 +40,7 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
+    initScreenUtil(context);
     return WillPopScope(
       onWillPop: () async {
         if (_lastPressedAt == null ||

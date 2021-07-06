@@ -1,5 +1,9 @@
-abstract class BaseParse {
-  BaseParse fromJson(Map<String, dynamic> json);
+ class BaseParse {
+  BaseParse fromJson(Map<String, dynamic> json){
+    return BaseParse();
+  }
 
-  Map<String, dynamic> toJson();
+  Map<String, dynamic> toJson(){
+    return {};
+  }
 }

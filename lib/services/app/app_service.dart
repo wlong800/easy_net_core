@@ -7,4 +7,6 @@ abstract class AppService {
   Future<BaseResponse>? updateUserTTALData({Map<String, dynamic>? requestParams});
   ///获取用户信息
   Future<BaseResponse>? fetchUserInfoData({Map<String, dynamic>? requestParams});
+
+  Future<BaseResponse>? fetchCommunityData({Map<String, dynamic>? requestParams});
 }

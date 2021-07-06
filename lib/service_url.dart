@@ -10,6 +10,7 @@ class AppServicePath {
   static String updateUserTTAL =
       'api/m/future/homepage/v1/y/user/info/update'; // 添加用户俩真一假接口
   static String getUserInfo = 'api/m/future/v1/y/user/info/query'; // 获取用户信息接口
+  static String getCommunity = 'api/m/future/social/post/v1/n/feed'; // 动态列表
 
 }
 
