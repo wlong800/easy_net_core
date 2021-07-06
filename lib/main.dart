@@ -1,13 +1,11 @@
 import 'dart:ui';
 
-import 'package:app/base/common/lang.dart';
 import 'package:app/global.dart';
+import 'package:app/main_page.dart';
 import 'package:app/services/service_locator.dart';
-import 'package:app/router.dart';
 import 'package:flutter/material.dart';
 
 import 'base/widget/common_ui_kit.dart';
-import 'tools/channel_tools.dart';
 import 'base/logger/logger.dart';
 import 'base/common/resource.dart';
 
@@ -49,7 +47,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         future: _initData(),
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            return pushPageByRouter(widget.router!);
+            return MainPage();
           }
           return Material(
             child: LoadingKit(),
@@ -57,16 +55,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         },
       ),
     );
-  }
-
-  @override
-  Future<bool> didPopRoute() async {
-    if (isAndroid() &&
-        (await navigatorState.currentState?.maybePop()) == false) {
-      logger("not pop, because _history is null...");
-      systemPop();
-    }
-    return Future<bool>.value(true);
   }
 
   @override
