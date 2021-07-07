@@ -37,6 +37,7 @@ dependencies:
   flutter_swipe_action_cell: ^2.1.0 #侧滑删除控件（仿微信）
   cached_network_image: ^3.0.0-nullsafety.0
   extended_image: ^4.0.1
+  nine_grid_view: ^2.0.0
 
 dev_dependencies:
   flutter_test:
