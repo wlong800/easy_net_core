@@ -1,26 +1,26 @@
 import 'package:app/base/common/lang.dart';
 
 class CommunityFeedModel {
-  int? id;
-  int? likeNum;
-  int? commentNum;
-  int? transmitNum;
-  int? creatorId;
+  String? id;
+  String? likeNum;
+  String? commentNum;
+  String? transmitNum;
+  String? creatorId;
   String? createTime;
   String? updateTime;
   List<String>? tagIds;
   List<ImageObject>? images;
   List<ImageObject>? videos;
   String? title;
-  int? voteId;
+  String? voteId;
   String? activeStatus;
-  int? hotNum;
+  String? hotNum;
   List<Content>? content;
   Creator? creator;
-  bool? hasLiked;
-  int? topicId;
+  String? hasLiked;
+  String? topicId;
   String? topicTitle;
-  int? referenceId;
+  String? referenceId;
   String? referenceType;
   ReferenceData? referenceData;
 
@@ -49,23 +49,23 @@ class CommunityFeedModel {
       this.title});
 
   CommunityFeedModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    title = json['title'];
-    likeNum = json['likeNum'];
-    commentNum = json['commentNum'];
-    transmitNum = json['transmitNum'];
-    creatorId = json['creatorId'];
-    createTime = json['createTime'];
-    updateTime = json['updateTime'];
+    id = toString2(json['id']);
+    title = toString2(json['title']);
+    likeNum = toString2(json['likeNum']);
+    commentNum = toString2(json['commentNum']);
+    transmitNum = toString2(json['transmitNum']);
+    creatorId = toString2(json['creatorId']);
+    createTime = toString2(json['createTime']);
+    updateTime = toString2(json['updateTime']);
     if (json['tagIds'] != null) {
       tagIds = [];
       json['tagIds'].forEach((v) {
         tagIds?.add(v);
       });
     }
-    voteId = json['voteId'];
-    activeStatus = json['activeStatus'];
-    hotNum = json['hotNum'];
+    voteId = toString2(json['voteId']);
+    activeStatus = toString2(json['activeStatus']);
+    hotNum = toString2(json['hotNum']);
     if (json['content'] != null) {
       content = [];
       json['content'].forEach((v) {
@@ -86,13 +86,13 @@ class CommunityFeedModel {
     }
     creator =
         json['creator'] != null ? new Creator.fromJson(json['creator']) : null;
-    hasLiked = json['hasLiked'];
-    topicId = json['topicId'];
-    topicTitle = json['topicTitle'];
-    referenceId = json['referenceId'];
-    referenceType = json['referenceType'];
+    hasLiked = toString2(json['hasLiked']);
+    topicId = toString2(json['topicId']);
+    topicTitle = toString2(json['topicTitle']);
+    referenceId = toString2(json['referenceId']);
+    referenceType = toString2(json['referenceType']);
     referenceData = json['referenceData'] != null
-        ? new ReferenceData.fromJson(json['referenceData'])
+        ? ReferenceData.fromJson(json['referenceData'])
         : null;
   }
 
@@ -203,19 +203,19 @@ class CommunityFeedModel {
 
 class ImageObject {
   String? url;
-  int? width;
-  int? height;
+  String? width;
+  String? height;
   String? thumb;
-  double? duration;
+  String? duration;
 
   ImageObject({this.url, this.width, this.height, this.thumb, this.duration});
 
   ImageObject.fromJson(Map<String, dynamic> json) {
-    url = json['url'];
-    width = json['width'];
-    height = json['height'];
-    thumb = json['thumb'];
-    duration = json['duration'];
+    url = toString2(json['url']);
+    width = toString2(json['width']);
+    height = toString2(json['height']);
+    thumb = toString2(json['thumb']);
+    duration = toString2(json['duration']);
   }
 
   Map<String, dynamic> toJson() {
@@ -235,10 +235,10 @@ class Content {
   String? text;
   String? index;
   String? url;
-  int? width;
-  int? height;
+  String? width;
+  String? height;
   String? thumb;
-  double? duration;
+  String? duration;
 
   Content(
       {this.type,
@@ -252,15 +252,15 @@ class Content {
       this.duration});
 
   Content.fromJson(Map<String, dynamic> json) {
-    type = json['type'];
-    style = json['style'];
-    text = json['text'];
-    index = json['index'];
-    url = json['url'];
-    width = json['width'];
-    height = json['height'];
-    thumb = json['thumb'];
-    duration = json['duration'];
+    type = toString2(json['type']);
+    style = toString2(json['style']);
+    text = toString2(json['text']);
+    index = toString2(json['index']);
+    url = toString2(json['url']);
+    width = toString2(json['width']);
+    height = toString2(json['height']);
+    thumb = toString2(json['thumb']);
+    duration = toString2(json['duration']);
   }
 
   Map<String, dynamic> toJson() {
@@ -279,11 +279,11 @@ class Content {
 }
 
 class Creator {
-  int? id;
+  String? id;
   String? username;
   String? gender;
   Geo? geo;
-  int? regionId;
+  String? regionId;
   String? avatar;
   String? summary;
 
@@ -297,17 +297,17 @@ class Creator {
       this.summary});
 
   Creator.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    username = json['username'];
-    gender = json['gender'];
+    id = toString2(json['id']);
+    username = toString2(json['username']);
+    gender = toString2(json['gender']);
     geo = json['geo'] != null ? Geo.fromJson(json['geo']) : null;
-    regionId = json['regionId'];
-    avatar = json['avatar'];
-    summary = json['summary'];
+    regionId = toString2(json['regionId']);
+    avatar = toString2(json['avatar']);
+    summary = toString2(json['summary']);
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['id'] = this.id;
     data['username'] = this.username;
     data['gender'] = this.gender;
@@ -338,14 +338,14 @@ class Creator {
 }
 
 class Geo {
-  double? lat;
-  double? lon;
+  String? lat;
+  String? lon;
 
   Geo({this.lat, this.lon});
 
   Geo.fromJson(Map<String, dynamic> json) {
-    lat = json['lat'];
-    lon = json['lon'];
+    lat = toString2(json['lat']);
+    lon = toString2(json['lon']);
   }
 
   Map<String, dynamic> toJson() {
@@ -377,20 +377,20 @@ class ReferenceData {
 }
 
 class Post {
-  int? id;
-  int? likeNum;
-  int? commentNum;
-  int? transmitNum;
-  int? creatorId;
+  String? id;
+  String? likeNum;
+  String? commentNum;
+  String? transmitNum;
+  String? creatorId;
   String? createTime;
   String? updateTime;
   List<String>? tagIds;
-  int? voteId;
+  String? voteId;
   String? activeStatus;
-  int? hotNum;
+  String? hotNum;
   List<CommunityFeedModel>? content;
   Creator? creator;
-  bool? hasLiked;
+  String? hasLiked;
   VoteInfo? voteInfo;
 
   Post(
@@ -411,22 +411,22 @@ class Post {
       this.voteInfo});
 
   Post.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    likeNum = json['likeNum'];
-    commentNum = json['commentNum'];
-    transmitNum = json['transmitNum'];
-    creatorId = json['creatorId'];
-    createTime = json['createTime'];
-    updateTime = json['updateTime'];
+    id = toString2(json['id']);
+    likeNum = toString2(json['likeNum']);
+    commentNum = toString2(json['commentNum']);
+    transmitNum = toString2(json['transmitNum']);
+    creatorId = toString2(json['creatorId']);
+    createTime = toString2(json['createTime']);
+    updateTime = toString2(json['updateTime']);
     if (json['tagIds'] != null) {
       tagIds = [];
       json['tagIds'].forEach((v) {
         tagIds?.add(v);
       });
     }
-    voteId = json['voteId'];
-    activeStatus = json['activeStatus'];
-    hotNum = json['hotNum'];
+    voteId = toString2(json['voteId']);
+    activeStatus = toString2(json['activeStatus']);
+    hotNum = toString2(json['hotNum']);
     if (json['content'] != null) {
       content = [];
       json['content'].forEach((v) {
@@ -435,7 +435,7 @@ class Post {
     }
     creator =
         json['creator'] != null ? Creator.fromJson(json['creator']) : null;
-    hasLiked = json['hasLiked'];
+    hasLiked = toString2(json['hasLiked']);
     voteInfo =
         json['voteInfo'] != null ? VoteInfo.fromJson(json['voteInfo']) : null;
   }
@@ -470,52 +470,50 @@ class Post {
 }
 
 class Event {
-  int? id;
+  String? id;
   String? title;
   String? sourceType;
-  int? sourceId;
-  int? importance;
+  String? sourceId;
+  String? importance;
   String? eventStartTime;
   String? eventEndTime;
-  int? registrationFormId;
+  String? registrationFormId;
   String? registrationStartTime;
   String? registrationEndTime;
   String? coverUrl;
   String? bgColor;
   String? cardStyle;
   String? eventType;
-  bool? onlineFlag;
-  bool? ignoreRegionFlag;
-  bool? onlySelfFlag;
-  int? cityAreaId;
+  String? onlineFlag;
+  String? ignoreRegionFlag;
+  String? onlySelfFlag;
+  String? cityAreaId;
   Geo? geo;
-  int? siteId;
-  int? merchantId;
-  int? productId;
-  double? price;
-  int? minOfPeople;
-  int? maxOfMen;
-  int? maxOfWomen;
-  int? maxOfSecret;
-  int? registeredOfflineOfMen;
-  int? registeredOfflineOfWomen;
-  int? registeredOnlineOfMen;
-  int? registeredOnlineOfWomen;
-  int? registeredOnlineOfSecret;
+  String? siteId;
+  String? merchantId;
+  String? productId;
+  String? price;
+  String? minOfPeople;
+  String? maxOfMen;
+  String? maxOfWomen;
+  String? maxOfSecret;
+  String? registeredOfflineOfMen;
+  String? registeredOfflineOfWomen;
+  String? registeredOnlineOfMen;
+  String? registeredOnlineOfWomen;
+  String? registeredOnlineOfSecret;
   String? groupStatus;
   String? summary;
-  int? createBy;
+  String? createBy;
   String? createTime;
-  bool? needRegistration;
+  String? needRegistration;
   String? activeStatus;
   String? groupQRCode;
-  bool? allowCancelRegistration;
+  String? allowCancelRegistration;
   String? eventTypeName;
   String? registrationStatus;
   Site? site;
   List<Tags>? tags;
-
-  // List<RelatedTags>? relatedTags;
 
   Event(
       {this.id,
@@ -564,49 +562,49 @@ class Event {
       this.tags});
 
   Event.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    title = json['title'];
-    sourceType = json['sourceType'];
-    sourceId = json['sourceId'];
-    importance = json['importance'];
-    eventStartTime = json['eventStartTime'];
-    eventEndTime = json['eventEndTime'];
-    registrationFormId = json['registrationFormId'];
-    registrationStartTime = json['registrationStartTime'];
-    registrationEndTime = json['registrationEndTime'];
-    coverUrl = json['coverUrl'];
-    bgColor = json['bgColor'];
-    cardStyle = json['cardStyle'];
-    eventType = json['eventType'];
-    onlineFlag = json['onlineFlag'];
-    ignoreRegionFlag = json['ignoreRegionFlag'];
-    onlySelfFlag = json['onlySelfFlag'];
-    cityAreaId = json['cityAreaId'];
+    id = toString2(json['id']);
+    title = toString2(json['title']);
+    sourceType = toString2(json['sourceType']);
+    sourceId = toString2(json['sourceId']);
+    importance = toString2(json['importance']);
+    eventStartTime = toString2(json['eventStartTime']);
+    eventEndTime = toString2(json['eventEndTime']);
+    registrationFormId = toString2(json['registrationFormId']);
+    registrationStartTime = toString2(json['registrationStartTime']);
+    registrationEndTime = toString2(json['registrationEndTime']);
+    coverUrl = toString2(json['coverUrl']);
+    bgColor = toString2(json['bgColor']);
+    cardStyle = toString2(json['cardStyle']);
+    eventType = toString2(json['eventType']);
+    onlineFlag = toString2(json['onlineFlag']);
+    ignoreRegionFlag = toString2(json['ignoreRegionFlag']);
+    onlySelfFlag = toString2(json['onlySelfFlag']);
+    cityAreaId = toString2(json['cityAreaId']);
     geo = json['geo'] != null ? Geo.fromJson(json['geo']) : null;
-    siteId = json['siteId'];
-    merchantId = json['merchantId'];
-    productId = json['productId'];
-    price = json['price'];
-    minOfPeople = json['minOfPeople'];
-    maxOfMen = json['maxOfMen'];
-    maxOfWomen = json['maxOfWomen'];
-    maxOfSecret = json['maxOfSecret'];
-    registeredOfflineOfMen = json['registeredOfflineOfMen'];
-    registeredOfflineOfWomen = json['registeredOfflineOfWomen'];
-    registeredOnlineOfMen = json['registeredOnlineOfMen'];
-    registeredOnlineOfWomen = json['registeredOnlineOfWomen'];
-    registeredOnlineOfSecret = json['registeredOnlineOfSecret'];
-    groupStatus = json['groupStatus'];
-    summary = json['summary'];
-    createBy = json['createBy'];
-    createTime = json['createTime'];
-    needRegistration = json['needRegistration'];
-    activeStatus = json['activeStatus'];
-    groupQRCode = json['groupQRCode'];
-    allowCancelRegistration = json['allowCancelRegistration'];
-    eventTypeName = json['eventTypeName'];
-    registrationStatus = json['registrationStatus'];
-    site = json['site'] != null ? new Site.fromJson(json['site']) : null;
+    siteId = toString2(json['siteId']);
+    merchantId = toString2(json['merchantId']);
+    productId = toString2(json['productId']);
+    price = toString2(json['price']);
+    minOfPeople = toString2(json['minOfPeople']);
+    maxOfMen = toString2(json['maxOfMen']);
+    maxOfWomen = toString2(json['maxOfWomen']);
+    maxOfSecret = toString2(json['maxOfSecret']);
+    registeredOfflineOfMen = toString2(json['registeredOfflineOfMen']);
+    registeredOfflineOfWomen = toString2(json['registeredOfflineOfWomen']);
+    registeredOnlineOfMen = toString2(json['registeredOnlineOfMen']);
+    registeredOnlineOfWomen = toString2(json['registeredOnlineOfWomen']);
+    registeredOnlineOfSecret = toString2(json['registeredOnlineOfSecret']);
+    groupStatus = toString2(json['groupStatus']);
+    summary = toString2(json['summary']);
+    createBy = toString2(json['createBy']);
+    createTime = toString2(json['createTime']);
+    needRegistration = toString2(json['needRegistration']);
+    activeStatus = toString2(json['activeStatus']);
+    groupQRCode = toString2(json['groupQRCode']);
+    allowCancelRegistration = toString2(json['allowCancelRegistration']);
+    eventTypeName = toString2(json['eventTypeName']);
+    registrationStatus = toString2(json['registrationStatus']);
+    site = json['site'] != null ? Site.fromJson(json['site']) : null;
     if (json['tags'] != null) {
       tags = [];
       json['tags'].forEach((v) {
@@ -672,13 +670,13 @@ class Event {
 }
 
 class Site {
-  int? id;
+  String? id;
   String? name;
   String? cover;
-  int? merchantId;
+  String? merchantId;
   String? address;
   String? gps;
-  int? attentionType;
+  String? attentionType;
   List<String>? phones;
 
   Site(
@@ -692,13 +690,13 @@ class Site {
       this.phones});
 
   Site.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    cover = json['cover'];
-    merchantId = json['merchantId'];
-    address = json['address'];
-    gps = json['gps'];
-    attentionType = json['attentionType'];
+    id = toString2(json['id']);
+    name = toString2(json['name']);
+    cover = toString2(json['cover']);
+    merchantId = toString2(json['merchantId']);
+    address = toString2(json['address']);
+    gps = toString2(json['gps']);
+    attentionType = toString2(json['attentionType']);
     phones = json['phones'].cast<String>();
   }
 
@@ -717,20 +715,20 @@ class Site {
 }
 
 class Tags {
-  int? id;
+  String? id;
   String? name;
   String? abbreviation;
-  int? categoryId;
+  String? categoryId;
   String? module;
 
   Tags({this.id, this.name, this.abbreviation, this.categoryId, this.module});
 
   Tags.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    abbreviation = json['abbreviation'];
-    categoryId = json['categoryId'];
-    module = json['module'];
+    id = toString2(json['id']);
+    name = toString2(json['name']);
+    abbreviation = toString2(json['abbreviation']);
+    categoryId = toString2(json['categoryId']);
+    module = toString2(json['module']);
   }
 
   Map<String, dynamic> toJson() {
@@ -745,17 +743,17 @@ class Tags {
 }
 
 class VoteInfo {
-  int? id;
+  String? id;
   String? introduction;
-  int? maxOfChoice;
-  int? choiceType;
+  String? maxOfChoice;
+  String? choiceType;
   String? deadline;
   String? style;
-  int? headcount;
-  int? userCount;
+  String? headcount;
+  String? userCount;
   List<Options>? options;
-  bool? hasParticipated;
-  int? betStatus;
+  String? hasParticipated;
+  String? betStatus;
 
   VoteInfo(
       {this.id,
@@ -771,22 +769,22 @@ class VoteInfo {
       this.betStatus});
 
   VoteInfo.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    introduction = json['introduction'];
-    maxOfChoice = json['maxOfChoice'];
-    choiceType = json['choiceType'];
-    deadline = json['deadline'];
-    style = json['style'];
-    headcount = json['headcount'];
-    userCount = json['userCount'];
+    id = toString2(json['id']);
+    introduction = toString2(json['introduction']);
+    maxOfChoice = toString2(json['maxOfChoice']);
+    choiceType = toString2(json['choiceType']);
+    deadline = toString2(json['deadline']);
+    style = toString2(json['style']);
+    headcount = toString2(json['headcount']);
+    userCount = toString2(json['userCount']);
     if (json['options'] != null) {
       options = [];
       json['options'].forEach((v) {
         options?.add(Options.fromJson(v));
       });
     }
-    hasParticipated = json['hasParticipated'];
-    betStatus = json['betStatus'];
+    hasParticipated = toString2(json['hasParticipated']);
+    betStatus = toString2(json['betStatus']);
   }
 
   Map<String, dynamic> toJson() {
@@ -809,13 +807,13 @@ class VoteInfo {
 }
 
 class Options {
-  int? id;
-  int? voteId;
+  String? id;
+  String? voteId;
   String? optionName;
   String? optionImageUrl;
-  int? optionNum;
-  int? headcount;
-  bool? selectOption;
+  String? optionNum;
+  String? headcount;
+  String? selectOption;
 
   Options(
       {this.id,
@@ -827,13 +825,13 @@ class Options {
       this.selectOption});
 
   Options.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    voteId = json['voteId'];
-    optionName = json['optionName'];
-    optionImageUrl = json['optionImageUrl'];
-    optionNum = json['optionNum'];
-    headcount = json['headcount'];
-    selectOption = json['selectOption'];
+    id = toString2(json['id']);
+    voteId = toString2(json['voteId']);
+    optionName = toString2(json['optionName']);
+    optionImageUrl = toString2(json['optionImageUrl']);
+    optionNum = toString2(json['optionNum']);
+    headcount = toString2(json['headcount']);
+    selectOption = toString2(json['selectOption']);
   }
 
   Map<String, dynamic> toJson() {

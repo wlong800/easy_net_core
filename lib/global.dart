@@ -15,7 +15,7 @@ import 'base/hold/hold.dart';
 class Global {
   static GlobalInfo? globalInfo;
   static double appBarHeight = Size2.app_bar_height;
-  static double refreshHeight = 120.0;
+  static double refreshHeight = 80.0;
   static int limit = 20;
 
   /// 初始化全局信息，会在APP启动时执行

@@ -36,7 +36,7 @@ class _MainHomePageState
             } else if (model.isContent()) {
               return CommunityTextCell(model: model);
             }
-            return Container(height: 40.0, child: Text("出错了 ${index + 1}"));
+            return Container(height: 40.0, child: Text("样式暂未支持 ${index + 1}"));
           },
           itemCount: list.length,
         ),

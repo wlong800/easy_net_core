@@ -2,7 +2,6 @@ import 'package:app/base/common/lang.dart';
 import 'package:app/base/common/resource.dart';
 import 'package:app/page/home/cell/community_header_cell.dart';
 import 'package:app/page/models/community_model.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'community_footer_cell.dart';
