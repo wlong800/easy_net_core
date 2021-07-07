@@ -93,7 +93,7 @@ abstract class BaseProviderState<T extends StatefulWidget,
   }
 
   onFetchData({bool showLoadingUI = true, bool loadMore = false}) async {
-    if (!loadMore) providerModel.setLastId = null;
+    if (!loadMore) providerModel.setLastId = "1";
     if (showLoadingUI) providerModel.onLoading();
     return await providerModel.loadData(
         lastId: providerModel.lastId,

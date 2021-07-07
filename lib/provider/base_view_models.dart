@@ -4,9 +4,12 @@ import 'package:app/base/api/net/services/net_state_enum.dart';
 import 'package:app/base/common/common_callback.dart';
 import 'package:app/base/common/lang.dart';
 import 'package:app/base/logger/logger.dart';
+import 'package:app/base/model/base_feed_model.dart';
 import 'package:app/services/app/app_service.dart';
 import 'package:app/services/service_locator.dart';
 import 'package:flutter/foundation.dart';
+
+import '../global.dart';
 
 typedef S ItemCreator<S>();
 
@@ -103,22 +106,49 @@ abstract class BaseProviderModel<T> extends ChangeNotifier {
         } else {
           /// 有数据返回
           responseSuccess = true;
-          if (response?.data is List && isEmpty(lastId)) (data as List).clear();
+          // if (response?.data is List && isEmpty(lastId)) (data as List).clear();
         }
         return responseSuccess;
       default:
+
+        ///网络错误了
         if (isNotEmpty(lastId)) {
           setLoadError = true;
         } else {
           if (connectionState == NetState.waiting) {
             onError(response?.code, response?.msg);
           } else {
-            //todo:
+            //todo: 翻页的时候网络错误
             // showNativeToast(msg: response?.msg);
           }
         }
         return responseSuccess;
     }
+  }
+
+  bool onDataResponseSuccess(BaseDataResponse? response) {
+    bool responseSuccess = false;
+    if (isEmpty(response?.content)) {
+      setLastId = null;
+
+      ///没有数据了
+      if (isEmpty(lastId)) {
+        /// 下拉刷新
+        onEmpty();
+      } else {
+        //todo:翻页
+      }
+      return responseSuccess;
+    }
+    responseSuccess = true;
+    if (data is List && toInt(lastId) <= 1) (data as List).clear();
+    if (response?.page == response?.totalPages) {
+      ///最后一页了
+      setLastId = null;
+    } else {
+      setLastId = toString2(toInt(response?.page) + 1);
+    }
+    return responseSuccess;
   }
 
   Future<Null> loadData(
@@ -127,8 +157,8 @@ abstract class BaseProviderModel<T> extends ChangeNotifier {
   Map<String, dynamic> handleRequestParams(
       String? lastId, Map<String, dynamic>? params) {
     if (params == null) params = {};
-    if (isNotEmpty(lastId)) params["lastId"] = lastId;
-    // params["limit"] = Global.limit;
+    if (isNotEmpty(lastId)) params["page"] = toInt(lastId);
+    params["size"] = Global.limit;
     return params;
   }
 

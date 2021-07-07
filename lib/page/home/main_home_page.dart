@@ -23,7 +23,9 @@ class _MainHomePageState
       onLoadMore: onLoadMore,
       child: ListView.builder(
         itemBuilder: (BuildContext context, int index) {
-          return Text("xxxx");
+          return Container(
+            height: 40.0,
+              child: Text("xxxx ${index + 1}"));
         },
         itemCount: list.length + 1,
       ),
@@ -40,6 +42,6 @@ class _MainHomePageState
 
   @override
   Map<String, dynamic>? getRequestParams() {
-    return {"feedType": "NEW", "size": 20, "page": 1};
+    return {"feedType": "NEW"};
   }
 }

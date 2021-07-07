@@ -513,7 +513,7 @@ class CustomLoadingMoreKit extends StatelessWidget {
           height: 46.0,
           child: Center(
             child: Image.asset(
-              'images/loading_bottom.webp',
+              'images/icon_dialog_loading.webp',
               width: 26.0,
             ),
           ));
@@ -567,7 +567,7 @@ class LoadingMoreKit extends StatelessWidget {
           height: 46.0,
           child: Center(
             child: Image.asset(
-              'images/loading_bottom.webp',
+              'images/icon_dialog_loading.webp',
               width: 26.0,
             ),
           ));
