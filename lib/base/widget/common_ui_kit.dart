@@ -243,7 +243,6 @@ class WMPreferredSize2 extends PreferredSize {
     );
   }
 
-
   Widget _buildTitleWidget(BuildContext context) {
     if (titleWidget != null) return titleWidget!;
     int i = 0;
@@ -591,6 +590,7 @@ class AvatarKit extends StatelessWidget {
   final double radius2;
   final bool shadow;
   final double borderWidth;
+  final Color borderColor;
 
   const AvatarKit(
       {Key? key,
@@ -600,7 +600,8 @@ class AvatarKit extends StatelessWidget {
       this.radius = 12.0,
       this.radius2 = 14.0,
       this.shadow = true,
-      this.borderWidth = 3.0})
+      this.borderWidth = 3.0,
+      this.borderColor = R.color_3})
       : super(key: key);
 
   @override
@@ -611,7 +612,7 @@ class AvatarKit extends StatelessWidget {
       decoration: !shadow
           ? null
           : BoxDecoration(
-              border: Border.all(color: R.color_3, width: borderWidth),
+              border: Border.all(color: borderColor, width: borderWidth),
               boxShadow: MyBoxShadow.all(),
               borderRadius: BorderRadius.circular(radius2),
             ),
