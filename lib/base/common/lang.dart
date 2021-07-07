@@ -117,6 +117,12 @@ String getLimitText(value, {required int maxLen, String ellipsis = "..."}) {
   return text;
 }
 
+getFullUrl(String? url) {
+  if (url != null)
+    return url.toLowerCase().startsWith("http") ? url : ("https:" + url);
+  return url;
+}
+
 ///类似android中 startActivity
 push(BuildContext context, Widget route, {bool replace = false}) async {
   if (replace) {

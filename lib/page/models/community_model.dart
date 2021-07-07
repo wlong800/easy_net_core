@@ -358,11 +358,13 @@ class Geo {
 
 class ReferenceData {
   Post? post;
+  Event? event;
 
-  ReferenceData({this.post});
+  ReferenceData({this.post, this.event});
 
   ReferenceData.fromJson(Map<String, dynamic> json) {
-    post = json['post'] != null ? new Post.fromJson(json['post']) : null;
+    post = json['post'] != null ? Post.fromJson(json['post']) : null;
+    event = json['event'] != null ? Event.fromJson(json['event']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -463,6 +465,281 @@ class Post {
     if (this.voteInfo != null) {
       data['voteInfo'] = this.voteInfo?.toJson();
     }
+    return data;
+  }
+}
+
+class Event {
+  int? id;
+  String? title;
+  String? sourceType;
+  int? sourceId;
+  int? importance;
+  String? eventStartTime;
+  String? eventEndTime;
+  int? registrationFormId;
+  String? registrationStartTime;
+  String? registrationEndTime;
+  String? coverUrl;
+  String? bgColor;
+  String? cardStyle;
+  String? eventType;
+  bool? onlineFlag;
+  bool? ignoreRegionFlag;
+  bool? onlySelfFlag;
+  int? cityAreaId;
+  Geo? geo;
+  int? siteId;
+  int? merchantId;
+  int? productId;
+  double? price;
+  int? minOfPeople;
+  int? maxOfMen;
+  int? maxOfWomen;
+  int? maxOfSecret;
+  int? registeredOfflineOfMen;
+  int? registeredOfflineOfWomen;
+  int? registeredOnlineOfMen;
+  int? registeredOnlineOfWomen;
+  int? registeredOnlineOfSecret;
+  String? groupStatus;
+  String? summary;
+  int? createBy;
+  String? createTime;
+  bool? needRegistration;
+  String? activeStatus;
+  String? groupQRCode;
+  bool? allowCancelRegistration;
+  String? eventTypeName;
+  String? registrationStatus;
+  Site? site;
+  List<Tags>? tags;
+
+  // List<RelatedTags>? relatedTags;
+
+  Event(
+      {this.id,
+      this.title,
+      this.sourceType,
+      this.sourceId,
+      this.importance,
+      this.eventStartTime,
+      this.eventEndTime,
+      this.registrationFormId,
+      this.registrationStartTime,
+      this.registrationEndTime,
+      this.coverUrl,
+      this.bgColor,
+      this.cardStyle,
+      this.eventType,
+      this.onlineFlag,
+      this.ignoreRegionFlag,
+      this.onlySelfFlag,
+      this.cityAreaId,
+      this.geo,
+      this.siteId,
+      this.merchantId,
+      this.productId,
+      this.price,
+      this.minOfPeople,
+      this.maxOfMen,
+      this.maxOfWomen,
+      this.maxOfSecret,
+      this.registeredOfflineOfMen,
+      this.registeredOfflineOfWomen,
+      this.registeredOnlineOfMen,
+      this.registeredOnlineOfWomen,
+      this.registeredOnlineOfSecret,
+      this.groupStatus,
+      this.summary,
+      this.createBy,
+      this.createTime,
+      this.needRegistration,
+      this.activeStatus,
+      this.groupQRCode,
+      this.allowCancelRegistration,
+      this.eventTypeName,
+      this.registrationStatus,
+      this.site,
+      this.tags});
+
+  Event.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    title = json['title'];
+    sourceType = json['sourceType'];
+    sourceId = json['sourceId'];
+    importance = json['importance'];
+    eventStartTime = json['eventStartTime'];
+    eventEndTime = json['eventEndTime'];
+    registrationFormId = json['registrationFormId'];
+    registrationStartTime = json['registrationStartTime'];
+    registrationEndTime = json['registrationEndTime'];
+    coverUrl = json['coverUrl'];
+    bgColor = json['bgColor'];
+    cardStyle = json['cardStyle'];
+    eventType = json['eventType'];
+    onlineFlag = json['onlineFlag'];
+    ignoreRegionFlag = json['ignoreRegionFlag'];
+    onlySelfFlag = json['onlySelfFlag'];
+    cityAreaId = json['cityAreaId'];
+    geo = json['geo'] != null ? Geo.fromJson(json['geo']) : null;
+    siteId = json['siteId'];
+    merchantId = json['merchantId'];
+    productId = json['productId'];
+    price = json['price'];
+    minOfPeople = json['minOfPeople'];
+    maxOfMen = json['maxOfMen'];
+    maxOfWomen = json['maxOfWomen'];
+    maxOfSecret = json['maxOfSecret'];
+    registeredOfflineOfMen = json['registeredOfflineOfMen'];
+    registeredOfflineOfWomen = json['registeredOfflineOfWomen'];
+    registeredOnlineOfMen = json['registeredOnlineOfMen'];
+    registeredOnlineOfWomen = json['registeredOnlineOfWomen'];
+    registeredOnlineOfSecret = json['registeredOnlineOfSecret'];
+    groupStatus = json['groupStatus'];
+    summary = json['summary'];
+    createBy = json['createBy'];
+    createTime = json['createTime'];
+    needRegistration = json['needRegistration'];
+    activeStatus = json['activeStatus'];
+    groupQRCode = json['groupQRCode'];
+    allowCancelRegistration = json['allowCancelRegistration'];
+    eventTypeName = json['eventTypeName'];
+    registrationStatus = json['registrationStatus'];
+    site = json['site'] != null ? new Site.fromJson(json['site']) : null;
+    if (json['tags'] != null) {
+      tags = [];
+      json['tags'].forEach((v) {
+        tags?.add(Tags.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['title'] = this.title;
+    data['sourceType'] = this.sourceType;
+    data['sourceId'] = this.sourceId;
+    data['importance'] = this.importance;
+    data['eventStartTime'] = this.eventStartTime;
+    data['eventEndTime'] = this.eventEndTime;
+    data['registrationFormId'] = this.registrationFormId;
+    data['registrationStartTime'] = this.registrationStartTime;
+    data['registrationEndTime'] = this.registrationEndTime;
+    data['coverUrl'] = this.coverUrl;
+    data['bgColor'] = this.bgColor;
+    data['cardStyle'] = this.cardStyle;
+    data['eventType'] = this.eventType;
+    data['onlineFlag'] = this.onlineFlag;
+    data['ignoreRegionFlag'] = this.ignoreRegionFlag;
+    data['onlySelfFlag'] = this.onlySelfFlag;
+    data['cityAreaId'] = this.cityAreaId;
+    if (this.geo != null) {
+      data['geo'] = this.geo?.toJson();
+    }
+    data['siteId'] = this.siteId;
+    data['merchantId'] = this.merchantId;
+    data['productId'] = this.productId;
+    data['price'] = this.price;
+    data['minOfPeople'] = this.minOfPeople;
+    data['maxOfMen'] = this.maxOfMen;
+    data['maxOfWomen'] = this.maxOfWomen;
+    data['maxOfSecret'] = this.maxOfSecret;
+    data['registeredOfflineOfMen'] = this.registeredOfflineOfMen;
+    data['registeredOfflineOfWomen'] = this.registeredOfflineOfWomen;
+    data['registeredOnlineOfMen'] = this.registeredOnlineOfMen;
+    data['registeredOnlineOfWomen'] = this.registeredOnlineOfWomen;
+    data['registeredOnlineOfSecret'] = this.registeredOnlineOfSecret;
+    data['groupStatus'] = this.groupStatus;
+    data['summary'] = this.summary;
+    data['createBy'] = this.createBy;
+    data['createTime'] = this.createTime;
+    data['needRegistration'] = this.needRegistration;
+    data['activeStatus'] = this.activeStatus;
+    data['groupQRCode'] = this.groupQRCode;
+    data['allowCancelRegistration'] = this.allowCancelRegistration;
+    data['eventTypeName'] = this.eventTypeName;
+    data['registrationStatus'] = this.registrationStatus;
+    if (this.site != null) {
+      data['site'] = this.site?.toJson();
+    }
+    if (this.tags != null) {
+      data['tags'] = this.tags?.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class Site {
+  int? id;
+  String? name;
+  String? cover;
+  int? merchantId;
+  String? address;
+  String? gps;
+  int? attentionType;
+  List<String>? phones;
+
+  Site(
+      {this.id,
+      this.name,
+      this.cover,
+      this.merchantId,
+      this.address,
+      this.gps,
+      this.attentionType,
+      this.phones});
+
+  Site.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    cover = json['cover'];
+    merchantId = json['merchantId'];
+    address = json['address'];
+    gps = json['gps'];
+    attentionType = json['attentionType'];
+    phones = json['phones'].cast<String>();
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
+    data['cover'] = this.cover;
+    data['merchantId'] = this.merchantId;
+    data['address'] = this.address;
+    data['gps'] = this.gps;
+    data['attentionType'] = this.attentionType;
+    data['phones'] = this.phones;
+    return data;
+  }
+}
+
+class Tags {
+  int? id;
+  String? name;
+  String? abbreviation;
+  int? categoryId;
+  String? module;
+
+  Tags({this.id, this.name, this.abbreviation, this.categoryId, this.module});
+
+  Tags.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    abbreviation = json['abbreviation'];
+    categoryId = json['categoryId'];
+    module = json['module'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
+    data['abbreviation'] = this.abbreviation;
+    data['categoryId'] = this.categoryId;
+    data['module'] = this.module;
     return data;
   }
 }
