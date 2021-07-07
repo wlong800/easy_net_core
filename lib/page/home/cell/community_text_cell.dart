@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 
 import 'community_footer_cell.dart';
 
-class CommunityCell extends StatelessWidget {
+class CommunityTextCell extends StatelessWidget {
   final CommunityFeedModel? model;
 
-  const CommunityCell({Key? key, this.model}) : super(key: key);
+  const CommunityTextCell({Key? key, this.model}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

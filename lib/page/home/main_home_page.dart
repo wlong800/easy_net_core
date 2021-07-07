@@ -4,7 +4,8 @@ import 'package:app/page/home/view_model/community_view_model.dart';
 import 'package:app/provider/base_refresh_state.dart';
 import 'package:flutter/material.dart';
 
-import 'cell/community_cell.dart';
+import 'cell/community_image_cell.dart';
+import 'cell/community_text_cell.dart';
 
 class MainHomePage extends StatefulWidget {
   const MainHomePage({Key? key}) : super(key: key);
@@ -28,8 +29,7 @@ class _MainHomePageState
           itemBuilder: (BuildContext context, int index) {
             var model = list[index];
             if (model.isMultiImages()) {
-              return Container(
-                  height: 25.0, child: Text("我是9宫格样式 ${index + 1}"));
+              return CommunityImageCell(model: model);
             } else if (model.isSingleImage()) {
               return Container(
                   height: 25.0, child: Text("我是一张图样式 ${index + 1}"));
@@ -37,7 +37,7 @@ class _MainHomePageState
               return Container(
                   height: 25.0, child: Text("我是视频样式 ${index + 1}"));
             } else if (model.isContent()) {
-              return CommunityCell(model: model);
+              return CommunityTextCell(model: model);
             }
             return Container(height: 40.0, child: Text("xxxx ${index + 1}"));
           },

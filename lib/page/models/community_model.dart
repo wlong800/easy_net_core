@@ -167,6 +167,14 @@ class CommunityFeedModel {
     return images;
   }
 
+  List<String> getImagesUrl() {
+    var urls = <String>[];
+    getImages()?.forEach((element) {
+      urls.add(element.url!);
+    });
+    return urls;
+  }
+
   List<ImageObject>? getVideos() {
     if (videos != null) return videos;
     if (content == null) return null;
