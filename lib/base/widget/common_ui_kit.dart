@@ -626,13 +626,13 @@ class AvatarKit extends StatelessWidget {
     if (toString2(avatar).startsWith("http") || isEmpty(avatar)) {
       if (isEmpty(avatar)) {
         return Image.asset(
-          "images/icon_photo_auto.png",
+          "images/default_head_icon.png",
           width: width,
           fit: BoxFit.cover,
         );
       }
       return FadeInImage.assetNetwork(
-        placeholder: "images/icon_photo_auto.png",
+        placeholder: "images/default_head_icon.png",
         image: avatar ?? "",
         fit: BoxFit.cover,
       );

@@ -15,17 +15,20 @@ import 'base/hold/hold.dart';
 class Global {
   static GlobalInfo? globalInfo;
   static double appBarHeight = Size2.app_bar_height;
+  static double refreshHeight = 120.0;
+  static int limit = 20;
 
   /// 初始化全局信息，会在APP启动时执行
   static Future init() async {
     await HoldManager?.init();
     String proxy = Hold.getString("proxy_setting");
-    if (isNotEmpty(proxy)) {
+    // if (isNotEmpty(proxy)) {
       ConfigManager.getInstance()
-          .addConfig(BaseProxyConfig(proxy.split(":")[0], proxy.split(":")[1]))
+          // .addConfig(BaseProxyConfig(proxy.split(":")[0], proxy.split(":")[1]))
+          .addConfig(BaseProxyConfig("10.6.12.169", "8888"))
           .addConfig(BaseLoggerConfig())
           .build();
-    }
+    // }
     await getNativeGlobalInfo();
 
   }
@@ -37,7 +40,7 @@ class Global {
       globalInfo =
           GlobalInfo.fromJson(Map<String, dynamic>.from(globalInfoStr));
       EasyNetGlobal.defaultBaseUrl =
-          globalInfo?.baseUrl ?? "https://evt.tomorrow365.com/";
+          globalInfo?.baseUrl ?? "http://10.3.246.115/";
       logger("defaultBaseUrl: ${EasyNetGlobal.defaultBaseUrl}");
       if (!EasyNetGlobal.defaultBaseUrl.endsWith("/"))
         EasyNetGlobal.defaultBaseUrl = EasyNetGlobal.defaultBaseUrl + "/";

@@ -22,6 +22,7 @@ class R {
   static const Color color_font_4 = Color(0xffcccccc);
 
   static const Color color_d8d8d8 = Color(0xffD8D8D8);
+  static const Color color_ff9932 = Color(0xffFF9932);
 
   static const Color color_divider_1 = Color(0xffE0E0E0);
 
@@ -48,6 +49,7 @@ class Sp {
 
   static const double font_17 = 17.0;
   static const double font_15 = 15.0;
+  static const double font_10 = 10.0;
 }
 
 /// 图标大写 & 宽度 & 高度
