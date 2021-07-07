@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import 'cell/community_image_cell.dart';
 import 'cell/community_text_cell.dart';
+import 'cell/community_video_cell.dart';
 
 class MainHomePage extends StatefulWidget {
   const MainHomePage({Key? key}) : super(key: key);
@@ -31,12 +32,11 @@ class _MainHomePageState
             if (model.isImages()) {
               return CommunityImageCell(model: model);
             } else if (model.isVideo()) {
-              return Container(
-                  height: 25.0, child: Text("我是视频样式 ${index + 1}"));
+              return CommunityVideoCell(model: model);
             } else if (model.isContent()) {
               return CommunityTextCell(model: model);
             }
-            return Container(height: 40.0, child: Text("xxxx ${index + 1}"));
+            return Container(height: 40.0, child: Text("出错了 ${index + 1}"));
           },
           itemCount: list.length,
         ),

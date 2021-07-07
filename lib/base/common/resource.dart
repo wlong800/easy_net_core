@@ -27,6 +27,7 @@ class R {
   static const Color color_divider_1 = Color(0xffE0E0E0);
 
   static const Color color_white = Color(0xffffffff);
+  static const Color color_black = Color(0xff000000);
 
   static const Color color_background = Color(0xfff7f7f7);
 
