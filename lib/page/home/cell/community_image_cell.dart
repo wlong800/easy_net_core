@@ -26,54 +26,113 @@ class CommunityImageCell extends StatelessWidget {
           CommunityHeaderCell(
             model: model,
           ),
+          Offstage(
+            offstage: isEmpty(model?.getTitle()),
+            child: Padding(
+              padding: const EdgeInsets.only(top: 12.0),
+              child: Text(
+                toString2(model?.getTitle()).trim(),
+                style:
+                    TextStyle(color: R.color_font_1, fontSize: sp(Sp.font_17)),
+              ),
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.only(top: 12.0),
-            child: GridView.builder(
-              shrinkWrap: true,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisSpacing: 5.0,
-                  mainAxisSpacing: 5.0,
-                  crossAxisCount: 3),
-              itemBuilder: (BuildContext context, int index) {
-                var imageModel = model?.getImages();
-                return TouchCallBack(
-                  child: Container(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.all(Radius.circular(4.0)),
-                      child: CachedNetworkImage(
-                        fadeOutCurve: Curves.linear,
-                        fadeInCurve: Curves.linear,
-                        fadeInDuration: Duration(milliseconds: 0),
-                        fadeOutDuration: Duration(milliseconds: 0),
-                        placeholder: (context, _) => Image.asset(
-                            "images/bg_default.png",
-                            fit: BoxFit.cover),
-                        imageUrl: toString2(imageModel?.elementAt(index).url),
-                        errorWidget: (context, _, error) => Image.asset(
-                            "images/bg_default.png",
-                            fit: BoxFit.cover),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  onPressed: () {
-                    fadePush(
-                        context,
-                        PreBigImagePage(
-                          images: model?.getImagesUrl(),
-                          currentIndex: index,
-                        ));
-                  },
-                );
-              },
-              itemCount: toInt(model?.getImages()?.length),
-            ),
+            child: toInt(model?.getImages()?.length) > 1
+                ? _buildGridImages()
+                : _buildSingleImage(context, model?.getImages()?.elementAt(0)),
           ),
           Padding(
             padding: EdgeInsets.only(top: 12.0),
             child: CommunityFooterCell(model: model),
           )
         ],
+      ),
+    );
+  }
+
+  Widget _buildGridImages() {
+    return GridView.builder(
+      shrinkWrap: true,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisSpacing: 5.0, mainAxisSpacing: 5.0, crossAxisCount: 3),
+      itemBuilder: (BuildContext context, int index) {
+        var imageModel = model?.getImages();
+        return TouchCallBack(
+          child: Container(
+            child: ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(4.0)),
+              child: CachedNetworkImage(
+                fadeOutCurve: Curves.linear,
+                fadeInCurve: Curves.linear,
+                fadeInDuration: Duration(milliseconds: 0),
+                fadeOutDuration: Duration(milliseconds: 0),
+                placeholder: (context, _) =>
+                    Image.asset("images/bg_default.png", fit: BoxFit.cover),
+                imageUrl: toString2(imageModel?.elementAt(index).url),
+                errorWidget: (context, _, error) =>
+                    Image.asset("images/bg_default.png", fit: BoxFit.cover),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          onPressed: () {
+            fadePush(
+                context,
+                PreBigImagePage(
+                  images: model?.getImagesUrl(),
+                  currentIndex: index,
+                ));
+          },
+        );
+      },
+      itemCount: toInt(model?.getImages()?.length),
+    );
+  }
+
+  Widget _buildSingleImage(BuildContext context, ImageObject? model) {
+    var width = getScreenWidth() * 237 / 414.0;
+    var height = 0.0;
+    var maxHeight = toDouble(width * 4 / 3.0);
+    var realHeight =
+        toDouble(model?.height) * width / toDouble(model?.width) <= 0
+            ? 1.0
+            : toDouble(model?.width);
+    if (realHeight > maxHeight) {
+      height = maxHeight;
+    } else {
+      height = realHeight;
+    }
+    return Container(
+      width: width,
+      height: height,
+      child: TouchCallBack(
+        child: Container(
+          child: ClipRRect(
+            borderRadius: BorderRadius.all(Radius.circular(4.0)),
+            child: CachedNetworkImage(
+              fadeOutCurve: Curves.linear,
+              fadeInCurve: Curves.linear,
+              fadeInDuration: Duration(milliseconds: 0),
+              fadeOutDuration: Duration(milliseconds: 0),
+              placeholder: (context, _) =>
+                  Image.asset("images/bg_default.png", fit: BoxFit.cover),
+              imageUrl: toString2(model?.url),
+              errorWidget: (context, _, error) =>
+                  Image.asset("images/bg_default.png", fit: BoxFit.cover),
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+        onPressed: () {
+          fadePush(
+              context,
+              PreBigImagePage(
+                images: [toString2(model?.url)],
+                currentIndex: 0,
+              ));
+        },
       ),
     );
   }

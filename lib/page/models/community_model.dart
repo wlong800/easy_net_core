@@ -135,12 +135,8 @@ class CommunityFeedModel {
     return data;
   }
 
-  bool isMultiImages() {
-    return getImages() != null && toInt(getImages()?.length) > 1;
-  }
-
-  bool isSingleImage() {
-    return getImages() != null && toInt(getImages()?.length) == 1;
+  bool isImages() {
+    return isNotEmpty(getImages());
   }
 
   bool isVideo() {

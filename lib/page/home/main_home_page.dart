@@ -28,11 +28,8 @@ class _MainHomePageState
         child: ListView.builder(
           itemBuilder: (BuildContext context, int index) {
             var model = list[index];
-            if (model.isMultiImages()) {
+            if (model.isImages()) {
               return CommunityImageCell(model: model);
-            } else if (model.isSingleImage()) {
-              return Container(
-                  height: 25.0, child: Text("我是一张图样式 ${index + 1}"));
             } else if (model.isVideo()) {
               return Container(
                   height: 25.0, child: Text("我是视频样式 ${index + 1}"));
