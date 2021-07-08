@@ -59,3 +59,9 @@ lib
 - #### 重构1.0(网络库)-2021.6.26
 1. 引入adapter模式，实现快速插拔
 2. 模块分工进一步明确
+3. 跳转方式
+>         EasyNavigator.getInstance()
+                          .onJumpTo(RouteStatus.center, args: {"id": 1});
+                          
+4. 退出方式
+> pop();

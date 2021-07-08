@@ -62,7 +62,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
               routeInformationParser: _routeInformationParser,
               routeInformationProvider: PlatformRouteInformationProvider(
                   initialRouteInformation:
-                      RouteInformation(location: widget.router)),
+                      RouteInformation(location: "wmactivity://topics?id=123")),
             );
           }
           return Material(
@@ -104,14 +104,14 @@ class MyRouteDelegate extends RouterDelegate<MyRoutePath>
     }));
   }
 
-  @override
-  Future<void> setInitialRoutePath(MyRoutePath configuration) {
-    logger(
-        "setInitialRoutePath....: location: ${configuration.location}, params : ${configuration.params}");
-    _routeStatus = routeStatus;
-    _params = configuration.params;
-    return super.setInitialRoutePath(configuration);
-  }
+  // @override
+  // Future<void> setInitialRoutePath(MyRoutePath configuration) {
+  //   logger(
+  //       "setInitialRoutePath....: location: ${configuration.location}, params : ${configuration.params}");
+  //   _routeStatus = routeStatus;
+  //   _params = configuration.params;
+  //   return super.setInitialRoutePath(configuration);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -178,6 +178,8 @@ class MyRouteDelegate extends RouterDelegate<MyRoutePath>
   @override
   Future<void> setNewRoutePath(MyRoutePath path) async {
     logger("setNewRoutePath ${path.location}");
+      _routeStatus = RouteStatus.topics;
+      _params = path.params;
   }
 }
 
@@ -204,7 +206,7 @@ class MyRouteInformationParser extends RouteInformationParser<MyRoutePath> {
       case MyRoutePath.CENTER_PATH:
         return MyRoutePath.center();
       case MyRoutePath.TOPICS_PATH:
-        return MyRoutePath.topics();
+        return MyRoutePath.topics(params: uri.queryParameters);
       case MyRoutePath.TEST1_PATH:
         return MyRoutePath.test1();
       case MyRoutePath.TEST2_PATH:
@@ -223,13 +225,13 @@ class MyRouteInformationParser extends RouteInformationParser<MyRoutePath> {
 ///定义路由数据，path & params（3）
 class MyRoutePath {
   static const MAIN_PATH = "/";
-  static const DETAIL_PATH = "/detail";
-  static const CENTER_PATH = "/center";
-  static const TOPICS_PATH = "/topics";
-  static const SETTING_PATH = "/setting";
-  static const TEST1_PATH = "/test1";
-  static const TEST2_PATH = "/test2";
-  static const UNKNOWN_PATH = "/unknown";
+  static const DETAIL_PATH = "detail";
+  static const CENTER_PATH = "center";
+  static const TOPICS_PATH = "topics";
+  static const SETTING_PATH = "setting";
+  static const TEST1_PATH = "test1";
+  static const TEST2_PATH = "test2";
+  static const UNKNOWN_PATH = "unknown";
 
   final String location;
   final Map<String, dynamic>? params;
