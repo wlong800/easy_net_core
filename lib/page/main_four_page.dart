@@ -9,7 +9,8 @@ class MainFourPage extends StatefulWidget {
   _MainFourPageState createState() => _MainFourPageState();
 }
 
-class _MainFourPageState extends State<MainFourPage> {
+
+class _MainFourPageState extends State<MainFourPage> with TickerProviderStateMixin {
   UserSpanAction action = (userInfo){
     print("成功 ${userInfo.name} id=${userInfo.id}");
     return 1;
@@ -25,4 +26,6 @@ class _MainFourPageState extends State<MainFourPage> {
       )
     );
   }
+
+  bool get wantKeepAlive => true;
 }

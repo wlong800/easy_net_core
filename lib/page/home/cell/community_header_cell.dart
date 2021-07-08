@@ -1,6 +1,8 @@
 import 'package:app/base/common/lang.dart';
 import 'package:app/base/common/resource.dart';
+import 'package:app/base/common/touch_callback.dart';
 import 'package:app/base/widget/common_ui_kit.dart';
+import 'package:app/navigator/easy_navigator.dart';
 import 'package:app/page/models/community_model.dart';
 import 'package:flutter/material.dart';
 
@@ -19,12 +21,17 @@ class CommunityHeaderCell extends StatelessWidget {
           Expanded(
               child: Row(
             children: [
-              AvatarKit(
-                avatar: creator?.getAvatar(),
-                width: 40.0,
-                height: 40.0,
-                radius: 20.0,
-                borderWidth: 0.0,
+              TouchCallBack(
+                child: AvatarKit(
+                  avatar: creator?.getAvatar(),
+                  width: 40.0,
+                  height: 40.0,
+                  radius: 20.0,
+                  borderWidth: 0.0,
+                ),
+                onPressed: () {
+                  EasyNavigator.getInstance().onJumpTo(RouteStatus.center);
+                },
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 10.0),

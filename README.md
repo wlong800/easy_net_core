@@ -52,6 +52,16 @@ lib
 └── test(写一些测试demo,比如widgets通用控件有哪些)
 ```
 
+- #### router框架
+1. 参考：https://blog.csdn.net/u013491829/article/details/109330086
+2. 参考：某视频课程,第四章
+
 - #### 重构1.0(网络库)-2021.6.26
 1. 引入adapter模式，实现快速插拔
 2. 模块分工进一步明确
+3. 跳转方式
+>         EasyNavigator.getInstance()
+                          .onJumpTo(RouteStatus.center, args: {"id": 1});
+                          
+4. 退出方式
+> pop();

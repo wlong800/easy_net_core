@@ -1,13 +1,14 @@
 import 'dart:ui';
 
 import 'package:app/global.dart';
-import 'package:app/main_page.dart';
 import 'package:app/services/service_locator.dart';
 import 'package:flutter/material.dart';
 
 import 'base/widget/common_ui_kit.dart';
 import 'base/logger/logger.dart';
 import 'base/common/resource.dart';
+import 'navigator/route_delegate.dart';
+import 'navigator/route_information_parser.dart';
 
 GlobalKey<NavigatorState> navigatorState = GlobalKey();
 
@@ -28,6 +29,9 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
+  late MyRouteDelegate _routeDelegate = MyRouteDelegate();
+  MyRouteInformationParser _routeInformationParser = MyRouteInformationParser();
+
   @override
   void initState() {
     super.initState();
@@ -47,7 +51,12 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         future: _initData(),
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            return MainPage();
+            return Router(
+              routerDelegate: _routeDelegate,
+              routeInformationParser: _routeInformationParser,
+              routeInformationProvider: PlatformRouteInformationProvider(
+                  initialRouteInformation: RouteInformation(location: "/")),
+            );
           }
           return Material(
             child: LoadingKit(),

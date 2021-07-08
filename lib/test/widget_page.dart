@@ -1,4 +1,8 @@
+import 'dart:collection';
+
+import 'package:app/base/common/lang.dart';
 import 'package:app/base/common/resource.dart';
+import 'package:app/base/logger/logger.dart';
 import 'package:app/base/widget/common_ui_kit.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -80,7 +84,9 @@ class _WidgetTestPageState extends State<WidgetTestPage> {
                         ElevatedButton.icon(
                           icon: Icon(Icons.send),
                           label: Text("发送"),
-                          onPressed: () {},
+                          onPressed: () {
+                            pop(context);
+                          },
                         ),
                         OutlinedButton.icon(
                           icon: Icon(Icons.add),

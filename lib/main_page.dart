@@ -14,7 +14,7 @@ class MainPage extends StatefulWidget {
   _MainPageState createState() => _MainPageState();
 }
 
-class _MainPageState extends State<MainPage> {
+class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
   DateTime? _lastPressedAt; //上次点击时间
   List<Widget> _pages = [];
   int _currentIndex = 0;
