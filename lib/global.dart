@@ -17,6 +17,7 @@ class Global {
   static double appBarHeight = Size2.app_bar_height;
   static double refreshHeight = 80.0;
   static int limit = 20;
+  static const SCHEMES = ["wmactivity"];
 
   /// 初始化全局信息，会在APP启动时执行
   static Future init() async {

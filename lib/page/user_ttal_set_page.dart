@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:app/base/api/net/http_status2.dart';
 import 'package:app/tools/channel_tools.dart';
 import 'package:app/base/common/lang.dart';
@@ -122,6 +124,15 @@ class _UserTTALSetPageState extends State<UserTTALSetPage> {
                     return;
                   }
                   showDialogLoadingKt(context);
+                  var p = SplayTreeMap();
+                  p["type"] = "TTAL";
+                  var p2 = SplayTreeMap();
+                  p2["truthOption2"] = _real2Controller?.text;
+                  p2["lieOption"] = _fakeController?.text;
+                  p2["truthOption1"] = _real1Controller?.text;
+                  p["ttalQuestion"] = p2;
+
+
                   var params = {
                     "type": "TTAL",
                     "ttalQuestion": {
