@@ -1,4 +1,5 @@
 import 'package:app/base/logger/logger.dart';
+import 'package:app/page/search_page.dart';
 import 'package:app/page/topics_page.dart';
 import 'package:app/page/user_center_page.dart';
 import 'package:app/test/test2_page.dart';
@@ -34,6 +35,7 @@ enum RouteStatus {
   test1,
   test2,
   unknown,
+  search,
 }
 
 ///获取page对应的RouteStatus,增加一个page，这个地方就需要注册一个（2）
@@ -48,6 +50,8 @@ RouteStatus getStatus(MaterialPage page) {
     return RouteStatus.test1;
   } else if (page.child is TextAreaPage) {
     return RouteStatus.test2;
+  } else if (page.child is SearchPage) {
+    return RouteStatus.search;
   }
   return RouteStatus.unknown;
 }

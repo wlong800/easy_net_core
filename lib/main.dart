@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:app/base/common/lang.dart';
 import 'package:app/global.dart';
+import 'package:app/page/search_page.dart';
 import 'package:app/page/setting_page.dart';
 import 'package:app/page/topics_page.dart';
 import 'package:app/page/user_center_page.dart';
@@ -104,15 +105,6 @@ class MyRouteDelegate extends RouterDelegate<MyRoutePath>
     }));
   }
 
-  // @override
-  // Future<void> setInitialRoutePath(MyRoutePath configuration) {
-  //   logger(
-  //       "setInitialRoutePath....: location: ${configuration.location}, params : ${configuration.params}");
-  //   _routeStatus = routeStatus;
-  //   _params = configuration.params;
-  //   return super.setInitialRoutePath(configuration);
-  // }
-
   @override
   Widget build(BuildContext context) {
     logger("build....", tag: "MyRouteDelegate");
@@ -140,6 +132,8 @@ class MyRouteDelegate extends RouterDelegate<MyRoutePath>
       page = pageWrap(TextAreaPage());
     } else if (routeStatus == RouteStatus.test1) {
       page = pageWrap(WidgetTestPage());
+    } else if (routeStatus == RouteStatus.search) {
+      page = pageWrap(SearchPage());
     }
     //重新创建一个数组，否则pages因引用没有改变路由不会生效
     tempPages = [...tempPages, page];
@@ -211,6 +205,8 @@ class MyRouteInformationParser extends RouteInformationParser<MyRoutePath> {
         return MyRoutePath.test1();
       case MyRoutePath.TEST2_PATH:
         return MyRoutePath.test2();
+      case MyRoutePath.SEARCH_PATH:
+        return MyRoutePath.search();
     }
     return MyRoutePath.unknown();
   }
@@ -231,6 +227,7 @@ class MyRoutePath {
   static const SETTING_PATH = "setting";
   static const TEST1_PATH = "test1";
   static const TEST2_PATH = "test2";
+  static const SEARCH_PATH = "search";
   static const UNKNOWN_PATH = "unknown";
 
   final String location;
@@ -256,6 +253,10 @@ class MyRoutePath {
 
   ///test2页
   MyRoutePath.test2({this.params}) : location = TEST2_PATH;
+
+
+  ///搜索页面
+  MyRoutePath.search({this.params}) : location = SEARCH_PATH;
 
   /// 404页面
   MyRoutePath.unknown()
