@@ -20,7 +20,7 @@ class Global {
 
   /// 初始化全局信息，会在APP启动时执行
   static Future init() async {
-    await HoldManager?.init();
+    await HoldManager?.preInit();
     String proxy = Hold.getString("proxy_setting");
     // if (isNotEmpty(proxy)) {
       ConfigManager.getInstance()

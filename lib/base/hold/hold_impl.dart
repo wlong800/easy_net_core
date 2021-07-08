@@ -8,7 +8,6 @@ class HoldFacadeImpl extends HoldFacade {
 
   Future<HoldFacadeImpl> init() async {
     try {
-      SharedPreferences.setMockInitialValues({}); // set initial values here if desired
       _prefs = await SharedPreferences.getInstance();
     } catch (e) {
       print(e);
