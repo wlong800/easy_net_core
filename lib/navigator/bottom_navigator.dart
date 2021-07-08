@@ -13,7 +13,7 @@ class BottomNavigator extends StatefulWidget {
   _BottomNavigatorState createState() => _BottomNavigatorState();
 }
 
-class _BottomNavigatorState extends State<BottomNavigator> {
+class _BottomNavigatorState extends State<BottomNavigator> with SingleTickerProviderStateMixin {
   final _defaultColor = Colors.grey;
   final _activeColor = primary;
   int _currentIndex = 0;

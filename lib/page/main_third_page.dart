@@ -7,11 +7,13 @@ class MainThirdPage extends StatefulWidget {
   _MainThirdPageState createState() => _MainThirdPageState();
 }
 
-class _MainThirdPageState extends State<MainThirdPage> {
+class _MainThirdPageState extends State<MainThirdPage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Text("third..."),
     );
   }
+
+  bool get wantKeepAlive => true;
 }

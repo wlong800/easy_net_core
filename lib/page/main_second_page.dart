@@ -9,7 +9,7 @@ class MainSecondPage extends StatefulWidget {
   _MainSecondPageState createState() => _MainSecondPageState();
 }
 
-class _MainSecondPageState extends State<MainSecondPage> {
+class _MainSecondPageState extends State<MainSecondPage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -49,4 +49,6 @@ class _MainSecondPageState extends State<MainSecondPage> {
       ),
     );
   }
+
+  bool get wantKeepAlive => true;
 }

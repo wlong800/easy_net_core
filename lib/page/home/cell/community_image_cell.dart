@@ -91,42 +91,6 @@ class CommunityImageCell extends StatelessWidget {
         );
       },
     );
-    // return GridView.builder(
-    //   shrinkWrap: true,
-    //   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-    //       crossAxisSpacing: 5.0, mainAxisSpacing: 5.0, crossAxisCount: 3),
-    //   itemBuilder: (BuildContext context, int index) {
-    //     var imageModel = model?.getImages();
-    //     return TouchCallBack(
-    //       child: Container(
-    //         child: ClipRRect(
-    //           borderRadius: BorderRadius.all(Radius.circular(4.0)),
-    //           child: CachedNetworkImage(
-    //             fadeOutCurve: Curves.linear,
-    //             fadeInCurve: Curves.linear,
-    //             fadeInDuration: Duration(milliseconds: 0),
-    //             fadeOutDuration: Duration(milliseconds: 0),
-    //             placeholder: (context, _) =>
-    //                 Image.asset("images/bg_default.png", fit: BoxFit.cover),
-    //             imageUrl: toString2(imageModel?.elementAt(index).url),
-    //             errorWidget: (context, _, error) =>
-    //                 Image.asset("images/bg_default.png", fit: BoxFit.cover),
-    //             fit: BoxFit.cover,
-    //           ),
-    //         ),
-    //       ),
-    //       onPressed: () {
-    //         fadePush(
-    //             context,
-    //             PreBigImagePage(
-    //               images: model?.getImagesUrl(),
-    //               currentIndex: index,
-    //             ));
-    //       },
-    //     );
-    //   },
-    //   itemCount: toInt(model?.getImages()?.length),
-    // );
   }
 
   Widget _buildSingleImage(BuildContext context, ImageObject? model) {

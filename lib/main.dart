@@ -62,7 +62,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
               routeInformationParser: _routeInformationParser,
               routeInformationProvider: PlatformRouteInformationProvider(
                   initialRouteInformation:
-                      RouteInformation(location: "wmactivity://topics?id=123")),
+                      RouteInformation(location: "/"/*"wmactivity://topics?id=123"*/)),
             );
           }
           return Material(
@@ -178,8 +178,8 @@ class MyRouteDelegate extends RouterDelegate<MyRoutePath>
   @override
   Future<void> setNewRoutePath(MyRoutePath path) async {
     logger("setNewRoutePath ${path.location}");
-      _routeStatus = RouteStatus.topics;
-      _params = path.params;
+      // _routeStatus = RouteStatus.topics;
+      // _params = path.params;
   }
 }
 

@@ -56,4 +56,6 @@ class _MainHomePageState
   Map<String, dynamic>? getRequestParams() {
     return {"feedType": "NEW"};
   }
+
+  bool get wantKeepAlive => true;
 }

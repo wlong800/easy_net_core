@@ -7,11 +7,13 @@ class MainFourPage extends StatefulWidget {
   _MainFourPageState createState() => _MainFourPageState();
 }
 
-class _MainFourPageState extends State<MainFourPage> {
+class _MainFourPageState extends State<MainFourPage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Text("four..."),
     );
   }
+
+  bool get wantKeepAlive => true;
 }
