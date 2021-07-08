@@ -18,15 +18,6 @@ class _WidgetTestPageState extends State<WidgetTestPage> {
   bool _checkboxSelected = true; //维护复选框状态
   @override
   Widget build(BuildContext context) {
-    var p = SplayTreeMap();
-    p["type"] = "TTAL";
-    var p2 = SplayTreeMap();
-    p2["truthOption2"] = "1";
-    p2["lieOption"] = "2";
-    p2["truthOption1"] = "3";
-    p["ttalQuestion"] = p2;
-
-    logger("xxx ==> $p");
     return Material(
       child: SafeArea(
         child: DefaultTextStyle(

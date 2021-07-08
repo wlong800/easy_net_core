@@ -16,7 +16,7 @@ class _TopicsPageState extends State<TopicsPage> {
     return Scaffold(
       appBar: WMPreferredSize2("话题聚合页"),
       body: Center(
-        child: Text("我是话题聚合页"),
+        child: Text("我是话题聚合页: ${widget.id}"),
       ),
     );
   }

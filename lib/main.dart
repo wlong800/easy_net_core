@@ -2,6 +2,9 @@ import 'dart:ui';
 
 import 'package:app/base/common/lang.dart';
 import 'package:app/global.dart';
+import 'package:app/page/setting_page.dart';
+import 'package:app/page/topics_page.dart';
+import 'package:app/page/user_center_page.dart';
 import 'package:app/services/service_locator.dart';
 import 'package:app/test/test2_page.dart';
 import 'package:app/test/widget_page.dart';
@@ -120,15 +123,23 @@ class MyRouteDelegate extends RouterDelegate<MyRoutePath>
       //tips 具体规则可以根据需要进行调整，这里要求栈中只允许有一个同样的页面的实例
       tempPages = tempPages.sublist(0, index);
     }
+
+    /// (5)
     var page;
     if (routeStatus == RouteStatus.home) {
-      //跳转首页时将栈中其它页面进行出栈，因为首页不可回退
+      ///跳转首页时将栈中其它页面进行出栈，因为首页不可回退
       pages.clear();
       page = pageWrap(BottomNavigator());
-    } else if (routeStatus == RouteStatus.test1) {
-      page = pageWrap(WidgetTestPage());
+    } else if (routeStatus == RouteStatus.center) {
+      page = pageWrap(UserCenterPage());
+    } else if (routeStatus == RouteStatus.setting) {
+      page = pageWrap(SettingPage());
+    } else if (routeStatus == RouteStatus.topics) {
+      page = pageWrap(TopicsPage(id: toString2(params!["id"])));
     } else if (routeStatus == RouteStatus.test2) {
       page = pageWrap(TextAreaPage());
+    } else if (routeStatus == RouteStatus.test1) {
+      page = pageWrap(WidgetTestPage());
     }
     //重新创建一个数组，否则pages因引用没有改变路由不会生效
     tempPages = [...tempPages, page];
@@ -181,6 +192,8 @@ class MyRouteInformationParser extends RouteInformationParser<MyRoutePath> {
     if (!inWhiteList(scheme)) {
       return MyRoutePath.unknown();
     }
+
+    /// (4)
     switch (host) {
       case MyRoutePath.MAIN_PATH:
         return MyRoutePath.main();
@@ -192,6 +205,10 @@ class MyRouteInformationParser extends RouteInformationParser<MyRoutePath> {
         return MyRoutePath.center();
       case MyRoutePath.TOPICS_PATH:
         return MyRoutePath.topics();
+      case MyRoutePath.TEST1_PATH:
+        return MyRoutePath.test1();
+      case MyRoutePath.TEST2_PATH:
+        return MyRoutePath.test2();
     }
     return MyRoutePath.unknown();
   }
@@ -203,13 +220,15 @@ class MyRouteInformationParser extends RouteInformationParser<MyRoutePath> {
   }
 }
 
-///定义路由数据，path & params
+///定义路由数据，path & params（3）
 class MyRoutePath {
   static const MAIN_PATH = "/";
   static const DETAIL_PATH = "/detail";
   static const CENTER_PATH = "/center";
   static const TOPICS_PATH = "/topics";
   static const SETTING_PATH = "/setting";
+  static const TEST1_PATH = "/test1";
+  static const TEST2_PATH = "/test2";
   static const UNKNOWN_PATH = "/unknown";
 
   final String location;
@@ -229,6 +248,12 @@ class MyRoutePath {
 
   ///Setting页
   MyRoutePath.setting({this.params}) : location = SETTING_PATH;
+
+  ///test1页
+  MyRoutePath.test1({this.params}) : location = TEST1_PATH;
+
+  ///test2页
+  MyRoutePath.test2({this.params}) : location = TEST2_PATH;
 
   /// 404页面
   MyRoutePath.unknown()

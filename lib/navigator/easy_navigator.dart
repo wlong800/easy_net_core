@@ -1,4 +1,6 @@
 import 'package:app/base/logger/logger.dart';
+import 'package:app/page/topics_page.dart';
+import 'package:app/page/user_center_page.dart';
 import 'package:app/test/test2_page.dart';
 import 'package:app/test/widget_page.dart';
 import 'package:flutter/material.dart';
@@ -23,22 +25,29 @@ int getPageIndex(List<MaterialPage> pages, RouteStatus routeStatus) {
   return -1;
 }
 
-///自定义路由封装，路由状态
+///自定义路由封装，路由状态（1）
 enum RouteStatus {
   home,
+  center,
+  topics,
+  setting,
   test1,
   test2,
   unknown,
 }
 
-///获取page对应的RouteStatus
+///获取page对应的RouteStatus,增加一个page，这个地方就需要注册一个（2）
 RouteStatus getStatus(MaterialPage page) {
-  if (page.child is WidgetTestPage) {
+  if (page.child is BottomNavigator) {
+    return RouteStatus.home;
+  } else if (page.child is UserCenterPage) {
+    return RouteStatus.center;
+  } else if (page.child is TopicsPage) {
+    return RouteStatus.topics;
+  } else if (page.child is WidgetTestPage) {
     return RouteStatus.test1;
   } else if (page.child is TextAreaPage) {
     return RouteStatus.test2;
-  } else if (page.child is BottomNavigator) {
-    return RouteStatus.home;
   }
   return RouteStatus.unknown;
 }
@@ -113,8 +122,8 @@ class EasyNavigator extends _RouteJumpListener {
       //如果打开的是首页，则明确到首页具体的tab
       current = _bottomTab!;
     }
-    logger('hi_navigator:current:${current.page}');
-    logger('hi_navigator:pre:${_current?.page}');
+    logger('easy_navigator:current:${current.page}');
+    logger('easy_navigator:pre:${_current?.page}');
     _listeners.forEach((listener) {
       listener(current, _current!);
     });
@@ -127,7 +136,8 @@ abstract class _RouteJumpListener {
   void onJumpTo(RouteStatus routeStatus, {Map<String, dynamic>? args});
 }
 
-typedef OnJumpTo = void Function(RouteStatus routeStatus, {Map<String, dynamic>? args});
+typedef OnJumpTo = void Function(RouteStatus routeStatus,
+    {Map<String, dynamic>? args});
 
 ///定义路由跳转逻辑要实现的功能
 class RouteJumpListener {
