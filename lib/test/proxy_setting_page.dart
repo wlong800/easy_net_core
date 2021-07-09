@@ -30,7 +30,7 @@ class _ProxySettingPageState extends State<ProxySettingPage> {
                 Switch(
                     value: switchFlag,
                     onChanged: (b) {
-                      Channel.showNativeToast(
+                      AHChannel.showNativeToast(
                           msg: b ? "open success" : "closed success");
                       setState(() {
                         switchFlag = b;

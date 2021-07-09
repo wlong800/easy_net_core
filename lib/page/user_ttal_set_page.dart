@@ -120,7 +120,7 @@ class _UserTTALSetPageState extends State<UserTTALSetPage> {
                 "完成",
                 () async {
                   if (!_isComplete()) {
-                    Channel.showNativeToast(msg: "信息填写不完整呢!");
+                    AHChannel.showNativeToast(msg: "信息填写不完整呢!");
                     return;
                   }
                   showDialogLoadingKt(context);
@@ -154,7 +154,7 @@ class _UserTTALSetPageState extends State<UserTTALSetPage> {
                       requestParams: params);
                   pop(context);
                   if (response?.code == HttpStatus2.ok) {
-                    Channel.updateUserTTALData(
+                    AHChannel.updateUserTTALData(
                         params.containsKey("ttalQuestion") ? params : null);
                     Future.delayed(Duration(milliseconds: 300), () {
                       pop(context, system: true);

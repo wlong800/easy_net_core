@@ -1,5 +1,7 @@
 import 'package:app/base/common/resource.dart';
+import 'package:app/base/logger/logger.dart';
 import 'package:app/base/widget/custom_refresh_kit.dart';
+import 'package:app/navigator/easy_navigator.dart';
 import 'package:app/page/home/view_model/community_view_model.dart';
 import 'package:app/provider/base_refresh_state.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +19,28 @@ class MainHomePage extends StatefulWidget {
 
 class _MainHomePageState
     extends BaseRefreshState<MainHomePage, CommunityViewModel> {
+  var listener;
+
+  @override
+  void initState() {
+    super.initState();
+    EasyNavigator.getInstance().addListener(this.listener = (current, pre) {
+      logger('home:current:${current.page}');
+      logger('home:pre:${pre.page}');
+      if (widget == current.page || current.page is MainHomePage) {
+        logger('打开了首页:onResume');
+      } else if (widget == pre?.page || pre?.page is MainHomePage) {
+        logger('首页:onPause');
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    EasyNavigator.getInstance().removeListener(this.listener);
+    super.dispose();
+  }
+
   @override
   Widget buildBody(BuildContext context, CommunityViewModel model) {
     var list = model.data;

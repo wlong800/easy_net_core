@@ -46,7 +46,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
         if (_lastPressedAt == null ||
             DateTime.now().difference(_lastPressedAt!) > Duration(seconds: 1)) {
           _lastPressedAt = DateTime.now();
-          Channel.showNativeToast(msg: "Press again to exit");
+          AHChannel.showNativeToast(msg: "Press again to exit");
           return false;
         }
         // try {

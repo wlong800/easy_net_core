@@ -35,7 +35,7 @@ class Global {
   }
 
   static getNativeGlobalInfo() async {
-    var globalInfoStr = await Channel.getNativeGlobalInfo();
+    var globalInfoStr = await AHChannel.getNativeGlobalInfo();
     logger("globalInfoStr: $globalInfoStr");
     if (globalInfoStr != null) {
       globalInfo =

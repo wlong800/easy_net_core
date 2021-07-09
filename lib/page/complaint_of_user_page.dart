@@ -68,12 +68,12 @@ class ComplaintSelectState extends State<ComplaintOfUserPage> {
                   if (element.checked) canReport = true;
                 });
                 if (!canReport) {
-                  Channel.showNativeToast(msg: "请选择举报内容");
+                  AHChannel.showNativeToast(msg: "请选择举报内容");
                   return;
                 }
                 showDialogLoadingKt(context);
                 Future.delayed(Duration(seconds: 1), () {
-                  Channel.showNativeToast(msg: "举报成功");
+                  AHChannel.showNativeToast(msg: "举报成功");
                   pop(context, system: true);
                 });
               },

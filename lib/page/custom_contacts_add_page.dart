@@ -222,13 +222,13 @@ class _CustomContactsAddPageState extends State<CustomContactsAddPage> {
                 "保存",
                 () async {
                   if (toInt(_phoneController?.text.length) < 11) {
-                    Channel.showNativeToast(msg: "手机号位数不对");
+                    AHChannel.showNativeToast(msg: "手机号位数不对");
                     return;
                   }
                   if (isNotEmpty(_cardController?.text) &&
                       toInt(_cardController?.text.length) != 15 &&
                       toInt(_cardController?.text.length) != 18) {
-                    Channel.showNativeToast(msg: "身份证号码不对");
+                    AHChannel.showNativeToast(msg: "身份证号码不对");
                     return;
                   }
                   showDialogLoadingKt(context);
@@ -252,7 +252,7 @@ class _CustomContactsAddPageState extends State<CustomContactsAddPage> {
                   if (response?.code == HttpStatus2.ok) {
                     widget.func?.call();
                     params["id"] = toInt(response?.data);
-                    Channel.addContactsData(jsonEncode(params));
+                    AHChannel.addContactsData(jsonEncode(params));
                     Future.delayed(Duration(milliseconds: 300), () {
                       pop(context, system: widget.isSystemPop);
                     });

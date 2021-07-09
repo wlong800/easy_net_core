@@ -55,7 +55,7 @@ class _CustomContactsPageState
                       }
                       setState(() {});
                     } else {
-                      Channel.showNativeToast(msg: response?.msg);
+                      AHChannel.showNativeToast(msg: response?.msg);
                     }
                   },
                   color: R.color_background),

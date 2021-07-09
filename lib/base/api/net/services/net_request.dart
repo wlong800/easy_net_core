@@ -94,7 +94,7 @@ Future getHeader(String url,
     {String? method, String? contentType, Map<String, dynamic>? params}) async {
   Map<dynamic, dynamic>? header;
   try {
-    var nativeHeaders  = await Channel.getNativeHeaders();
+    var nativeHeaders  = await AHChannel.getNativeHeaders();
     header = await HeaderTools.getHeaders(getBaseUrl() + url,
         method: method, contentType: contentType, params: params);
     if (nativeHeaders.length > 0) {

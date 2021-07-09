@@ -14,7 +14,7 @@ Future<void> systemPop() async {
 
 enum Toast { LENGTH_SHORT, LENGTH_LONG }
 
-class Channel {
+class AHChannel {
   static Future<void> addContactsData(String data) async {
     await platform.invokeMethod<void>('addContactsData', data);
   }
@@ -53,7 +53,37 @@ class Channel {
     return nativeHeaders;
   }
 
+
+  ///拉取全局信息（比如baseUrl)
   static getNativeGlobalInfo() async {
     return await platform.invokeMethod("getNativeGlobalInfo");
   }
+
+  ///分享
+  static startSocialShare({String? title, String? summery, String? url}) async {
+    return await platform.invokeMethod("startSocialShare");
+  }
+
+  ///发布评论
+  static postComment() async {
+    return await platform.invokeMethod("postComment");
+  }
+
+  ///获取地理位置
+  static getLocation() async {
+    return await platform.invokeMethod("getLocation");
+  }
+
+  ///进入城市选择
+  static enterLocation() async {
+    return await platform.invokeMethod("enterLocation");
+  }
+
+  ///播放视频
+  static startVideo(String url) async {
+    return await platform.invokeMethod("getLocation");
+  }
+
+
+
 }
