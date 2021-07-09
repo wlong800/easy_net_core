@@ -17,7 +17,7 @@ class _MainFourPageState extends State<MainFourPage> with TickerProviderStateMix
   };
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SafeArea(
       child: Column(
         children: [
           Text("four..."),
