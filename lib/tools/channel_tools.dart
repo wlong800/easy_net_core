@@ -53,7 +53,6 @@ class AHChannel {
     return nativeHeaders;
   }
 
-
   ///拉取全局信息（比如baseUrl)
   static getNativeGlobalInfo() async {
     return await platform.invokeMethod("getNativeGlobalInfo");
@@ -84,6 +83,11 @@ class AHChannel {
     return await platform.invokeMethod("getLocation");
   }
 
-
-
+  static void exitApp() async {
+    try {
+      return await platform.invokeMethod("exitApp");
+    } catch (e) {
+      print(e);
+    }
+  }
 }

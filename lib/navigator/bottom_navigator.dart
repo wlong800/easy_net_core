@@ -1,8 +1,10 @@
 import 'package:app/base/common/lang.dart';
+import 'package:app/base/logger/logger.dart';
 import 'package:app/page/home/main_home_page.dart';
 import 'package:app/page/main_four_page.dart';
 import 'package:app/page/main_second_page.dart';
 import 'package:app/page/main_third_page.dart';
+import 'package:app/tools/channel_tools.dart';
 import 'package:app/utils/color.dart';
 import 'package:flutter/material.dart';
 
@@ -21,6 +23,7 @@ class _BottomNavigatorState extends State<BottomNavigator> with SingleTickerProv
   final _defaultColor = Colors.grey;
   final _activeColor = primary;
   int _currentIndex = 0;
+  DateTime? _lastPressedAt; //上次点击时间
   static int initialPage = 0;
   final PageController _controller = PageController(initialPage: initialPage);
   late List<Widget> _pages;
@@ -51,24 +54,37 @@ class _BottomNavigatorState extends State<BottomNavigator> with SingleTickerProv
       _hasBuild = true;
     }
 
-    return Scaffold(
-      body: PageView(
-        controller: _controller,
-        children: _pages,
-        onPageChanged: (index) => _onJumpTo(index, pageChange: true),
-        physics: NeverScrollableScrollPhysics(),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: (index) => _onJumpTo(index),
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: _activeColor,
-        items: [
-          _bottomItem('首页', Icons.home, 0),
-          _bottomItem('排行', Icons.local_fire_department, 1),
-          _bottomItem('收藏', Icons.favorite, 2),
-          _bottomItem('我的', Icons.live_tv, 3),
-        ],
+    return WillPopScope(
+      onWillPop: () async {
+        if (_lastPressedAt == null ||
+            DateTime.now().difference(_lastPressedAt!) > Duration(seconds: 1)) {
+          //两次点击间隔超过1秒则重新计时
+          _lastPressedAt = DateTime.now();
+          AHChannel.showNativeToast(msg: "再按一次退出APP");
+          return false;
+        }
+        AHChannel.exitApp();
+        return true;
+      },
+      child: Scaffold(
+        body: PageView(
+          controller: _controller,
+          children: _pages,
+          onPageChanged: (index) => _onJumpTo(index, pageChange: true),
+          physics: NeverScrollableScrollPhysics(),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _currentIndex,
+          onTap: (index) => _onJumpTo(index),
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: _activeColor,
+          items: [
+            _bottomItem('首页', Icons.home, 0),
+            _bottomItem('排行', Icons.local_fire_department, 1),
+            _bottomItem('收藏', Icons.favorite, 2),
+            _bottomItem('我的', Icons.live_tv, 3),
+          ],
+        ),
       ),
     );
   }
