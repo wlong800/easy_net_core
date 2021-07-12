@@ -57,7 +57,6 @@ class _CustomContactsAddPageState extends State<CustomContactsAddPage> {
 
   @override
   Widget build(BuildContext context) {
-    initScreenUtil(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: WMPreferredSize("添加使用人"),

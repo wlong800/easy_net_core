@@ -73,7 +73,6 @@ class _MainHomePageState
 
   @override
   Widget buildFullScreen(BuildContext context, CommunityViewModel model) {
-    initScreenUtil(context);
     return Material(
       child: build2(context, model),
     );

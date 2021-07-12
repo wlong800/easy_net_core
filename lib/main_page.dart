@@ -40,7 +40,6 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    initScreenUtil(context);
     return WillPopScope(
       onWillPop: () async {
         if (_lastPressedAt == null ||

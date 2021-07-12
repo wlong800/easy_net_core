@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:app/global.dart';
 import 'package:app/services/service_locator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'base/widget/common_ui_kit.dart';
 import 'base/logger/logger.dart';
@@ -41,27 +42,31 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      navigatorKey: navigatorState,
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        backgroundColor: R.color_background,
-      ),
-      home: FutureBuilder(
-        future: _initData(),
-        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            return Router(
-              routerDelegate: _routeDelegate,
-              routeInformationParser: _routeInformationParser,
-              routeInformationProvider: PlatformRouteInformationProvider(
-                  initialRouteInformation: RouteInformation(location: widget.router)),
+    return ScreenUtilInit(
+      designSize: Size(Size2.screen_w, Size2.screen_h),
+      builder: () => MaterialApp(
+        navigatorKey: navigatorState,
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          backgroundColor: R.color_background,
+        ),
+        home: FutureBuilder(
+          future: _initData(),
+          builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              return Router(
+                routerDelegate: _routeDelegate,
+                routeInformationParser: _routeInformationParser,
+                routeInformationProvider: PlatformRouteInformationProvider(
+                    initialRouteInformation:
+                        RouteInformation(location: widget.router)),
+              );
+            }
+            return Material(
+              child: LoadingKit(),
             );
-          }
-          return Material(
-            child: LoadingKit(),
-          );
-        },
+          },
+        ),
       ),
     );
   }

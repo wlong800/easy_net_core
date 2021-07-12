@@ -50,7 +50,6 @@ class _UserTTALSetPageState extends State<UserTTALSetPage> {
 
   @override
   Widget build(BuildContext context) {
-    initScreenUtil(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: WMPreferredSize2(
@@ -131,7 +130,6 @@ class _UserTTALSetPageState extends State<UserTTALSetPage> {
                   p2["lieOption"] = _fakeController?.text;
                   p2["truthOption1"] = _real1Controller?.text;
                   p["ttalQuestion"] = p2;
-
 
                   var params = {
                     "type": "TTAL",

@@ -12,7 +12,6 @@ abstract class AppBaseRequest extends EasyBaseRequest {
 
   @override
   Future<Map<String, dynamic>> getRequestHeaders() async {
-    logger("getRequestHeaders start...");
     return {
       "Cookie":
           "sid=4724338c913dd604f96431bc176f6219; bearer=eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiLog5bkuY7kuY4iLCJjcmVhdGVkIjoxNjI1NTY4OTE4NTA2LCJleHAiOjE2MjgxNjA5MTgsInVzZXJpZCI6NTc5MDI0fQ.O260gcb7oqXaIGDERbT-ATjVnqAERg0UDSPfl0yRmb5sgK1qBFU4E7Ce4hAsXG4WOef1Tlx-g97-4BzvVdhtSg"

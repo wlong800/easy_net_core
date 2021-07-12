@@ -27,7 +27,6 @@ class ComplaintSelectState extends State<ComplaintOfUserPage> {
 
   @override
   Widget build(BuildContext context) {
-    initScreenUtil(context);
     return Scaffold(
       appBar: WMPreferredSize("举报"),
       body: Column(

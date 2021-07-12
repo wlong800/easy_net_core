@@ -32,7 +32,6 @@ class _UserTTALExamplePageState extends State<UserTTALExamplePage> {
 
   @override
   Widget build(BuildContext context) {
-    initScreenUtil(context);
     return Scaffold(
       appBar: WMPreferredSize2(
         "",

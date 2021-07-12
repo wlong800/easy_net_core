@@ -84,7 +84,6 @@ class _CustomContactsPageState
 
   @override
   Widget buildFullScreen(BuildContext context, CustomContactsViewModel model) {
-    initScreenUtil(context);
     return Scaffold(
       appBar: WMPreferredSize("购票使用人"),
       body: Container(
