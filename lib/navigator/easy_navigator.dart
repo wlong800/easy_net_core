@@ -4,6 +4,7 @@ import 'package:app/page/topics_page.dart';
 import 'package:app/page/user_center_page.dart';
 import 'package:app/test/test2_page.dart';
 import 'package:app/test/widget_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'bottom_navigator.dart';
@@ -12,13 +13,13 @@ typedef RouteChangeListener(RouteStatusInfo current, RouteStatusInfo pre);
 
 ///创建页面
 pageWrap(Widget child) {
-  return MaterialPage(key: ValueKey(child.hashCode), child: child);
+  return CupertinoPage(key: ValueKey(child.hashCode), child: child);
 }
 
 ///获取routeStatus在页面栈中的位置
-int getPageIndex(List<MaterialPage> pages, RouteStatus routeStatus) {
+int getPageIndex(List<CupertinoPage> pages, RouteStatus routeStatus) {
   for (int i = 0; i < pages.length; i++) {
-    MaterialPage page = pages[i];
+    CupertinoPage page = pages[i];
     if (getStatus(page) == routeStatus) {
       return i;
     }
@@ -39,7 +40,7 @@ enum RouteStatus {
 }
 
 ///获取page对应的RouteStatus,增加一个page，这个地方就需要注册一个（2）
-RouteStatus getStatus(MaterialPage page) {
+RouteStatus getStatus(CupertinoPage page) {
   if (page.child is BottomNavigator) {
     return RouteStatus.home;
   } else if (page.child is UserCenterPage) {
@@ -114,7 +115,7 @@ class EasyNavigator extends _RouteJumpListener {
   }
 
   ///通知路由页面变化
-  void notify(List<MaterialPage> currentPages, List<MaterialPage> prePages) {
+  void notify(List<CupertinoPage> currentPages, List<CupertinoPage> prePages) {
     if (currentPages == prePages) return;
     var current =
         RouteStatusInfo(getStatus(currentPages.last), currentPages.last.child);

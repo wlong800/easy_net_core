@@ -7,6 +7,7 @@ import 'package:app/page/topics_page.dart';
 import 'package:app/page/user_center_page.dart';
 import 'package:app/test/test2_page.dart';
 import 'package:app/test/widget_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'bottom_navigator.dart';
@@ -17,7 +18,7 @@ class MyRouteDelegate extends RouterDelegate<MyRoutePath>
   final GlobalKey<NavigatorState> navigatorKey;
   RouteStatus _routeStatus = RouteStatus.home;
   Map<String, dynamic>? _params;
-  List<MaterialPage> pages = [];
+  List<CupertinoPage> pages = [];
 
   ///为Navigator设置一个key，必要的时候可以通过navigatorKey.currentState来获取到NavigatorState对象
   MyRouteDelegate() : navigatorKey = GlobalKey<NavigatorState>() {
@@ -36,7 +37,7 @@ class MyRouteDelegate extends RouterDelegate<MyRoutePath>
   Widget build(BuildContext context) {
     logger("build....", tag: "MyRouteDelegate");
     var index = getPageIndex(pages, routeStatus);
-    List<MaterialPage> tempPages = pages;
+    List<CupertinoPage> tempPages = pages;
     if (index != -1) {
       //要打开的页面在栈中已存在，则将该页面和它上面的所有页面进行出栈
       //tips 具体规则可以根据需要进行调整，这里要求栈中只允许有一个同样的页面的实例
