@@ -1,10 +1,8 @@
-import 'dart:collection';
 
 import 'package:app/base/common/lang.dart';
 import 'package:app/base/common/resource.dart';
-import 'package:app/base/logger/logger.dart';
 import 'package:app/base/widget/common_ui_kit.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:app/base/widget/image/MyCachedNetworkImage.dart';
 import 'package:flutter/material.dart';
 
 class WidgetTestPage extends StatefulWidget {
@@ -112,21 +110,9 @@ class _WidgetTestPageState extends State<WidgetTestPage> {
                         width: 100.0,
                         child: ClipRRect(
                           borderRadius: BorderRadius.all(Radius.circular(4.0)),
-                          child: CachedNetworkImage(
-                            fadeOutCurve: Curves.linear,
-                            fadeInCurve: Curves.linear,
-                            fadeInDuration: Duration(milliseconds: 0),
-                            fadeOutDuration: Duration(milliseconds: 0),
-                            placeholder: (context, _) => Image.asset(
-                                "images/bg_default.png",
-                                fit: BoxFit.cover),
-                            imageUrl:
-                                "https://img.allhistory.com/60964b005c66234b0d367c2a.png",
-                            errorWidget: (context, _, error) => Image.asset(
-                                "images/bg_default.png",
-                                fit: BoxFit.cover),
-                            fit: BoxFit.cover,
-                          ),
+                          child: MyCachedNetworkImage(
+                              url:
+                                  "https://img.allhistory.com/60964b005c66234b0d367c2a.png"),
                         ),
                       ),
                       Padding(

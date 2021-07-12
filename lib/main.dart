@@ -55,7 +55,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
               routerDelegate: _routeDelegate,
               routeInformationParser: _routeInformationParser,
               routeInformationProvider: PlatformRouteInformationProvider(
-                  initialRouteInformation: RouteInformation(location: "/")),
+                  initialRouteInformation: RouteInformation(location: widget.router)),
             );
           }
           return Material(

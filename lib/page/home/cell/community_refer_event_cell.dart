@@ -1,13 +1,8 @@
 import 'package:app/base/common/lang.dart';
 import 'package:app/base/common/resource.dart';
-import 'package:app/base/common/touch_callback.dart';
-import 'package:app/base/gallery/pre_big_scale_image_page.dart';
-import 'package:app/page/home/cell/community_header_cell.dart';
+import 'package:app/base/widget/image/MyCachedNetworkImage.dart';
 import 'package:app/page/models/community_model.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-
-import 'community_footer_cell.dart';
 
 class CommunityReferEventCell extends StatelessWidget {
   final CommunityFeedModel? model;
@@ -53,18 +48,7 @@ class CommunityReferEventCell extends StatelessWidget {
             margin: EdgeInsets.only(left: 8.0),
             child: ClipRRect(
               borderRadius: BorderRadius.all(Radius.circular(4.0)),
-              child: CachedNetworkImage(
-                fadeOutCurve: Curves.linear,
-                fadeInCurve: Curves.linear,
-                fadeInDuration: Duration(milliseconds: 0),
-                fadeOutDuration: Duration(milliseconds: 0),
-                placeholder: (context, _) =>
-                    Image.asset("images/bg_default.png", fit: BoxFit.cover),
-                imageUrl: toString2(getFullUrl(event?.coverUrl)),
-                errorWidget: (context, _, error) =>
-                    Image.asset("images/bg_default.png", fit: BoxFit.cover),
-                fit: BoxFit.cover,
-              ),
+              child: MyCachedNetworkImage(url: toString2(getFullUrl(event?.coverUrl))),
             ),
           ),
         ],
