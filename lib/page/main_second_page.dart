@@ -1,5 +1,6 @@
 import 'package:app/base/common/resource.dart';
 import 'package:app/navigator/easy_navigator.dart';
+import 'package:app/navigator/router_path.dart';
 import 'package:flutter/material.dart';
 
 class MainSecondPage extends StatefulWidget {
@@ -23,25 +24,25 @@ class _MainSecondPageState extends State<MainSecondPage> with TickerProviderStat
                   child: Text("跳转到话题聚合页，带参数"),
                   onPressed: () {
                     EasyNavigator.getInstance()
-                        .onJumpTo(RouteStatus.topics, args: {"id": 1});
+                        .onJumpTo(MyRoutePath.TOPICS_PATH, args: {"id": 1});
                   }),
               ElevatedButton(
                   child: Text("跳转到用户中心"),
                   onPressed: () {
                     EasyNavigator.getInstance()
-                        .onJumpTo(RouteStatus.center, args: {"id": 1});
+                        .onJumpTo(MyRoutePath.CENTER_PATH, args: {"id": 1});
                   }),
               ElevatedButton(
                   child: Text("跳转到设置"),
                   onPressed: () {
                     EasyNavigator.getInstance()
-                        .onJumpTo(RouteStatus.setting, args: {"id": 1});
+                        .onJumpTo(MyRoutePath.SETTING_PATH, args: {"id": 1});
                   }),
               ElevatedButton(
                   child: Text("跳转到测试控件"),
                   onPressed: () {
                     EasyNavigator.getInstance()
-                        .onJumpTo(RouteStatus.test1, args: {"id": 1});
+                        .onJumpTo(MyRoutePath.TEST2_PATH, args: {"id": 1});
                   }),
             ],
           ),

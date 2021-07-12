@@ -10,22 +10,25 @@ import 'package:app/test/widget_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../router.dart';
 import 'bottom_navigator.dart';
 import 'easy_navigator.dart';
 
 class MyRouteDelegate extends RouterDelegate<MyRoutePath>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin<MyRoutePath> {
   final GlobalKey<NavigatorState> navigatorKey;
-  RouteStatus _routeStatus = RouteStatus.home;
+  final String? router;
+  String _routeStatus = MyRoutePath.MAIN_PATH;
   Map<String, dynamic>? _params;
   List<CupertinoPage> pages = [];
 
   ///为Navigator设置一个key，必要的时候可以通过navigatorKey.currentState来获取到NavigatorState对象
-  MyRouteDelegate() : navigatorKey = GlobalKey<NavigatorState>() {
-    logger("init... , GlobalKey<NavigatorState>....", tag: "MyRouteDelegate");
-    //实现路由跳转逻辑
+  MyRouteDelegate({this.router}) : navigatorKey = GlobalKey<NavigatorState>() {
+    logger("init RouteDelegate... && router: , $router");
+    _initRouter();
+    ///实现路由跳转逻辑
     EasyNavigator.getInstance().registerRouteJump(RouteJumpListener(
-        onJumpTo: (RouteStatus routeStatus, {Map<String, dynamic>? args}) {
+        onJumpTo: (String routeStatus, {Map<String, dynamic>? args}) {
       logger("push args :: $args");
       _routeStatus = routeStatus;
       _params = args;
@@ -44,25 +47,7 @@ class MyRouteDelegate extends RouterDelegate<MyRoutePath>
       tempPages = tempPages.sublist(0, index);
     }
 
-    /// (5)
-    var page;
-    if (routeStatus == RouteStatus.home) {
-      ///跳转首页时将栈中其它页面进行出栈，因为首页不可回退
-      pages.clear();
-      page = pageWrap(BottomNavigator());
-    } else if (routeStatus == RouteStatus.center) {
-      page = pageWrap(UserCenterPage());
-    } else if (routeStatus == RouteStatus.setting) {
-      page = pageWrap(SettingPage());
-    } else if (routeStatus == RouteStatus.topics) {
-      page = pageWrap(TopicsPage(id: toString2(params!["id"])));
-    } else if (routeStatus == RouteStatus.test2) {
-      page = pageWrap(TextAreaPage());
-    } else if (routeStatus == RouteStatus.test1) {
-      page = pageWrap(WidgetTestPage());
-    } else if (routeStatus == RouteStatus.search) {
-      page = pageWrap(SearchPage());
-    }
+    var page = _getPageByRouteStatus();
     //重新创建一个数组，否则pages因引用没有改变路由不会生效
     tempPages = [...tempPages, page];
     //通知路由发生变化
@@ -90,7 +75,9 @@ class MyRouteDelegate extends RouterDelegate<MyRoutePath>
     );
   }
 
-  RouteStatus get routeStatus {
+
+
+  String get routeStatus {
     //todo:可以做一些拦截
     return _routeStatus;
   }
@@ -99,8 +86,54 @@ class MyRouteDelegate extends RouterDelegate<MyRoutePath>
 
   @override
   Future<void> setNewRoutePath(MyRoutePath path) async {
-    logger("setNewRoutePath ${path.location}");
-    // _routeStatus = RouteStatus.topics;
-    // _params = path.params;
+    // logger("setNewRoutePath ${path.location}");
+  }
+
+  void _initRouter() {
+    if (router == "/") {
+      _routeStatus = MyRoutePath.MAIN_PATH;
+      return;
+    }
+    final uri = Uri.parse(toString2(router));
+    String host = uri.host;
+    String scheme = uri.scheme;
+    _params = uri.queryParameters;
+    logger("scheme: $scheme , host: $host");
+    if (!inWhiteList(scheme)) {
+      _routeStatus = MyRoutePath.UNKNOWN_PATH;
+    } else {
+      _routeStatus = host;
+    }
+  }
+
+  /// ---->（2）<----
+  _getPageByRouteStatus() {
+    var page;
+    switch (routeStatus) {
+      case MyRoutePath.MAIN_PATH:
+      ///跳转首页时将栈中其它页面进行出栈，因为首页不可回退
+        pages.clear();
+        page = pageWrap(BottomNavigator());
+        break;
+      case MyRoutePath.CENTER_PATH:
+        page = pageWrap(UserCenterPage());
+        break;
+      case MyRoutePath.SETTING_PATH:
+        page = pageWrap(SettingPage());
+        break;
+      case MyRoutePath.SEARCH_PATH:
+        page = pageWrap(SearchPage());
+        break;
+      case MyRoutePath.TOPICS_PATH:
+        page = pageWrap(TopicsPage(id: toString2(params!["id"])));
+        break;
+      case MyRoutePath.TEST1_PATH:
+        page = pageWrap(TextAreaPage());
+        break;
+      case MyRoutePath.TEST2_PATH:
+        page = pageWrap(WidgetTestPage());
+        break;
+    }
+    return page;
   }
 }

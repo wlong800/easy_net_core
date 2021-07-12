@@ -1,4 +1,5 @@
 import 'package:app/base/logger/logger.dart';
+import 'package:app/navigator/router_path.dart';
 import 'package:app/page/search_page.dart';
 import 'package:app/page/topics_page.dart';
 import 'package:app/page/user_center_page.dart';
@@ -17,7 +18,7 @@ pageWrap(Widget child) {
 }
 
 ///获取routeStatus在页面栈中的位置
-int getPageIndex(List<CupertinoPage> pages, RouteStatus routeStatus) {
+int getPageIndex(List<CupertinoPage> pages, String routeStatus) {
   for (int i = 0; i < pages.length; i++) {
     CupertinoPage page = pages[i];
     if (getStatus(page) == routeStatus) {
@@ -27,39 +28,27 @@ int getPageIndex(List<CupertinoPage> pages, RouteStatus routeStatus) {
   return -1;
 }
 
-///自定义路由封装，路由状态（1）
-enum RouteStatus {
-  home,
-  center,
-  topics,
-  setting,
-  test1,
-  test2,
-  unknown,
-  search,
-}
-
-///获取page对应的RouteStatus,增加一个page，这个地方就需要注册一个（2）
-RouteStatus getStatus(CupertinoPage page) {
+///获取page对应的RouteStatus,增加一个page，这个地方就需要注册一个 ---->（3）<----
+String getStatus(CupertinoPage page) {
   if (page.child is BottomNavigator) {
-    return RouteStatus.home;
+    return MyRoutePath.MAIN_PATH;
   } else if (page.child is UserCenterPage) {
-    return RouteStatus.center;
+    return MyRoutePath.CENTER_PATH;
   } else if (page.child is TopicsPage) {
-    return RouteStatus.topics;
+    return MyRoutePath.TOPICS_PATH;
   } else if (page.child is WidgetTestPage) {
-    return RouteStatus.test1;
+    return MyRoutePath.TEST1_PATH;
   } else if (page.child is TextAreaPage) {
-    return RouteStatus.test2;
+    return MyRoutePath.TEST2_PATH;
   } else if (page.child is SearchPage) {
-    return RouteStatus.search;
+    return MyRoutePath.TEST2_PATH;
   }
-  return RouteStatus.unknown;
+  return MyRoutePath.UNKNOWN_PATH;
 }
 
 ///路由信息
 class RouteStatusInfo {
-  final RouteStatus routeStatus;
+  final String routeStatus;
   final Widget page;
 
   RouteStatusInfo(this.routeStatus, this.page);
@@ -88,7 +77,7 @@ class EasyNavigator extends _RouteJumpListener {
 
   ///首页底部tab切换监听
   void onBottomTabChange(int index, Widget page) {
-    _bottomTab = RouteStatusInfo(RouteStatus.home, page);
+    _bottomTab = RouteStatusInfo(MyRoutePath.MAIN_PATH, page);
     _notify(_bottomTab!);
   }
 
@@ -110,7 +99,7 @@ class EasyNavigator extends _RouteJumpListener {
   }
 
   @override
-  void onJumpTo(RouteStatus routeStatus, {Map<String, dynamic>? args}) {
+  void onJumpTo(String routeStatus, {Map<String, dynamic>? args}) {
     _routeJump?.onJumpTo?.call(routeStatus, args: args);
   }
 
@@ -138,10 +127,11 @@ class EasyNavigator extends _RouteJumpListener {
 
 ///抽象类供HiNavigator实现
 abstract class _RouteJumpListener {
-  void onJumpTo(RouteStatus routeStatus, {Map<String, dynamic>? args});
+  /// routeStatus: eg: MyRoutePath.MAIN_PATH
+  void onJumpTo(String routeStatus, {Map<String, dynamic>? args});
 }
 
-typedef OnJumpTo = void Function(RouteStatus routeStatus,
+typedef OnJumpTo = void Function(String routeStatus,
     {Map<String, dynamic>? args});
 
 ///定义路由跳转逻辑要实现的功能

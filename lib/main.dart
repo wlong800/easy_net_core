@@ -9,7 +9,6 @@ import 'base/widget/common_ui_kit.dart';
 import 'base/logger/logger.dart';
 import 'base/common/resource.dart';
 import 'navigator/route_delegate.dart';
-import 'navigator/route_information_parser.dart';
 
 GlobalKey<NavigatorState> navigatorState = GlobalKey();
 
@@ -30,14 +29,14 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
-  late MyRouteDelegate _routeDelegate = MyRouteDelegate();
-  MyRouteInformationParser _routeInformationParser = MyRouteInformationParser();
+  late MyRouteDelegate _routeDelegate;
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance?.addObserver(this);
     logger("router: ${widget.router}");
+    _routeDelegate = MyRouteDelegate(router: widget.router);
   }
 
   @override
@@ -56,10 +55,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             if (snapshot.connectionState == ConnectionState.done) {
               return Router(
                 routerDelegate: _routeDelegate,
-                routeInformationParser: _routeInformationParser,
-                routeInformationProvider: PlatformRouteInformationProvider(
-                    initialRouteInformation:
-                        RouteInformation(location: widget.router)),
               );
             }
             return Material(

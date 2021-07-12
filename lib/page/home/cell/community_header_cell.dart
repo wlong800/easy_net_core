@@ -3,6 +3,7 @@ import 'package:app/base/common/resource.dart';
 import 'package:app/base/common/touch_callback.dart';
 import 'package:app/base/widget/common_ui_kit.dart';
 import 'package:app/navigator/easy_navigator.dart';
+import 'package:app/navigator/router_path.dart';
 import 'package:app/page/models/community_model.dart';
 import 'package:flutter/material.dart';
 
@@ -30,7 +31,7 @@ class CommunityHeaderCell extends StatelessWidget {
                   borderWidth: 0.0,
                 ),
                 onPressed: () {
-                  EasyNavigator.getInstance().onJumpTo(RouteStatus.center);
+                  EasyNavigator.getInstance().onJumpTo(MyRoutePath.CENTER_PATH);
                 },
               ),
               Padding(
