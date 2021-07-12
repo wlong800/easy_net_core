@@ -18,6 +18,7 @@ class Global {
   static double refreshHeight = 80.0;
   static int limit = 20;
   static const SCHEMES = ["wmactivity"];
+  static const SCHEME = "wmactivity://";
 
   /// 初始化全局信息，会在APP启动时执行
   static Future init() async {

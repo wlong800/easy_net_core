@@ -1,5 +1,6 @@
 import 'package:app/base/common/lang.dart';
 import 'package:app/base/logger/logger.dart';
+import 'package:app/global.dart';
 import 'package:app/navigator/router_path.dart';
 import 'package:app/page/search_page.dart';
 import 'package:app/page/setting_page.dart';
@@ -21,17 +22,25 @@ class MyRouteDelegate extends RouterDelegate<MyRoutePath>
   String _routeStatus = MyRoutePath.MAIN_PATH;
   Map<String, dynamic>? _params;
   List<CupertinoPage> pages = [];
+  bool _mainStackEmpty = true;
 
   ///为Navigator设置一个key，必要的时候可以通过navigatorKey.currentState来获取到NavigatorState对象
   MyRouteDelegate({this.router}) : navigatorKey = GlobalKey<NavigatorState>() {
     logger("init RouteDelegate... && router: , $router");
     _initRouter();
+
     ///实现路由跳转逻辑
     EasyNavigator.getInstance().registerRouteJump(RouteJumpListener(
         onJumpTo: (String routeStatus, {Map<String, dynamic>? args}) {
       logger("push args :: $args");
-      _routeStatus = routeStatus;
-      _params = args;
+      if (routeStatus.startsWith(Global.SCHEME)) {
+        Uri uri = Uri.parse(routeStatus);
+        _routeStatus = uri.host;
+        _params = uri.queryParameters;
+      } else {
+        _routeStatus = routeStatus;
+        _params = args;
+      }
       notifyListeners();
     }));
   }
@@ -75,10 +84,18 @@ class MyRouteDelegate extends RouterDelegate<MyRoutePath>
     );
   }
 
-
-
   String get routeStatus {
     //todo:可以做一些拦截
+    var mainIndex = getPageIndex(pages, MyRoutePath.MAIN_PATH);
+    if (mainIndex < 0) {
+      if (router != MyRoutePath.MAIN_PATH) {
+        _mainStackEmpty = true;
+      } else {
+        _mainStackEmpty = false;
+      }
+      return MyRoutePath.MAIN_PATH;
+    }
+    _mainStackEmpty = false;
     return _routeStatus;
   }
 
@@ -86,7 +103,7 @@ class MyRouteDelegate extends RouterDelegate<MyRoutePath>
 
   @override
   Future<void> setNewRoutePath(MyRoutePath path) async {
-    // logger("setNewRoutePath ${path.location}");
+    logger("setNewRoutePath 。。。");
   }
 
   void _initRouter() {
@@ -111,9 +128,10 @@ class MyRouteDelegate extends RouterDelegate<MyRoutePath>
     var page;
     switch (routeStatus) {
       case MyRoutePath.MAIN_PATH:
-      ///跳转首页时将栈中其它页面进行出栈，因为首页不可回退
+
+        ///跳转首页时将栈中其它页面进行出栈，因为首页不可回退
         pages.clear();
-        page = pageWrap(BottomNavigator());
+        page = pageWrap(BottomNavigator(router: _mainStackEmpty ? router : null,));
         break;
       case MyRoutePath.CENTER_PATH:
         page = pageWrap(UserCenterPage());

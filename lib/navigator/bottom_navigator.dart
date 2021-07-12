@@ -1,3 +1,4 @@
+import 'package:app/base/common/lang.dart';
 import 'package:app/page/home/main_home_page.dart';
 import 'package:app/page/main_four_page.dart';
 import 'package:app/page/main_second_page.dart';
@@ -9,6 +10,9 @@ import 'easy_navigator.dart';
 
 ///底部导航
 class BottomNavigator extends StatefulWidget {
+  final String? router;
+
+  const BottomNavigator({Key? key, this.router}) : super(key: key);
   @override
   _BottomNavigatorState createState() => _BottomNavigatorState();
 }
@@ -21,6 +25,16 @@ class _BottomNavigatorState extends State<BottomNavigator> with SingleTickerProv
   final PageController _controller = PageController(initialPage: initialPage);
   late List<Widget> _pages;
   bool _hasBuild = false;
+
+  @override
+  void initState() {
+    super.initState();
+    if (isNotEmpty(widget.router)) {
+      Future.delayed(Duration(milliseconds: 100), () {
+        EasyNavigator.getInstance().onJumpTo(widget.router!);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
