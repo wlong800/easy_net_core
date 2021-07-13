@@ -124,7 +124,7 @@ class _BottomNavigatorState extends State<BottomNavigator>
         children: [
           Icon(
             icon,
-            color: Colors.white,
+            color: _currentIndex == index ? _activeColor : _defaultColor,
           ),
           Text(
             title,
