@@ -1,4 +1,3 @@
-
 import 'package:app/base/common/lang.dart';
 import 'package:app/base/common/resource.dart';
 import 'package:app/base/widget/common_ui_kit.dart';
@@ -137,6 +136,14 @@ class _WidgetTestPageState extends State<WidgetTestPage> {
                           radius2: 30.0,
                           borderWidth: 3.0,
                           borderColor: R.color_1,
+                        ),
+                      ),
+                      Container(
+                        width: 100.0,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.all(Radius.circular(4.0)),
+                          child: Image.network(
+                              "https://img.allhistory.com/60964b005c66234b0d367c2a.png"),
                         ),
                       ),
                     ],

@@ -1,5 +1,4 @@
 import 'package:app/base/common/lang.dart';
-import 'package:app/base/logger/logger.dart';
 import 'package:app/page/home/main_home_page.dart';
 import 'package:app/page/main_four_page.dart';
 import 'package:app/page/main_second_page.dart';
@@ -32,6 +31,12 @@ class _BottomNavigatorState extends State<BottomNavigator> with SingleTickerProv
   @override
   void initState() {
     super.initState();
+    _pages = [
+      MainHomePage(),
+      MainSecondPage(),
+      MainThirdPage(),
+      MainFourPage()
+    ];
     if (isNotEmpty(widget.router)) {
       Future.delayed(Duration(milliseconds: 100), () {
         EasyNavigator.getInstance().onJumpTo(widget.router!);
@@ -41,19 +46,12 @@ class _BottomNavigatorState extends State<BottomNavigator> with SingleTickerProv
 
   @override
   Widget build(BuildContext context) {
-    _pages = [
-      MainHomePage(),
-      MainSecondPage(),
-      MainThirdPage(),
-      MainFourPage()
-    ];
     if (!_hasBuild) {
       //页面第一次打开时通知打开的是那个tab
       EasyNavigator.getInstance()
           .onBottomTabChange(initialPage, _pages[initialPage]);
       _hasBuild = true;
     }
-
     return WillPopScope(
       onWillPop: () async {
         if (_lastPressedAt == null ||

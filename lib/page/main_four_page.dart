@@ -1,4 +1,5 @@
-import 'package:app/tools/channel_tools.dart';
+import 'package:app/navigator/easy_navigator.dart';
+import 'package:app/navigator/router_path.dart';
 import 'package:flutter/material.dart';
 import 'package:app/base/utils/quote_utils.dart';
 
@@ -13,6 +14,7 @@ class MainFourPage extends StatefulWidget {
 class _MainFourPageState extends State<MainFourPage> with TickerProviderStateMixin {
   UserSpanAction action = (userInfo){
     print("成功 ${userInfo.name} id=${userInfo.id}");
+    EasyNavigator.getInstance().onJumpTo(MyRoutePath.CENTER_PATH);
     return 1;
   };
   @override

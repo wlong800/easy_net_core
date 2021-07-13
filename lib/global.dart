@@ -24,13 +24,13 @@ class Global {
   static Future init() async {
     await HoldManager?.preInit();
     String proxy = Hold.getString("proxy_setting");
-    // if (isNotEmpty(proxy)) {
+    if (isNotEmpty(proxy)) {
       ConfigManager.getInstance()
-          // .addConfig(BaseProxyConfig(proxy.split(":")[0], proxy.split(":")[1]))
-          .addConfig(BaseProxyConfig("10.6.12.169", "8888"))
+          .addConfig(BaseProxyConfig(proxy.split(":")[0], proxy.split(":")[1]))
+          // .addConfig(BaseProxyConfig("10.6.12.169", "8888"))
           .addConfig(BaseLoggerConfig())
           .build();
-    // }
+    }
     await getNativeGlobalInfo();
 
   }
