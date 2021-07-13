@@ -38,7 +38,8 @@ class _MainHomePageState extends State<MainHomePage>
         titleWidget: Row(
           children: [
             Container(
-              padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 5.0),
+              padding:
+                  const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 5.0),
               alignment: Alignment.bottomLeft,
               child: Row(
                 children: [
@@ -84,7 +85,8 @@ class _MainHomePageState extends State<MainHomePage>
               ),
             ),
             Container(
-              padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 5.0),
+              padding:
+                  const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 5.0),
               alignment: Alignment.bottomCenter,
               child: Icon(
                 Icons.add_a_photo,
@@ -95,19 +97,71 @@ class _MainHomePageState extends State<MainHomePage>
           ],
         ),
       ),
-      body: Column(
-        children: [
-          Container(
-            color: Colors.white,
-            child: _tabBar(),
-          ),
-          Flexible(
-              child: TabBarView(
-                  controller: _controller,
-                  children: tabs.map((tab) {
-                    return MainHomeTabPage();
-                  }).toList()))
-        ],
+      body: NestedScrollView(
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+          return <Widget>[
+            SliverAppBar(
+              expandedHeight: 100.0,
+              backgroundColor: R.color_1,
+              brightness: Brightness.light,
+              leading: null,
+              floating: false,
+              pinned: false,
+              flexibleSpace: FlexibleSpaceBar(
+                  collapseMode: CollapseMode.pin,
+                  background: Container(
+                    padding: EdgeInsets.only(top: 16.0, bottom: 16.0),
+                    margin: EdgeInsets.only(bottom: 8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          children: [
+                            Icon(Icons.call),
+                            Text("周末去哪儿玩"),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Icon(Icons.call),
+                            Text("top榜单"),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Icon(Icons.call),
+                            Text("打卡地图"),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Icon(Icons.call),
+                            Text("遛娃达人"),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Icon(Icons.call),
+                            Text("0元探店"),
+                          ],
+                        ),
+                      ],
+                    ),
+                  )),
+            ),
+            SliverPersistentHeader(
+              delegate: _SliverAppBarDelegate(
+                _tabBar(),
+              ),
+              pinned: true,
+            ),
+          ];
+        },
+        body: TabBarView(
+            controller: _controller,
+            children: tabs.map((tab) {
+              return MainHomeTabPage();
+            }).toList()),
       ),
     );
   }
@@ -135,4 +189,30 @@ class _MainHomePageState extends State<MainHomePage>
   }
 
   bool get wantKeepAlive => true;
+}
+
+class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
+  _SliverAppBarDelegate(this._tabBar);
+
+  final TabBar _tabBar;
+
+  @override
+  double get minExtent => _tabBar.preferredSize.height;
+
+  @override
+  double get maxExtent => _tabBar.preferredSize.height;
+
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return new Container(
+      color: R.color_white,
+      child: _tabBar,
+    );
+  }
+
+  @override
+  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
+    return false;
+  }
 }

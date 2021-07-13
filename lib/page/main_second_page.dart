@@ -1,6 +1,8 @@
+import 'package:app/base/common/lang.dart';
 import 'package:app/base/common/resource.dart';
 import 'package:app/navigator/easy_navigator.dart';
 import 'package:app/navigator/router_path.dart';
+import 'package:app/test/collapsing_page.dart';
 import 'package:flutter/material.dart';
 
 class MainSecondPage extends StatefulWidget {
@@ -43,6 +45,11 @@ class _MainSecondPageState extends State<MainSecondPage> with TickerProviderStat
                   onPressed: () {
                     EasyNavigator.getInstance()
                         .onJumpTo(MyRoutePath.TEST2_PATH, args: {"id": 1});
+                  }),
+              ElevatedButton(
+                  child: Text("跳转到CollapsingToolbarLayout1"),
+                  onPressed: () {
+                    push(context, MainCollapsingToolbar());
                   }),
             ],
           ),
