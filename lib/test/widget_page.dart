@@ -1,7 +1,9 @@
 import 'package:app/base/common/lang.dart';
 import 'package:app/base/common/resource.dart';
+import 'package:app/base/common/touch_callback.dart';
 import 'package:app/base/widget/common_ui_kit.dart';
 import 'package:app/base/widget/image/MyCachedNetworkImage.dart';
+import 'package:app/test/ui/test_image_page.dart';
 import 'package:flutter/material.dart';
 
 class WidgetTestPage extends StatefulWidget {
@@ -100,54 +102,11 @@ class _WidgetTestPageState extends State<WidgetTestPage> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 24.0),
-                  child: Column(
-                    children: [
-                      Text("image"),
-                      Text(""),
-                      Container(
-                        width: 100.0,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.all(Radius.circular(4.0)),
-                          child: MyCachedNetworkImage(
-                              url:
-                                  "https://img.allhistory.com/60964b005c66234b0d367c2a.png"),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: AvatarKit(
-                          avatar:
-                              "https://img.allhistory.com/60964b005c66234b0d367c2a.png",
-                          width: 60.0,
-                          height: 60.0,
-                          radius: 30.0,
-                          borderWidth: 0.0,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: AvatarKit(
-                          avatar:
-                              "https://img.allhistory.com/60964b005c66234b0d367c2a.png",
-                          width: 60.0,
-                          height: 60.0,
-                          radius: 30.0,
-                          radius2: 30.0,
-                          borderWidth: 3.0,
-                          borderColor: R.color_1,
-                        ),
-                      ),
-                      Container(
-                        width: 100.0,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.all(Radius.circular(4.0)),
-                          child: Image.network(
-                              "https://img.allhistory.com/60964b005c66234b0d367c2a.png"),
-                        ),
-                      ),
-                    ],
-                  ),
+                  padding: EdgeInsets.only(top: 24.0, left: 24.0, right: 24.0),
+                  child: ElevatedButton(child: Text("Image"), onPressed: () {
+                    push(context, TestImagePage());
+
+                  },),
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 24.0),
@@ -171,7 +130,7 @@ class _WidgetTestPageState extends State<WidgetTestPage> {
                             _checkboxSelected = value ?? false;
                           });
                         },
-                      )
+                      ),
                     ],
                   ),
                 ),
