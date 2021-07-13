@@ -189,42 +189,43 @@ class WMPreferredSize2 extends PreferredSize {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: bgColor,
-      primary: true,
-      systemOverlayStyle: SystemUiOverlayStyle.dark,
-      leading: _buildLeadingButton(context),
       leadingWidth: 0.0,
+      titleSpacing: 0.0,
       title: Container(
         child: Stack(
           children: [
-            TouchCallBack(
-              child: Container(
-                alignment: Alignment.bottomLeft,
-                padding:
-                    const EdgeInsets.only(top: 16.0, bottom: 12.0, right: 16.0),
-                child: Image.asset(
-                  "images/icon_back.png",
-                  height: 18.0,
+            Offstage(
+              offstage: !leading,
+              child: TouchCallBack(
+                child: Container(
+                  alignment: Alignment.bottomLeft,
+                  padding: const EdgeInsets.only(
+                      top: 16.0, bottom: 12.0, right: 16.0),
+                  child: Image.asset(
+                    "images/icon_back.png",
+                    height: 18.0,
+                  ),
                 ),
-              ),
-              onPressed: () {
-                if (leadingCallback != null) {
-                  leadingCallback?.call();
-                  return;
-                }
-                if (isSystemPop) {
-                  systemPop();
-                } else {
-                  try {
-                    if ((navigatorState.currentState?.canPop()) == false) {
-                      systemPop();
-                      return;
-                    }
-                  } catch (e) {
-                    print(e);
+                onPressed: () {
+                  if (leadingCallback != null) {
+                    leadingCallback?.call();
+                    return;
                   }
-                  Navigator.pop(context);
-                }
-              },
+                  if (isSystemPop) {
+                    systemPop();
+                  } else {
+                    try {
+                      if ((navigatorState.currentState?.canPop()) == false) {
+                        systemPop();
+                        return;
+                      }
+                    } catch (e) {
+                      print(e);
+                    }
+                    Navigator.pop(context);
+                  }
+                },
+              ),
             ),
             Container(
               child: Container(
