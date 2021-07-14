@@ -1,3 +1,124 @@
+#### SliverAppBar
+
+
+
+1. expandedHeight
+> This does not include the status bar height (which will be automatically included if [primary] is true).
+
+> 合并的高度，默认是状态栏的高度加AppBar的高度
+```
+[primary]:true (不包含状态栏高度，反之包含)
+```
+
+3. backgroundColor
+
+> 背景颜色(折叠后的背景色也是这个属性)
+
+4. leading
+> 左侧的图标或文字，多为返回箭头
+
+5. automaticallyImplyLeading
+> 没有leading为true的时候，默认返回箭头
+
+> 没有leading且为false，则显示title
+
+leading | automaticallyImplyLeading | result
+---|---|---
+null | true | 返回箭头
+null | false | 不返回箭头，如果有title，显示title
+not null | true | 无效
+not null | false | 无效
+
+7. title
+> 标题
+
+8. actions
+> 标题右侧的操作
+
+9. primary
+> 是否显示在状态栏的下面,false就会占领状态栏的高度
+
+10. centerTitle
+> 标题是否居中显示
+
+11. pinned
+> 标题栏是否固定
+
+12. elevation
+> 阴影大小
+
+13. forceElevated
+> 是否显示阴影
+
+14. brightness
+> 状态栏主题色
+
+15. titleSpacing
+> 标题间距
+
+16. flexibleSpace(*)
+> SliverAppBar的背景内容区,通常使用 FlexibleSpaceBar
+
+17. collapsedHeight
+> 折叠之后的高度 默认 toolbarHeight 的高度
+
+18. floating
+> 否会发生下拉立即出现SliverAppBar
+
+19. snap
+> 必须与floating:true联合使用，表示显示SliverAppBar之后，如果没有完全拉伸，是否会完全展开
+
+20. stretch
+> 看这个哇，解释的很到位，图文，https://medium.com/flutter-community/flutter-sliverappbar-with-stretchy-header-9ca04f316ff0
+
+21. 
+
+
+#### FlexibleSpaceBar
+
+1. collapseMode
+
+> CollapseMode.pin: 一起滚动，直到消失
+CollapseMode.parallax: 视觉渐变，抽屉效果更明显
+
+2. stretchModes
+> StretchMode.zoomBackground- >背景小部件将展开以填充额外的空间。
+
+> StretchMode.blurBackground- >使用[ImageFilter.blur]效果，背景将模糊。
+      
+> StretchMode.fadeTitle- >随着用户过度滚动，标题将消失。
+
+
+#### 自定义SliverAppBar，实现appbar title只有在完全折叠的状态显示
+
+1. 关键代码
+
+```
+bool _verticalOffsetZero = false;
+
+AppBarStateChangeController _appBarStateChangeController =
+      AppBarStateChangeController();
+
+_appBarStateChangeController.addListener(() {
+  var verticalOffsetZero = _appBarStateChangeController.verticalOffsetZero;
+  if (_verticalOffsetZero != verticalOffsetZero) {
+    logger("verticalOffsetZero >>> $verticalOffsetZero");
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      //需要创建的小组件
+      setState(() {});
+    });
+  }
+  _verticalOffsetZero = verticalOffsetZero;
+});
+
+MySliverAppBar(
+appBarStateChangeController: _appBarStateChangeController,
+)
+```
+
+2. MySliverAppBar部分（完全把SliverAppBar copy的出来，进行改动，如果没有我这种需求，还是建议用SliverAppBar）
+
+```
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -165,7 +286,7 @@ class MySliverAppBar extends StatefulWidget {
   /// This property is used to configure an [AppBar].
   final double? titleSpacing;
 
-  /// Defines the height of the app bar when it is co llapsed.
+  /// Defines the height of the app bar when it is collapsed.
   ///
   /// By default, the collapsed height is [toolbarHeight]. If [bottom] widget is
   /// specified, then its height from [PreferredSizeWidget.preferredSize] is
@@ -391,7 +512,7 @@ class _MySliverAppBarState extends State<MySliverAppBar>
         delegate: _SliverAppBarDelegate(
           vsync: this,
           leading: widget.leading,
-          controller: widget.appBarStateChangeController,
+          appBarStateChangeController: widget.appBarStateChangeController,
           automaticallyImplyLeading: widget.automaticallyImplyLeading,
           title: widget.title,
           actions: widget.actions,
@@ -468,7 +589,7 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
     required this.toolbarTextStyle,
     required this.titleTextStyle,
     required this.systemOverlayStyle,
-    required this.controller,
+    required this.appBarStateChangeController,
   })  : assert(primary || topPadding == 0.0),
         assert(
           !floating ||
@@ -480,7 +601,7 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
         _bottomHeight = bottom?.preferredSize.height ?? 0.0;
 
   final Widget? leading;
-  final AppBarStateChangeController? controller;
+  final AppBarStateChangeController? appBarStateChangeController;
   final bool automaticallyImplyLeading;
   final Widget? title;
   final List<Widget>? actions;
@@ -553,7 +674,7 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
         ? (visibleToolbarHeight / (toolbarHeight ?? kToolbarHeight))
             .clamp(0.0, 1.0)
         : 1.0;
-    controller?.setValue((math.max(minExtent, maxExtent - shrinkOffset) == minExtent));
+    appBarStateChangeController?.setValue((math.max(minExtent, maxExtent - shrinkOffset) == minExtent));
     final Widget appBar = FlexibleSpaceBar.createSettings(
       minExtent: minExtent,
       maxExtent: maxExtent,
@@ -706,3 +827,5 @@ class AppBarStateChangeController extends ChangeNotifier {
 
   bool get verticalOffsetZero => _verticalOffsetZero;
 }
+
+```
