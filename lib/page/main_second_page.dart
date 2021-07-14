@@ -51,6 +51,11 @@ class _MainSecondPageState extends State<MainSecondPage> with TickerProviderStat
                   onPressed: () {
                     push(context, MainCollapsingToolbar());
                   }),
+              ElevatedButton(
+                  child: Text("跳转到专题页"),
+                  onPressed: () {
+                    EasyNavigator.getInstance().onJumpTo(MyRoutePath.SUBJECT_PATH);
+                  }),
             ],
           ),
         ),

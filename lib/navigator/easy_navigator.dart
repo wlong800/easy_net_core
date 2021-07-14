@@ -1,5 +1,6 @@
 import 'package:app/base/logger/logger.dart';
 import 'package:app/navigator/router_path.dart';
+import 'package:app/page/home/subject_feed_page.dart';
 import 'package:app/page/search_page.dart';
 import 'package:app/page/topics_page.dart';
 import 'package:app/page/user_center_page.dart';
@@ -42,6 +43,8 @@ String getStatus(CupertinoPage page) {
     return MyRoutePath.TEST2_PATH;
   } else if (page.child is SearchPage) {
     return MyRoutePath.TEST2_PATH;
+  } else if (page.child is SubjectPage) {
+    return MyRoutePath.SUBJECT_PATH;
   }
   return MyRoutePath.UNKNOWN_PATH;
 }

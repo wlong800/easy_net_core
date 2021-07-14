@@ -2,6 +2,7 @@ import 'package:app/base/common/lang.dart';
 import 'package:app/base/logger/logger.dart';
 import 'package:app/global.dart';
 import 'package:app/navigator/router_path.dart';
+import 'package:app/page/home/subject_feed_page.dart';
 import 'package:app/page/search_page.dart';
 import 'package:app/page/setting_page.dart';
 import 'package:app/page/topics_page.dart';
@@ -144,6 +145,9 @@ class MyRouteDelegate extends RouterDelegate<MyRoutePath>
         break;
       case MyRoutePath.TOPICS_PATH:
         page = pageWrap(TopicsPage(id: toString2(params!["id"])));
+        break;
+      case MyRoutePath.SUBJECT_PATH:
+        page = pageWrap(SubjectPage());
         break;
       case MyRoutePath.TEST1_PATH:
         page = pageWrap(TextAreaPage());

@@ -8,6 +8,7 @@ class MyRoutePath {
   static const TEST1_PATH = "test1";
   static const TEST2_PATH = "test2";
   static const SEARCH_PATH = "search";
+  static const SUBJECT_PATH = "subject";
   static const UNKNOWN_PATH = "unknown";
 
   // final String location;

@@ -19,29 +19,27 @@ class _MainHomeTabPageState
   @override
   Widget buildBody(BuildContext context, CommunityViewModel model) {
     var list = model.data;
-    return SafeArea(
-      child: AHRefresher(
-        controller: refreshController,
-        onLoadMoreErrorCallback: onLoadMore,
-        onRefresh: onRefresh,
-        onLoadMore: onLoadMore,
-        child: ListView.builder(
-          itemBuilder: (BuildContext context, int index) {
-            var model = list[index];
-            if (model.isImages()) {
-              return CommunityImageCell(model: model);
-            } else if (model.isVideo()) {
-              return CommunityVideoCell(model: model);
-            } else if (model.isContent()) {
-              return CommunityTextCell(model: model);
-            }
-            return Container(
-                height: 40.0,
-                color: Colors.red,
-                child: Center(child: Text("样式暂未支持 ${index + 1}")));
-          },
-          itemCount: list.length,
-        ),
+    return AHRefresher(
+      controller: refreshController,
+      onLoadMoreErrorCallback: onLoadMore,
+      onRefresh: onRefresh,
+      onLoadMore: onLoadMore,
+      child: ListView.builder(
+        itemBuilder: (BuildContext context, int index) {
+          var model = list[index];
+          if (model.isImages()) {
+            return CommunityImageCell(model: model);
+          } else if (model.isVideo()) {
+            return CommunityVideoCell(model: model);
+          } else if (model.isContent()) {
+            return CommunityTextCell(model: model);
+          }
+          return Container(
+              height: 40.0,
+              color: Colors.red,
+              child: Center(child: Text("样式暂未支持 ${index + 1}")));
+        },
+        itemCount: list.length,
       ),
     );
   }
