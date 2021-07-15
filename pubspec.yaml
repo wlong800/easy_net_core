@@ -39,6 +39,8 @@ dependencies:
   extended_image: ^4.0.1
   nine_grid_view: ^2.0.0
   underline_indicator: ^0.0.2
+  amap_flutter_map: ^2.0.1
+
 
 dev_dependencies:
   flutter_test:

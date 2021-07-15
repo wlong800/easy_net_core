@@ -2,6 +2,7 @@ import 'package:app/base/common/lang.dart';
 import 'package:app/base/common/resource.dart';
 import 'package:app/navigator/easy_navigator.dart';
 import 'package:app/navigator/router_path.dart';
+import 'package:app/page/map_page.dart';
 import 'package:app/test/collapsing_page.dart';
 import 'package:flutter/material.dart';
 import 'package:all_future_plugin/native_view_example.dart';
@@ -61,6 +62,11 @@ class _MainSecondPageState extends State<MainSecondPage> with TickerProviderStat
                   child: Text("跳转到原生视图托管页"),
                   onPressed: () {
                     push(context, NativeViewExample());
+                  }),
+              ElevatedButton(
+                  child: Text("跳转到高德地图"),
+                  onPressed: () {
+                    push(context, MapPage());
                   }),
             ],
           ),
