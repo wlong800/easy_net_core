@@ -3,6 +3,11 @@ import 'package:app/base/common/resource.dart';
 import 'package:app/navigator/easy_navigator.dart';
 import 'package:app/navigator/router_path.dart';
 import 'package:app/page/map_page.dart';
+import 'package:app/test/anim/hero_page.dart';
+import 'package:app/test/anim/logo_app.dart';
+import 'package:app/test/anim/stagger_page.dart';
+import 'package:app/test/anim/switch_page.dart';
+import 'package:app/test/app.dart';
 import 'package:app/test/collapsing_page.dart';
 import 'package:flutter/material.dart';
 import 'package:all_future_plugin/native_view_example.dart';
@@ -14,7 +19,8 @@ class MainSecondPage extends StatefulWidget {
   _MainSecondPageState createState() => _MainSecondPageState();
 }
 
-class _MainSecondPageState extends State<MainSecondPage> with TickerProviderStateMixin {
+class _MainSecondPageState extends State<MainSecondPage>
+    with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -56,7 +62,8 @@ class _MainSecondPageState extends State<MainSecondPage> with TickerProviderStat
               ElevatedButton(
                   child: Text("跳转到专题页"),
                   onPressed: () {
-                    EasyNavigator.getInstance().onJumpTo(MyRoutePath.SUBJECT_PATH);
+                    EasyNavigator.getInstance()
+                        .onJumpTo(MyRoutePath.SUBJECT_PATH);
                   }),
               ElevatedButton(
                   child: Text("跳转到原生视图托管页"),
@@ -67,6 +74,49 @@ class _MainSecondPageState extends State<MainSecondPage> with TickerProviderStat
                   child: Text("跳转到高德地图"),
                   onPressed: () {
                     push(context, MapPage());
+                  }),
+              ElevatedButton(
+                  child: Text("跳转到视频"),
+                  onPressed: () {
+                    push(context, ChewieDemo());
+                  }),
+              ElevatedButton(
+                  child: Text("跳转到动画"),
+                  onPressed: () {
+                    push(context, LogoPage());
+                  }),
+              ElevatedButton(
+                  child: Text("跳转到Hero动画"),
+                  onPressed: () {
+                    push(
+                        context,
+                        Material(
+                          child: SafeArea(
+                            child: HeroAnimationRoute(),
+                          ),
+                        ));
+                  }),
+              ElevatedButton(
+                  child: Text("跳转到Stagger动画"),
+                  onPressed: () {
+                    push(
+                        context,
+                        Material(
+                          child: SafeArea(
+                            child: StaggerRoute(),
+                          ),
+                        ));
+                  }),
+              ElevatedButton(
+                  child: Text("跳转到Switch动画"),
+                  onPressed: () {
+                    push(
+                        context,
+                        Material(
+                          child: SafeArea(
+                            child: AnimatedSwitcherCounterRoute(),
+                          ),
+                        ));
                   }),
             ],
           ),

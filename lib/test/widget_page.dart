@@ -103,10 +103,12 @@ class _WidgetTestPageState extends State<WidgetTestPage> {
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 24.0, left: 24.0, right: 24.0),
-                  child: ElevatedButton(child: Text("Image"), onPressed: () {
-                    push(context, TestImagePage());
-
-                  },),
+                  child: ElevatedButton(
+                    child: Text("Image"),
+                    onPressed: () {
+                      push(context, TestImagePage());
+                    },
+                  ),
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 24.0),
@@ -140,5 +142,17 @@ class _WidgetTestPageState extends State<WidgetTestPage> {
         ),
       ),
     );
+  }
+
+  Widget getColumn() {
+    return Column(
+      children: [
+        ..._container(),
+      ],
+    );
+  }
+
+  List<Widget> _container() {
+    return [Text("xx"), Text("xxx"), Container()];
   }
 }
