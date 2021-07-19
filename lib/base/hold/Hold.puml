@@ -49,6 +49,8 @@ note top: 抽取一个utils，方便调用
 '<|-- 继承
 'o--  聚合
 '..  ???
+
+'<.. 依赖（一个类持有另一个类的引用）
 HoldFacade <|.. HoldFacadeImpl
 
 HoldManager o-- HoldFacade

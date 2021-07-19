@@ -1,0 +1,55 @@
+@startuml
+'https://plantuml.com/class-diagram
+'logger: ^1.0.0
+class Logger {
+    -LogFilter _filter
+    -LogPrinter _printer
+    -LogOutput _output
+    {static} Level level
+    v(dynamic message, [dynamic error, StackTrace? stackTrace])
+    log(Level level, dynamic message, [dynamic error, StackTrace? stackTrace])
+}
+note left: 门面
+
+note right of Logger::log
+  真正调用打印的地方
+end note
+
+abstract class LogFilter {
+    bool shouldLog(LogEvent event)
+}
+note left: 过滤日志，哪些级别的日志可以打印出来
+
+
+abstract class LogPrinter {
+    List<String> log(LogEvent event)
+}
+note left: 日志输出核心接口
+
+abstract class LogOutput {
+
+}
+note left: 真正日志输出
+
+class DevelopmentFilter {
+}
+
+class PrettyPrinter {
+}
+
+class ConsoleOutput {
+}
+
+
+Logger <.. LogFilter
+Logger <.. LogPrinter
+Logger <.. LogOutput
+LogFilter <|-- DevelopmentFilter
+LogFilter <|-- ProductionFilter
+LogPrinter <|-- PrettyPrinter
+LogPrinter <|-- SimplePrinter
+LogOutput <|-- ConsoleOutput
+LogOutput <|-- FileOutput
+
+
+@enduml

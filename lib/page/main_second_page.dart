@@ -9,6 +9,7 @@ import 'package:app/test/anim/stagger_page.dart';
 import 'package:app/test/anim/switch_page.dart';
 import 'package:app/test/app.dart';
 import 'package:app/test/collapsing_page.dart';
+import 'package:app/test/web_view_page.dart';
 import 'package:flutter/material.dart';
 import 'package:all_future_plugin/native_view_example.dart';
 
@@ -115,6 +116,17 @@ class _MainSecondPageState extends State<MainSecondPage>
                         Material(
                           child: SafeArea(
                             child: AnimatedSwitcherCounterRoute(),
+                          ),
+                        ));
+                  }),
+              ElevatedButton(
+                  child: Text("跳转到WebView"),
+                  onPressed: () {
+                    push(
+                        context,
+                        Material(
+                          child: SafeArea(
+                            child: WebViewExample(),
                           ),
                         ));
                   }),
