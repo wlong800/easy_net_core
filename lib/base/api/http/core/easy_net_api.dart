@@ -55,7 +55,7 @@ class EasyNetApi {
   }
 
   Future<EasyBaseResponse> send(EasyBaseRequest request) async {
-    ///使用Dio发送请求，拓展性体现，可以插拔
+    ///使用Dio发送请求，可以插拔
     EasyNetAdapter adapter = EasyDioAdapter();
     return adapter.send(request);
   }

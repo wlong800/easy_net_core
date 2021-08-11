@@ -1,0 +1,38 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+enum RefreshStatus {
+}
+
+enum LoadStatus {
+}
+
+enum RefreshStyle {
+}
+
+enum LoadStyle {
+}
+
+class SmartRefresher {
+}
+
+class SmartRefresherState {
+}
+
+class RefreshController {
+}
+
+class InheritedWidget {
+}
+
+class RefreshConfiguration {
+}
+note left: 可以理解为一个配置类，比如设置header高度之类
+
+class RefreshNotifier {
+}
+InheritedWidget <|-- RefreshConfiguration
+
+
+@enduml

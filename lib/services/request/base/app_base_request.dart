@@ -12,16 +12,14 @@ abstract class AppBaseRequest extends EasyBaseRequest {
 
   @override
   Future<Map<String, dynamic>> getRequestHeaders() async {
-    // return {
-    //   "Cookie":
-    //       "sid=4724338c913dd604f96431bc176f6219; bearer=eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiLog5bkuY7kuY4iLCJjcmVhdGVkIjoxNjI1NTY4OTE4NTA2LCJleHAiOjE2MjgxNjA5MTgsInVzZXJpZCI6NTc5MDI0fQ.O260gcb7oqXaIGDERbT-ATjVnqAERg0UDSPfl0yRmb5sgK1qBFU4E7Ce4hAsXG4WOef1Tlx-g97-4BzvVdhtSg"
-    // };
     var nativeHeaders = await AHChannel.getNativeHeaders();
     logger("getRequestHeaders start...");
     var methodEnumStr = EasyHttpMethod.values[getHttpMethod().index].toString();
     logger("getRequestHeaders methodEnumStr...<$methodEnumStr>");
     var header = await HeaderTools.getHeaders(getUrl(),
-        method: methodEnumStr.substring(methodEnumStr.indexOf(".") + 1).toLowerCase(),
+        method: methodEnumStr
+            .substring(methodEnumStr.indexOf(".") + 1)
+            .toLowerCase(),
         params: await getRequestParams());
     if (nativeHeaders.length > 0) {
       header.addAll(nativeHeaders);
@@ -31,7 +29,23 @@ abstract class AppBaseRequest extends EasyBaseRequest {
 
   @override
   Future<Map<String, dynamic>>? getRequestParams() {
-    return Future.value(requestParams);
+    List<String>? keys = requestParams?.keys.toList();
+    keys?.sort((a, b) {
+      List<int> al = a.codeUnits;
+      List<int> bl = b.codeUnits;
+      for (int i = 0; i < al.length; i++) {
+        if (bl.length <= i) return 1;
+        if (al[i] > bl[i]) {
+          return 1;
+        } else if (al[i] < bl[i]) return -1;
+      }
+      return 0;
+    });
+    var treeMap = Map<String, dynamic>();
+    keys?.forEach((element) {
+      treeMap[element] = requestParams![element];
+    });
+    return Future.value(treeMap);
   }
 
   @override

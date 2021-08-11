@@ -1,32 +1,28 @@
-
 ///大陆手机号码11位数，匹配格式：前三位固定格式+后8位任意数
 /// 此方法中前三位格式有：
 /// 13+任意数 * 15+除4的任意数 * 18+除1和4的任意数 * 17+除9的任意数 * 147
 bool isChinaPhoneLegal(String str) {
-  return new RegExp(
-          '^((13[0-9])|(15[^4])|(166)|(17[0-8])|(18[0-9])|(19[8-9])|(147,145))\\d{8}\$')
+  return RegExp(
+          '^((13[0-9])|(15[^4])|(166)|(17[0-8])|(18[0-9])|(19[8-9])|(147,145))\d{8}\$')
       .hasMatch(str);
 }
 
 ///电话号码：1开头，后面10位数字
 bool isPhone(String input) {
-  RegExp mobile = new RegExp(r"1[0-9]\d{9}$");
-  return mobile.hasMatch(input);
+  return RegExp('1\\d{10}\$').hasMatch(input);
 }
 
 ///登录密码：6~16位
 bool validatePwd(String input) {
-  RegExp mobile = new RegExp(r"^\S{6,12}$");
-  return mobile.hasMatch(input);
+  return RegExp(r"^\S{6,16}$").hasMatch(input);
 }
 
 ///6位数字验证码
 bool isValidateCaptcha(String input) {
-  RegExp mobile = new RegExp(r"^\S{6,12}$");
-  return mobile.hasMatch(input);
+  return RegExp(r"^\S{6}$").hasMatch(input);
 }
 
-//带校验的身份证
+///校验的身份证(待验证）
 bool isCardId(String cardId) {
   if (cardId.length != 18) {
     return false; // 位数不够
@@ -99,6 +95,5 @@ bool isCardId(String cardId) {
 }
 
 bool validateEmailExp(String email) {
- RegExp regExp = new RegExp(r"^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$");
- return regExp.hasMatch(email);
+  return RegExp(r"^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$").hasMatch(email);
 }

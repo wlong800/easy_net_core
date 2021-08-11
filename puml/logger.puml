@@ -1,6 +1,12 @@
 @startuml
 'https://plantuml.com/class-diagram
 'logger: ^1.0.0
+
+'<|.. 实现
+'<|-- 继承
+'o--  聚合
+'<..  依赖（a 持有 b)
+
 class Logger {
     -LogFilter _filter
     -LogPrinter _printer
@@ -44,12 +50,12 @@ class ConsoleOutput {
 Logger <.. LogFilter
 Logger <.. LogPrinter
 Logger <.. LogOutput
-LogFilter <|-- DevelopmentFilter
-LogFilter <|-- ProductionFilter
-LogPrinter <|-- PrettyPrinter
-LogPrinter <|-- SimplePrinter
-LogOutput <|-- ConsoleOutput
-LogOutput <|-- FileOutput
+LogFilter <|.. DevelopmentFilter
+LogFilter <|.. ProductionFilter
+LogPrinter <|.. PrettyPrinter
+LogPrinter <|.. SimplePrinter
+LogOutput <|.. ConsoleOutput
+LogOutput <|.. FileOutput
 
 
 @enduml
